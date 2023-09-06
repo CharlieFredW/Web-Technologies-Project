@@ -1,1 +1,4 @@
 # Web-Technologies-Project
+Music Sampler Library
+
+Music Sampler Library is a web application that give users the ability to record their own samples and upload them to their profile and then share them if they want to. The samples will then, if the samples are uploaded/shared to the platform, give other users the ability to search the sites by using filters, for specific samples, or the music scale key of samples and so on, and then download them. Kind of like the attached picture. The user can make the samples private, public or maybe friends only. In the start we will only simulate that files are uploaded, if there is time the upload samples function will be implemented.
