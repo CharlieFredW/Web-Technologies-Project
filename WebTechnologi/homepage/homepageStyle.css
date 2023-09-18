@@ -86,8 +86,9 @@ li {
 }
 
 .new-samples-text {
+    flex: 1;
     border: 2px solid #040711;
-    margin: 16px 24px 8px 24px;
+    margin: 16px 72px 8px 24px;
     padding: 5px 24px 5px 24px;
     display: inline-block;
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -96,14 +97,19 @@ li {
     font-weight: bold;
     background-color: #804E49;
     color: #E7DECD;
+    text-align: center;
 }
 
 .new-samples-box {
-    padding: 60px 150px 60px 250px;
+    padding: 36px 24px 100px 0;
     background: #FBFAF8;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 .new-samples-images-container {
+    flex: 7;
     justify-content: space-between;
     display: flex;
     flex-wrap: wrap;
@@ -112,10 +118,10 @@ li {
 .new-samples-image-container {
     justify-content: space-between;
     padding: 10px;
-    flex-basis: calc(15% - 30px);
+    flex-basis: calc(9% - 10px);
     border: 3px solid #804E49;
     text-align: center;
-    height: 150px;
+    height: 100px;
     flex-direction: column;
     margin-bottom: 20px;
     align-items: center;
@@ -130,6 +136,67 @@ li {
 }
 
 .new-samples-image-caption {
+    color: #333;
+    margin-top: 10px;
+    font-size: 14px;
+    flex-basis: calc(15% - 30px);
+    text-align: center;
+    position: absolute;
+    bottom: -80px;
+    left: 0;
+    right: 0;
+    padding: 10px 10px 24px;
+}
+
+.divider1 {
+    padding: 60px 150px;
+    background: #E7DECD;
+}
+
+.blog-container {
+    padding: 60px 150px;
+    background: #FBFAF8;
+}
+
+.blog-heading {
+    display: flex;
+    justify-content: center;
+    color: #804E49;
+    font-size: 48px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 5px 24px 5px 24px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.blog-images-container {
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.blog-image-container {
+    justify-content: space-between;
+    padding: 10px;
+    flex-basis: calc(30% - 60px);
+    border: 3px solid #804E49;
+    text-align: center;
+    height: 300px;
+    flex-direction: column;
+    margin-bottom: 20px;
+    align-items: center;
+    position: relative;
+    border-radius: 5px;
+}
+
+.blog-image-container img {
+    max-width: 100%;
+    height: auto;
+    font-size: 12px;
+}
+
+.blog-image-caption {
     color: #333;
     margin-top: 10px;
     font-size: 14px;
