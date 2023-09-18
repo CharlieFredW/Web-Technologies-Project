@@ -14,8 +14,17 @@ body {
     border-radius: 10px;
 }
 
+h1{
+    text-align: center;
+}
+
 h3 {
     text-align: center;
+    font-size: 125%
+}
+
+h4 {
+    font-size: 125%;
 }
 
 ul {
@@ -26,6 +35,11 @@ ul {
 
 li {
     list-style: none;
+}
+
+.space-between-elements{
+    height: 50px;
+    display: block
 }
 
 .header-link {
@@ -64,10 +78,17 @@ li {
 
 }
 
+.upload-button {
+    position: sticky;
+    left:1700px;
+    padding: 15px
+}
+
 .my-page-list {
     justify-content: space-between;
     background-color: #734E38;
     display: flex;
+    gap: 40px;
 
 }
 
