@@ -38,7 +38,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
                 break;
             case 'guest':
                 // Change to the page we want for guest
-                window.location.href = 'YourPage.html';
+                window.location.href = 'PageOne.html';
                 break;
             default:
                 alert("Invalid user type.");
