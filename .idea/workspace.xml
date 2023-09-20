@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e970d12-bd77-4f1c-9b8f-2da23ca0e40a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebTechnologi/MyPageCreator.html" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologi/MyPageCreator.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebTechnologi/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologi/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebTechnologi/signout.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
