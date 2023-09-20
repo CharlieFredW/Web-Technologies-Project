@@ -1,12 +1,12 @@
 // Function to fetch from users.json
 async function fetchUserData() {
     try {
-        const response = await fetch('users.json'); // The Json file
+        const response = await fetch('users.json'); // The JSON file
         if (!response.ok) {
-            throw new Error('Failed to fetch user data'); //If it cant find the Json file
+            throw new Error('Failed to fetch user data'); // If it can't find the JSON file
         }
 
-        //Returns the response from the Json
+        // Returns the response from the JSON
         const userData = await response.json();
         return userData;
     } catch (error) {
@@ -23,7 +23,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value;
 
-    // Get the data from the json file
+    // Get the data from the JSON file
     const userData = await fetchUserData();
 
     // Check if the entered user info matches any users
@@ -33,10 +33,16 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         // Matched with user
         switch (matchedUser.userType) {
             case 'creator':
+                // Set session information for the creator
+                localStorage.setItem('username', username);
+                localStorage.setItem('userType', 'creator');
                 // Change to the page we want for creator
-                window.location.href = 'PageOne.html';
+                window.location.href = 'MyPageCreator.html';
                 break;
             case 'guest':
+                // Set session information for the guest
+                localStorage.setItem('username', username);
+                localStorage.setItem('userType', 'guest');
                 // Change to the page we want for guest
                 window.location.href = 'PageOne.html';
                 break;
