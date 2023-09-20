@@ -1,35 +1,47 @@
-// Define user (Midlertidigt. De skal i en database (Fil eller noSQL))
-const users = [
-    { username: 'admin', password: 'admin', userType: 'admin' },
-    { username: 'creator', password: 'creator', userType: 'creator' },
-    { username: 'guest', password: 'guest', userType: 'guest' },
-];
+// Function to fetch from users.json
+async function fetchUserData() {
+    try {
+        const response = await fetch('users.json'); // The Json file
+        if (!response.ok) {
+            throw new Error('Failed to fetch user data'); //If it cant find the Json file
+        }
 
-//Listens to if the submit function (Login button) is called.
-document.getElementById("loginForm").addEventListener("submit", function (event) {
+        //Returns the response from the Json
+        const userData = await response.json();
+        return userData;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
+// Heres a listener that listens if the user has clicked the Login button (Or clicked the enter key)
+document.getElementById("loginForm").addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    // Get username and password from the login page
+    // Get username and password
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    // Check if the entered credentials match any user from the users array
-    const matchedUser = users.find(user => user.username === username && user.password === password);
+    // Get the data from the json file
+    const userData = await fetchUserData();
+
+    // Check if the entered user info matches any users
+    const matchedUser = userData.find(user => user.username === username && user.password === password);
 
     if (matchedUser) {
-        // User matched
+        // Matched with user
         switch (matchedUser.userType) {
-            case 'admin':
-                // Go to adminPage
+            case 'creator':
+                // Change to the page we want for creator
                 window.location.href = 'PageOne.html';
                 break;
-            case 'creator':
-                // Go to creatorPage
+            case 'guest':
+                // Change to the page we want for guest
                 window.location.href = 'YourPage.html';
                 break;
-            case 'guest':
-                // Go to GuestPage
-                window.location.href = 'LoginPage.html';
+            default:
+                alert("Invalid user type.");
                 break;
         }
     } else {
