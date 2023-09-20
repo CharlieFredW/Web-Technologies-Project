@@ -19,8 +19,8 @@ async function fetchUserData() {
 document.getElementById("loginForm").addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    // Get username and password
-    const username = document.getElementById("username").value;
+    // Get username and password (Added a trim in case somebody accidentally added whitespace)
+    const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value;
 
     // Get the data from the json file
