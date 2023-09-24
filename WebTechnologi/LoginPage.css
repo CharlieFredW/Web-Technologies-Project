@@ -1,83 +1,71 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-*{
-    font-family: 'Poppins', sans serif;
+/* Reset some default styles for better control */
+body, h1, form {
+    margin: 0;
+    padding: 0;
 }
-body{
-    background-image: url("1.jpg");
+
+/* Apply a vintage background and font */
+body {
+    background-image: url('login.jpg'); /* Replace with your vintage background image */
     background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-}
-.box{
+    font-family: 'Georgia', serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 90vh;
-}
-.container{
-    width: 350px;
-    display: flex;
-    flex-direction: column;
-    padding: 0 15px 0 15px;
+    height: 100vh;
 }
 
-header{
-    color: #fff;
-    font-size: 30px;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0 10px 0;
+.container {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Box shadow for a card-like appearance */
+    padding: 20px;
+    text-align: center;
 }
-.input-field{
-    display: flex;
-    flex-direction: column;
+
+/* Center the login form and style it */
+.retro-login {
+    max-width: 400px;
+    margin: 0 auto;
+    color: #333; /* Text color */
 }
-.input-field .input{
-    height: 45px;
-    width: 87%;
-    border: none;
-    outline: none;
-    border-radius: 30px;
-    color: #fff;
-    padding: 0 0 0 42px;
-    background: rgba(255,255,255,0.1);
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
 }
-i{
-    position: relative;
-    top: -31px;
-    left: 17px;
-    color: #fff;
+
+label {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 8px;
+    color: #fff; /* White text color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 1); /* Subtle text shadow */
 }
-::-webkit-input-placeholder{
-    color: #fff;
-}
-.submit{
-    border: none;
-    border-radius: 30px;
-    font-size: 15px;
-    height: 45px;
-    outline: none;
+
+input[type="text"],
+input[type="password"] {
     width: 100%;
-    background: rgba(255,255,255,0.7);
+    padding: 10px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent input background */
+    color: #333; /* Text color */
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    background-color: #ff9933; /* Vintage orange */
+    color: #fff; /* Text color */
+    font-size: 18px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: .3s;
+    transition: background-color 0.3s ease; /* Smooth background color transition */
 }
-.submit:hover{
-    box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
-}
-.bottom{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-size: small;
-    color: #fff;
-    margin-top: 10px;
-}
-.left{
-    display: flex;
-}
-label a{
-    color: #fff;
-    text-decoration: none;
+
+input[type="submit"]:hover {
+    background-color: #ff6600; /* Darker orange on hover */
 }
