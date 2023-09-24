@@ -34,7 +34,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         switch (matchedUser.userType) {
             case 'creator':
                 // Change to the page we want for creator
-                window.location.href = 'PageOne.html';
+                window.location.href = 'MyPageCreator.html';
                 break;
             case 'guest':
                 // Change to the page we want for guest
@@ -49,3 +49,5 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         alert("Invalid username or password.");
     }
 });
+
+
