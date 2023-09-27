@@ -9,8 +9,6 @@ To get docker running with Laravel:
 - If ou do not have the right .env file copy paste the one below and put in folder.
 - To start the docker container run './vendor/bin/sail up'
 
-*/
-
 APP_NAME=Laravel
 APP_ENV=local
 APP_KEY=base64:9B43aqRcXyUnjDLMdGicBLCFrb4kDzsf2X8yu/3vrQ8=
@@ -76,4 +74,4 @@ MEILISEARCH_HOST=http://meilisearch:7700
 
 MEILISEARCH_NO_ANALYTICS=false
 
-*/
+
