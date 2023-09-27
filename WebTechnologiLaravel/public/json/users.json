@@ -1,0 +1,12 @@
+[
+    {
+        "username": "creator",
+        "password": "creator",
+        "userType": "creator"
+    },
+    {
+        "username": "guest",
+        "password": "guest",
+        "userType": "guest"
+    }
+]

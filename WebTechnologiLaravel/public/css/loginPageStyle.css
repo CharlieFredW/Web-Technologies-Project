@@ -1,0 +1,71 @@
+/* Reset some default styles for better control */
+body, h1, form {
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply a vintage background and font */
+body {
+    background-image: url('../images/login.jpg'); /* Replace with your vintage background image */
+    background-size: cover;
+    font-family: 'Georgia', serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Box shadow for a card-like appearance */
+    padding: 20px;
+    text-align: center;
+}
+
+/* Center the login form and style it */
+.retro-login {
+    max-width: 400px;
+    margin: 0 auto;
+    color: #333; /* Text color */
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 8px;
+    color: #fff; /* White text color */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 1); /* Subtle text shadow */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent input background */
+    color: #333; /* Text color */
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    background-color: #ff9933; /* Vintage orange */
+    color: #fff; /* Text color */
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+input[type="submit"]:hover {
+    background-color: #ff6600; /* Darker orange on hover */
+}

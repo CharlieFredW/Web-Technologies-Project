@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{
+    font-family: 'Poppins', sans serif;
+}
+body{
+    background-image: url("1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+.music-player {
+    max-width: 1600px;
+    height: 675px;
+    padding: 20px;
+    background-color: #333333;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.player-header{
+    color: #ffffff;
+}
+.music-info{
+    color: #ffffff;
+}
+
+.submit{
+    background-color: #ffffff;
+    color: #000000;
+    margin-top: 50px;
+    margin-right: 50px;
+    position:absolute;
+    top:0;
+    right:0;
+}
+
