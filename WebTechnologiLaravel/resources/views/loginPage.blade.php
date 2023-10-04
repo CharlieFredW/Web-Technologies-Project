@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="<?php echo asset('css/loginPageStyle.css')?>">
+    <link rel="stylesheet" href="{{asset('css/loginPageStyle.css')}}">
 </head>
 <body>
 <form id="loginForm">

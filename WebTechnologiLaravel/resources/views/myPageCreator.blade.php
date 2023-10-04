@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>My Page</title>
-    <link rel="stylesheet" href="<?php echo asset('css/myPageCreatorStyle.css')?>">
+    <link rel="stylesheet" href="{{asset('css/myPageCreatorStyle.css')}}">
 </head>
 <body>
 

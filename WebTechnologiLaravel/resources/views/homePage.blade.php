@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="<?php echo asset('css/homepageStyle.css')?>">
+    <link rel="stylesheet" href="{{asset('css/homepageStyle.css')}}">
 </head>
 <body>
 <div class="header-background">

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Blog Posts</title>
-    <link rel="stylesheet" href="<?php echo asset('css/blogPostsStyle.css')?>">
+    <link rel="stylesheet" href="{{asset('css/blogPostsStyle.css')}}">
 </head>
 <body>
 <div class="header">
