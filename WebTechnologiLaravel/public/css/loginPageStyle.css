@@ -55,17 +55,18 @@ input[type="password"] {
 }
 
 input[type="submit"] {
-    width: 100%;
+    width: 112%;
     padding: 12px 0;
-    border: none;
-    background-color: #ff9933; /* Vintage orange */
+    background-color: #804E49; /* Vintage orange */
     color: #fff; /* Text color */
     font-size: 18px;
     border-radius: 5px;
     cursor: pointer;
+    border: 1px solid black;
     transition: background-color 0.3s ease; /* Smooth background color transition */
 }
 
 input[type="submit"]:hover {
-    background-color: #ff6600; /* Darker orange on hover */
+    color: #804E49;
+    background-color: #E7DECD; /* white on hover */
 }

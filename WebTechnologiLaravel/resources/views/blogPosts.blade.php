@@ -6,57 +6,66 @@
     <link rel="stylesheet" href="{{asset('css/blogPostsStyle.css')}}">
 </head>
 <body>
-<div class="header">
-    <div class="logo">
-        <h2>Header Logo</h2>
-    </div>
-    <div class="header-links-box">
-        <li><a href="google.com" class="header-link">link-one</a></li>
-        <li><a href="google.com" class="header-link">link-two</a></li>
-        <li><a href="google.com" class="header-link">link-three</a></li>
-    </div>
-    <div class="login-info">
-        <li><a href="../LoginPage.html" class="login-button">Log In</a></li>
-        <li><a href="../LoginPage.html" class="signup-button">Sign Up</a></li>
+<div class="header-background">
+    <div class="header">
+        <div class="logo">
+            <h2>Header Logo</h2>
+            <div class="header-links-box">
+                <li><a href="google.com" class="header-link">Samples</a></li>
+                <li><a href="google.com" class="header-link">Community</a></li>
+                <li><a href="{{ asset('/blogs') }}" class="header-link">Blog</a></li>
+            </div>
+        </div>
+        <div class="login-info">
+            <li><a href="{{ asset('/login') }}" class="login-button">Log In</a></li>
+            <li><a href="{{ asset('/signup') }}" class="signup-button">Sign Up</a></li>
+        </div>
     </div>
 </div>
-<h1>Blogs</h1>
-<section class="flex-row">
-    <article class="blog-preview-half-page">
+<div class="blog-frontpage">
+    <div class="blog-frontpage-title">
+        <p class="blog-frontpage-text">Blog Posts<p>
+    </div>
+    <div class="flex-row">
+        <div class="blog-preview-side1">
+            <div class="blog-preview-half-page">
+                <a class="blog-preview-image" href="blogposts/TestBlogPost.html">
+                    <img class= "blog-preview-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
+                <a class="blog-preview-title" href="blogposts/TestBlogPost.html">
+                    <h2>Title</h2>
+                </a>
+                <div class="blog-preview-info"> Author | Date </div>
+            </div>
+        </div>
+        <div class="blog-preview-side2">
+            <div class="flex-column">
+                <div class="blog-preview-title-box">
+                    <a class="blog-preview-title" href="blogposts/TestBlogPost.html">
+                        <p class="blog-preview-title-box-text">Title</p>
+                    </a>
+                </div>
+
+                <div class="blog-preview-title-box">
+                    <a class="blog-preview-title" href="blogposts/TestBlogPost.html">
+                        <p class="blog-preview-title-box-text">Title</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="blog-preview-full-page">
+    <div class="flex-row">
         <a class="blog-preview-image" href="blogposts/TestBlogPost.html">
             <img class= "blog-preview-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
-        <a class="blog-preview-title" href="blogposts/TestBlogPost.html">
-            <h2>Title</h2>
-        </a>
-        <div class="blog-preview-info"> Author | Date </div>
-    </article>
-
-    <section class="flex-column">
-        <article class="blog-preview-half-page">
-            <a class="blog-preview-title" href="blogposts/TestBlogPost.html">
-                <h2>Title</h2>
-            </a>
-        </article>
-
-        <article class="blog-preview-half-page">
-            <a class="blog-preview-title" href="blogposts/TestBlogPost.html">
-                <h2>Title</h2>
-            </a>
-        </article>
-    </section>
-</section>
-<article class="blog-preview-full-page">
-    <section class="flex-row">
-        <a class="blog-preview-image" href="blogposts/TestBlogPost.html">
-            <img class= "blog-preview-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
-        <section class="text-padding">
+        <div class="text-padding">
             <a class="blog-preview-title" href="blogposts/TestBlogPost.html">
                 <h2>Title</h2>
             </a>
             <div class="blog-preview-info"> Author | Date </div>
-        </section>
-    </section>
-</article>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
