@@ -18,7 +18,7 @@
         </div>
         <div class="login-info">
             <li><a href="{{ asset('/login') }}" class="login-button">Log In</a></li>
-            <li><a href="{{ asset('/login') }}" class="signup-button">Sign Up</a></li>
+            <li><a href="{{ asset('/signup') }}" class="signup-button">Sign Up</a></li>
         </div>
     </div>
 </div>
