@@ -7,106 +7,119 @@
 </head>
 <body>
 
-<div class="header">
-    <div class="logo">
-        <h2>Header Logo</h2>
-    </div>
-    <div class="header-links-box">
-        <li><a href="google.com"  class="header-link">link-one</a></li>
-        <li><a href="google.com" class="header-link">link-two</a></li>
-        <li><a href="google.com" class="header-link">link-three</a></li>
-    </div>
-    <div class="login-info">
-        <button type="submit" class="signup-button" onclick="window.location.href = 'LoginPage.html';">Your Page</button>
+<div class="header-background">
+    <div class="header">
+        <div class="logo">
+            <h2>Header Logo</h2>
+            <div class="header-links-box">
+                <li><a href="google.com" class="header-link">Samples</a></li>
+                <li><a href="google.com" class="header-link">Community</a></li>
+                <li><a href="{{ asset('/blogs') }}" class="header-link">Blog</a></li>
+            </div>
+        </div>
+        <div class="login-info">
+            <li><a href="{{ asset('/login') }}" class="login-button">Log In</a></li>
+            <li><a href="{{ asset('/signup') }}" class="signup-button">Sign Up</a></li>
+        </div>
     </div>
 </div>
+<div class="my-page-frontpage-title">
+    <p class="my-page-frontpage-text"> My Page (creator)</p>
+</div>
 
-<h1> My Page (creator)</h1>
-
-<section class="flex-column">
+<div class="flex-column">
     <img class="avatar-picture" src="https://i.imgur.com/PoyiRJw.png">
     <h2>USERNAME</h2>
-</section>
+</div>
 
-<div>
+<div class="upload-button-box">
     <button class="upload-button">Upload Sample</button>
 </div>
 
-<h4>My Samples</h4>
-<div class="header">
-    <section class="flex-row">
+<div class="my-samples-heading">
+    <p class="my-samples-heading-text">My Samples</p>
+</div>
+<div class="my-samples-box">
+    <div class="flex-row">
         <article class="my-page-list">
 
-            <section class="sample">
+            <div class="sample">
                 <a class="blog-preview-image" href="google.dk">
-                    <img class= "my-page-sample-preview" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
+                    <img class="my-page-sample-preview"
+                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
                 <a class="my-page-sample-title" href="google.dk">
                     <h3>Title</h3>
                 </a>
-                <div class="my-page-sample-info"> Date </div>
-            </section>
-            <section class="my-samples">
+                <div class="my-page-sample-info"> Date</div>
+            </div>
+            <div class="my-samples">
                 <a class="blog-preview-image" href="google.dk">
-                    <img class= "my-page-sample-preview" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
+                    <img class="my-page-sample-preview"
+                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
                 <a class="my-page-sample-title" href="google.dk">
                     <h3>Title</h3>
                 </a>
-                <div class="my-page-sample-info"> Date </div>
-            </section>
+                <div class="my-page-sample-info"> Date</div>
+            </div>
 
         </article>
 
-    </section>
+    </div>
+
+</div>
+
+<div class="space-between-elements"></div>
+<div class="downloaded-samples-heading">
+    <p class="downloaded-samples-text">Downloaded Samples</p>
+</div>
+<div class="my-samples-box">
+    <div class="flex-row">
+        <article class="my-page-list">
+
+            <div class="sample">
+                <a class="blog-preview-image" href="google.dk">
+                    <img class="my-page-sample-preview"
+                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
+                <a class="my-page-sample-title" href="google.dk">
+                    <h3>Title</h3>
+                </a>
+                <div class="my-page-sample-info"> Date</div>
+            </div>
+            <div class="my-samples">
+                <a class="blog-preview-image" href="google.dk">
+                    <img class="my-page-sample-preview"
+                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
+                <a class="my-page-sample-title" href="google.dk">
+                    <h3>Title</h3>
+                </a>
+                <div class="my-page-sample-info"> Date</div>
+            </div>
+
+
+        </article>
+
+    </div>
 
 </div>
 
 <div class="space-between-elements"></div>
 
-<h4>Downloaded Samples</h4>
-<div class="header">
-    <section class="flex-row">
-        <article class="my-page-list">
-
-            <section class="sample">
-                <a class="blog-preview-image" href="google.dk">
-                    <img class= "my-page-sample-preview" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
-                <a class="my-page-sample-title" href="google.dk">
-                    <h3>Title</h3>
-                </a>
-                <div class="my-page-sample-info"> Date </div>
-            </section>
-            <section class="my-samples">
-                <a class="blog-preview-image" href="google.dk">
-                    <img class= "my-page-sample-preview" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
-                <a class="my-page-sample-title" href="google.dk">
-                    <h3>Title</h3>
-                </a>
-                <div class="my-page-sample-info"> Date </div>
-            </section>
-
-
-        </article>
-
-    </section>
-
+<div class="sample-statistics-heading">
+    <p class="sample-statistics-text">Sample Statistics</p>
 </div>
-
-<div class="space-between-elements"></div>
-
-<h3>Sample Statistics</h3>
-<div class="header">
-    <section class="flex-row">
+<div class="my-samples-box">
+    <div class="flex-row">
         <article class="my-page-list">
 
             <!-- ADD STATISTICS HERE -->
 
         </article>
 
-    </section>
+    </div>
 
 </div>
 
-<div class="space-between-elements" ></div>
-
+<div class="space-between-elements"></div>
+<div class="divider"></div>
 </body>
 </html>

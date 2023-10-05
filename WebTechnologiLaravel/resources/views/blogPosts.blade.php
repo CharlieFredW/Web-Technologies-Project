@@ -54,8 +54,12 @@
         </div>
     </div>
 </div>
+<div class="divider"></div>
+<div class="blog-second-page-title">
+    <p class="blog-frontpage-text">Today's Top Blog Post<p>
+</div>
 <div class="blog-preview-full-page">
-    <div class="flex-row">
+    <div class="blog-preview-full-page-inner-box">
         <a class="blog-preview-image" href="blogposts/TestBlogPost.html">
             <img class= "blog-preview-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
         <div class="text-padding">
@@ -66,6 +70,6 @@
         </div>
     </div>
 </div>
-
+<div class="divider"></div>
 </body>
 </html>
