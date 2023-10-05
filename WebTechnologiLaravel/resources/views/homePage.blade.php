@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="<?php echo asset('css/homepageStyle.css')?>">
+    <link rel="stylesheet" href="{{asset('css/homepageStyle.css')}}">
 </head>
 <body>
 <div class="header-background">
@@ -18,7 +18,7 @@
         </div>
         <div class="login-info">
             <li><a href="{{ asset('/login') }}" class="login-button">Log In</a></li>
-            <li><a href="{{ asset('/login') }}" class="signup-button">Sign Up</a></li>
+            <li><a href="{{ asset('/signup') }}" class="signup-button">Sign Up</a></li>
         </div>
     </div>
 </div>
