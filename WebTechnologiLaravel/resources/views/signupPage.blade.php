@@ -9,11 +9,14 @@
     <p class="signup-header-text">Are you a new creator signup here!</p>
 </div>
 <div class="signup-form">
-<form id="signupForm">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required><br><br>
+<form id="signupForm" method="post" action="{{ route('signup') }}">
+    @csrf
+    <label for="name">Username:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" required><br><br>
     <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required><br><br>
+    <input type="text" id="password" name="password" required><br><br>
     <input type="submit" value="Signup">
 </form>
 </div>

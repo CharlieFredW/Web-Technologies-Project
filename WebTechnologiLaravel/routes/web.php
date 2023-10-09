@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\SignupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +22,9 @@ Route::get('/login', function () {
     return view('loginPage');
 });
 
-Route::get('/signup', function () {
-    return view('signupPage');
-});
+Route::get('/signup', [SignupController::class, 'show'])->name('signup.form');
+
+Route::post('/signup', [SignupController::class, 'signup'])->name('signup');
 
 Route::get('/blogs', function () {
     return view('blogPosts');
