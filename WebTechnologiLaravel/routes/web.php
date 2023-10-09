@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\SignupController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,22 +20,26 @@ Route::get('/', function () {
     return view('homepage');
 });
 
-Route::get('/login', function () {
-    return view('loginPage');
-});
+//Login routes
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
 
-Route::get('/signup', [SignupController::class, 'show'])->name('signup.form');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+//Signup routes
+Route::get('/signup', [SignupController::class, 'showSignupForm'])->name('signup.form');
 
 Route::post('/signup', [SignupController::class, 'signup'])->name('signup');
 
+//Logout routes
+Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
+
+//Blog routes
 Route::get('/blogs', function () {
     return view('blogPosts');
 });
 
+//My page routes
 Route::get('/my-page-creator', function () {
     return view('myPageCreator');
 })->name('my-page-creator');
 
-Route::get('/my-page-guest', function () {
-    return view('myPageGuest');
-})->name('my-page-guest');

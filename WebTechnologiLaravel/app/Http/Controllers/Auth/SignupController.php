@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\View;
 
 class SignupController extends Controller
 {
-    public function show() {
+    public function showSignupForm() {
         return view::make('signupPage');
     }
     public function signup(Request $request) {
@@ -30,7 +30,7 @@ class SignupController extends Controller
         ]);
 
         auth()->login($user);
-        return redirect('/'); // Change the URL to your desired success or login page
+        return redirect('/'); // Change the URL to the success or login page
     }
 
 }
