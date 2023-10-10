@@ -1,30 +1,34 @@
 body {
-    background-color: #F2E0C9;
+    background-color: #FBFAF8;
+    padding: 0;
+    margin: 0;
+}
 
+button {
+    all: unset;
+}
+
+.header-background {
+    background-color: #E7DECD;
+    padding: 12px 24px 72px 24px;
 }
 
 .header {
-    padding: 24px;
-    background: #734E38;
+    background: #698F3F;
     justify-content: space-between;
     align-items: center;
     display: flex;
+    border-radius: 5px;
+    margin-left: 48px;
+    margin-right: 48px;
+}
+
+.logo {
+    padding: 12px 12px 12px 48px;
     color: #F2E0C9;
     font-size: 24px;
-    border-radius: 10px;
-}
-
-h1{
-    text-align: center;
-}
-
-h3 {
-    text-align: center;
-    font-size: 125%
-}
-
-h4 {
-    font-size: 125%;
+    display: flex;
+    align-items: center;
 }
 
 ul {
@@ -37,22 +41,22 @@ li {
     list-style: none;
 }
 
-.space-between-elements{
-    height: 50px;
-    display: block
-}
-
 .header-link {
-    padding: 12px;
-    background: #A64F3C;
-    color: #F2E0C9;
+    padding: 6px 12px 6px 12px;
+    background: #E7DECD;
+    color: #804E49;
+
 }
 
-.header-link:hover, .login-button:hover, .signup-button:hover, .upload-button:hover {
-    color: #734E38;
+.header-link:hover, .login-button:hover, .signup-button:hover, .logout-button:hover, .home-page-button:hover {
+    color: #804E49;
     border-color: black;
-    background-color: #F2E0C9;
+    background-color: #E7DECD;
 
+}
+
+.header-links-box {
+    padding-left: 36px;
 }
 
 .header-links-box, .login-info{
@@ -63,12 +67,13 @@ li {
     cursor: pointer;
 }
 
-.header-link, .login-button, .signup-button, .upload-button {
+
+.header-link, .login-button, .signup-button, .logout-button, .home-page-button {
     display: flex;
     list-style: none;
     margin-right: 16px;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 5px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-weight: bold;
     text-decoration: none;
@@ -78,15 +83,103 @@ li {
 
 }
 
+.login-button, .signup-button, .logout-button, .home-page-button {
+    padding: 20px 24px;
+    background-color: #804E49;
+    color: #E7DECD;
+}
+
+.my-page-frontpage-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+}
+
+.my-page-frontpage-text {
+    padding: 20px 50px 20px 50px;
+    display: inline-block;
+    font-size: 28px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #804E49;
+    color: #E7DECD;
+}
+
+.my-samples-box {
+    padding: 24px;
+    background: #E7DECD;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    color: #804E49;
+    font-size: 24px;
+    border-radius: 5px;
+    margin-left: 48px;
+    margin-right: 48px;
+}
+
+.space-between-elements{
+    height: 50px;
+    display: block
+}
+
+.upload-button-box {
+    display: flex;
+    justify-content: end;
+}
+
 .upload-button {
-    position: sticky;
-    left:1700px;
-    padding: 15px
+    justify-content: end;
+    margin-right: 70px;
+    padding: 25px 40px 25px 40px;
+    background: #804E49;
+    color: #E7DECD;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.upload-button:hover {
+    color: #804E49;
+    border-color: black;
+    background-color: #E7DECD;
+}
+
+.my-samples-heading, .downloaded-samples-heading, .sample-statistics-heading {
+    display: flex;
+    justify-content: start;
+    margin-left: 50px;
+}
+
+.my-samples-heading-text {
+    padding: 20px 75px 20px 75px;
+}
+
+.downloaded-samples-text {
+    padding: 20px 40px 20px 40px;
+}
+
+.sample-statistics-text {
+    padding: 20px 60px 20px 60px;
+}
+
+.my-samples-heading-text, .downloaded-samples-text, .sample-statistics-text {
+    font-size: 16px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #804E49;
+    color: #E7DECD;
 }
 
 .my-page-list {
     justify-content: space-between;
-    background-color: #734E38;
+    background-color: #E7DECD;
     display: flex;
     gap: 40px;
 
@@ -113,13 +206,6 @@ li {
     width: 150px;
 }
 
-.login-button, .signup-button {
-    padding: 20px 24px;
-    background-color: #BAD9C2;
-    color: #734E38;
-}
-
-
 .flex-row {
     display: flex;
     flex-direction: row;
@@ -128,9 +214,16 @@ li {
 .flex-column {
     display: flex;
     flex-direction: column;
+    margin-left: 70px;
 }
 
 
 .text-padding {
     padding: 20px;
+}
+
+.divider {
+    padding: 60px 150px;
+    background: #E7DECD;
+    text-align: center;
 }
