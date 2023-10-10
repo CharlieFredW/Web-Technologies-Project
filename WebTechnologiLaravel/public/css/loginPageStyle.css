@@ -54,10 +54,10 @@ input[type="password"] {
     color: #333; /* Text color */
 }
 
-input[type="submit"] {
+.login-button {
     width: 112%;
     padding: 12px 0;
-    background-color: #804E49; /* Vintage orange */
+    background-color: #804E49; /* Vintage brown */
     color: #fff; /* Text color */
     font-size: 18px;
     border-radius: 5px;
@@ -66,7 +66,7 @@ input[type="submit"] {
     transition: background-color 0.3s ease; /* Smooth background color transition */
 }
 
-input[type="submit"]:hover {
+.login-button:hover {
     color: #804E49;
     background-color: #E7DECD; /* white on hover */
 }

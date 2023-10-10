@@ -18,8 +18,16 @@
             </div>
         </div>
         <div class="login-info">
-            <li><a href="{{ asset('/login') }}" class="login-button">Log In</a></li>
-            <li><a href="{{ asset('/signup') }}" class="signup-button">Sign Up</a></li>
+            @if(Auth::check())
+                <li><a href="{{ asset('/') }}" class="home-page-button">Home Page</a></li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <li><a class="logout-button">Log Out</a></li>
+                </form>
+            @else
+                <li><a href="{{ asset('/login') }}" class="login-button">Log In</a></li>
+                <li><a href="{{ asset('/signup') }}" class="signup-button">Sign Up</a></li>
+            @endif
         </div>
     </div>
 </div>

@@ -4,6 +4,10 @@ body {
 
 }
 
+button {
+    all: unset;
+}
+
 .header-background {
     background-color: #E7DECD;
     padding: 12px 24px 72px 24px;
@@ -44,7 +48,7 @@ li {
 
 }
 
-.header-link:hover, .login-button:hover, .signup-button:hover {
+.header-link:hover, .login-button:hover, .signup-button:hover, .logout-button:hover, .my-page-button:hover {
     color: #804E49;
     border-color: black;
     background-color: #E7DECD;
@@ -64,7 +68,7 @@ li {
 }
 
 
-.header-link, .login-button, .signup-button {
+.header-link, .login-button, .signup-button, .logout-button, .my-page-button {
     display: flex;
     list-style: none;
     margin-right: 16px;
@@ -79,7 +83,7 @@ li {
 
 }
 
-.login-button, .signup-button {
+.login-button, .signup-button, .logout-button, .my-page-button {
     padding: 20px 24px;
     background-color: #804E49;
     color: #E7DECD;
