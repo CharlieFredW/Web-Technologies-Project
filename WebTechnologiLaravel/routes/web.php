@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Samples\SampleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,3 +44,10 @@ Route::get('/my-page-creator', function () {
     return view('myPageCreator');
 })->name('my-page-creator');
 
+
+//Sample routes
+//Used to display the sample upload form
+Route::get('/createSample', [SampleController::class, 'create'])->name('samples.create');
+
+//Used to upload samples to the database
+Route::post('/storeSample', [SampleController::class, 'store'])->name('samples.store');
