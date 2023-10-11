@@ -41,7 +41,7 @@
 </div>
 
 <div class="upload-button-box">
-    <button class="upload-button">Upload Sample</button>
+    <a href="/createSample" class="upload-button">Upload Sample</a>
 </div>
 
 <div class="my-samples-heading">
