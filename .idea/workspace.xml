@@ -146,10 +146,11 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/2semestPorject/Web-Technologies-Project/WebTechnologi&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Web-Technologies-Project/WebTechnologiLaravel/database/database.sqlite&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -184,6 +185,9 @@
       <workItem from="1696322721588" duration="236000" />
       <workItem from="1696952135018" duration="1475000" />
       <workItem from="1696954102952" duration="1730000" />
+      <workItem from="1696957314570" duration="574000" />
+      <workItem from="1696961080053" duration="544000" />
+      <workItem from="1696963820886" duration="783000" />
     </task>
     <servers />
   </component>
