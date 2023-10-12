@@ -39,6 +39,11 @@ Route::get('/blogs', function () {
     return view('blogPosts');
 });
 
+//Sample page routes
+Route::get('/samplePage', function () {
+    return view('samplePage');
+});
+
 //My page routes
 Route::get('/my-page-creator', function () {
     return view('myPageCreator');
