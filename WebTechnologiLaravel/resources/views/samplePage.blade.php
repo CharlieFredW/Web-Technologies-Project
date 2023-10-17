@@ -35,6 +35,16 @@
 </div>
 <div class="sample-container">
     <div class="sample-inner-container">
+        <ul class="sticky-container">
+            <li class="sample-item-header">Image</li>
+            <li class="sample-item-header">Title</li>
+            <li class="sample-item-header">URL</li>
+            <li class="sample-item-header">Total Downloads</li>
+            <li class="sample-item-header">BPM</li>
+            <li class="sample-item-header">Key</li>
+            <li class="sample-item-header">Genre</li>
+            <li class="sample-item-header">Instrument</li>
+        </ul>
         @foreach($samples as $sample)
             <ul class="sample-items">
                 <?php
@@ -52,12 +62,12 @@
                 ?>
                 <li class="sample-item"><img class="sample-image" src="{{ $randomImageUrl }}" alt="{{ $sample->title }}"></li>
                 <li class="sample-item"><h3>{{ $sample->title }}</h3></li>
-                <li class="sample-item"><p>URL: {{ $sample->url }}</p></li>
-                <li class="sample-item"><p>Total downloads: {{ $sample->total_downloads }}</p></li>
-                <li class="sample-item"><p>BPM: {{ $sample->bpm }}</p></li>
-                <li class="sample-item"><p>Key: {{ $sample->key }}r</p></li>
-                <li class="sample-item"><p>Genre: {{ $sample->genre }}</p></li>
-                <li class="sample-item"><p>Instrument: {{ $sample-> instrument}}</p></li>
+                <li class="sample-item"><p>{{ $sample->url }}</p></li>
+                <li class="sample-item"><p>{{ $sample->total_downloads }}</p></li>
+                <li class="sample-item"><p>{{ $sample->bpm }}</p></li>
+                <li class="sample-item"><p>{{ $sample->key }}r</p></li>
+                <li class="sample-item"><p>{{ $sample->genre }}</p></li>
+                <li class="sample-item"><p>{{ $sample-> instrument}}</p></li>
             </ul>
         @endforeach
     </div>

@@ -111,9 +111,9 @@ li {
 }
 
 .sample-container {
-    margin: 70px 70px 0px 70px;
+    margin: 70px 70px 0 70px;
     display: flex;
-    height: 1400px;
+    height: 800px;
     background-color: #E7DECD;
     overflow: auto;
 }
@@ -132,18 +132,40 @@ li {
     align-items: center;
 }
 
+.sticky-container {
+    position: sticky;
+    top: 0;
+}
+
+.sample-item-header {
+    max-height: 150px;
+    min-width: 250px;
+    max-width: 400px; /*calc(33.33% - 20px)*/
+    padding: 20px 10px 20px 10px;
+    z-index: 1;
+    border: 1px solid black;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #804E49;
+    color: #E7DECD;
+    text-align: center;
+}
+
 .sample-item {
     max-height: 150px;
-    min-width: 200px;
+    min-width: 250px;
     max-width: 300px; /*calc(33.33% - 20px)*/
     padding: 10px;
     /*border: 1px solid black;*/
     margin-top: 50px;
     overflow: hidden;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
 }
 
 .sample-image {
-    margin-left: 50px;
+    margin-left: 10px;
     height: 150px;
     width: 150px;
     border: 3px solid #804E49;
