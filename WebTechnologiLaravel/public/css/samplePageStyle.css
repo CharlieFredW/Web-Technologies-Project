@@ -111,18 +111,21 @@ li {
 }
 
 .sample-container {
-    margin: 70px;
+    margin: 70px 70px 0px 70px;
     display: flex;
-    height: 700px;
+    height: 1400px;
     background-color: #E7DECD;
+    overflow: auto;
 }
 
 .sample-inner-container {
+    min-width: 100%;
     width: 100%;
     overflow: auto;
     display: flex;
     gap: 20px;
     flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .sample-items {
@@ -131,7 +134,8 @@ li {
 
 .sample-item {
     max-height: 150px;
-    width: 300px; /*calc(33.33% - 20px)*/
+    min-width: 200px;
+    max-width: 300px; /*calc(33.33% - 20px)*/
     padding: 10px;
     /*border: 1px solid black;*/
     margin-top: 50px;

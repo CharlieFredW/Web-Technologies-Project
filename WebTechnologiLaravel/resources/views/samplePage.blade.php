@@ -35,30 +35,31 @@
 </div>
 <div class="sample-container">
     <div class="sample-inner-container">
-        <ul class="sample-items">
-            <li class="sample-item"><img class="sample-image" src="{{ asset('images/album-cover1.jpg') }}" alt="Sample 1"></li>
-            <li class="sample-item"><h3>Sample 1 Title</h3></li>
-            <li class="sample-item"><p>BPM: 120</p></li>
-            <li class="sample-item"><p>Key: C Major</p></li>
-        </ul>
-        <ul class="sample-items">
-            <li class="sample-item"><img class="sample-image" src="{{ asset('images/album-cover2.jpg') }}" alt="Sample 1"></li>
-            <li class="sample-item"><h3>Sample 2 Title</h3></li>
-            <li class="sample-item"><p>BPM: 125</p></li>
-            <li class="sample-item"><p>Key: A Major</p></li>
-        </ul>
-        <ul class="sample-items">
-            <li class="sample-item"><img class="sample-image" src="{{ asset('images/album-cover3.jpg') }}" alt="Sample 1"></li>
-            <li class="sample-item"><h3>Sample 3 Title</h3></li>
-            <li class="sample-item"><p>BPM: 135</p></li>
-            <li class="sample-item"><p>Key: B Major</p></li>
-        </ul>
-        <ul class="sample-items">
-            <li class="sample-item"><img class="sample-image" src="{{ asset('images/album-cover2.jpg') }}" alt="Sample 1"></li>
-            <li class="sample-item"><h3>Sample 4 Title</h3></li>
-            <li class="sample-item"><p>BPM: 145</p></li>
-            <li class="sample-item"><p>Key: F Major</p></li>
-        </ul>
+        @foreach($samples as $sample)
+            <ul class="sample-items">
+                <?php
+                    //get all images file path
+                    $imageFiles = array_map(
+                        fn($path) => basename($path),
+                        glob(public_path('images') . '/*')
+                    );
+
+                    //get a random images path
+                    $randomImageName = $imageFiles[array_rand($imageFiles)];
+
+                    //make the path short so it does not get the local::8080 in front so it works
+                    $randomImageUrl = asset("images/{$randomImageName}");
+                ?>
+                <li class="sample-item"><img class="sample-image" src="{{ $randomImageUrl }}" alt="{{ $sample->title }}"></li>
+                <li class="sample-item"><h3>{{ $sample->title }}</h3></li>
+                <li class="sample-item"><p>URL: {{ $sample->url }}</p></li>
+                <li class="sample-item"><p>Total downloads: {{ $sample->total_downloads }}</p></li>
+                <li class="sample-item"><p>BPM: {{ $sample->bpm }}</p></li>
+                <li class="sample-item"><p>Key: {{ $sample->key }}r</p></li>
+                <li class="sample-item"><p>Genre: {{ $sample->genre }}</p></li>
+                <li class="sample-item"><p>Instrument: {{ $sample-> instrument}}</p></li>
+            </ul>
+        @endforeach
     </div>
 </div>
 </body>
