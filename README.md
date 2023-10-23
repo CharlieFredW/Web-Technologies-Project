@@ -8,6 +8,7 @@ To get docker running with Laravel:
 - If not mac user or you dont have the right vendor folder. Download that from google.drive.
 - If ou do not have the right .env file copy paste the one below and put in folder.
 - To start the docker container run './vendor/bin/sail up'
+- To acces the docker container run 'docker exec -it webtechnologilaravel-laravel.test-1 bash' (maybe run php artisan commands in here)
 
 <pre>
 <code>

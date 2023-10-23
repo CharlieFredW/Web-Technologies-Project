@@ -42,4 +42,12 @@ class SampleController extends Controller
         return redirect('/my-page-creator');
     }
 
+    public function showSamples() {
+
+        $samples = Sample::all();
+
+        return view('samplePage', compact('samples'));
+
+    }
+
 }
