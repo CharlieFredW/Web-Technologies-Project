@@ -79,5 +79,27 @@
     </div>
 </div>
 <div class="divider"></div>
+
+<div class="create-post-section">
+    @if(Auth::check())
+    <h2>Create a New Blog Post</h2>
+    <form method="POST" action="{{ route('blog.store') }}">
+        @csrf
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required><br>
+
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" rows="4" cols="50" required></textarea><br>
+
+        <button type="submit">Publish Post</button>
+    </form>
+    @endif
+</div>
+
+
+
+
+
+
 </body>
 </html>
