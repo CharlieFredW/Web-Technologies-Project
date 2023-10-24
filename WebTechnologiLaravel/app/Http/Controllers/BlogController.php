@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
-    // ... (other methods in your controller)
-
     // Show the form to create a new blog post
     public function create()
     {
@@ -17,13 +15,6 @@ class BlogController extends Controller
     }
 
     // Store the new blog post in the database
-
-    public function index()
-    {
-        $blogs = Blog::all();
-        return view('BlogPosts', ['blogs' => $blogs]);
-    }
-
     public function store(Request $request)
     {
         // Validate the form data
@@ -33,16 +24,23 @@ class BlogController extends Controller
         ]);
 
         // Create a new blog post
-        Blog::create([
-            'title' => $request->input('title'),
-            'content' => $request->input('content'),
-            'user' => Auth::id(),
-        ]);
+        $blog = new Blog;
+        $blog->title = $request->input('title');
+        $blog->content = $request->input('content');
+        $blog->user = Auth::id();
+
+        //Save to the database
+        $blog->save();
 
         // Redirect the user after creating the post
         return redirect('/blogs')->with('success', 'Blog post created successfully!');
     }
 
-
-
+    // Show the list of blog posts
+    public function index()
+    {
+        $blogs = Blog::orderBy('created_at', 'desc')->get(); // Fetch posts in descending order by creation time
+        return view('blogPosts', ['blogs' => $blogs]);
+    }
 }
+
