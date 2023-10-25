@@ -33,6 +33,9 @@
 <div class="samples-heading">
     <p class="samples-heading-text">Samples</p>
 </div>
+<div class="filter-button">
+    <button class="filter-button-text">Filter Results</button>
+</div>
 <div class="sample-container">
     <div class="sample-inner-container">
         <ul class="sticky-container">
