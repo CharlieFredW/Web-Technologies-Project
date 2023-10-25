@@ -11,7 +11,7 @@
         <div class="logo">
             <h2>Header Logo</h2>
             <div class="header-links-box">
-                <li><a href="google.com" class="header-link">Samples</a></li>
+                <li><a href="{{ asset('/samplePage') }}" class="header-link">Samples</a></li>
                 <li><a href="google.com" class="header-link">Community</a></li>
                 <li><a href="{{ asset('/blogs') }}" class="header-link">Blog</a></li>
             </div>
