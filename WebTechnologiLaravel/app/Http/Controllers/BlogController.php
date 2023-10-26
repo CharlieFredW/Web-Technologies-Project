@@ -23,11 +23,13 @@ class BlogController extends Controller
             'content' => 'required|string',
         ]);
 
+
         // Create a new blog post
         $blog = new Blog;
         $blog->title = $request->input('title');
         $blog->content = $request->input('content');
         $blog->user = Auth::id();
+
 
         //Save to the database
         $blog->save();
