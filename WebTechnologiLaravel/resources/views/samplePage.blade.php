@@ -34,7 +34,16 @@
     <p class="samples-heading-text">Samples</p>
 </div>
 <div class="filter-button">
-    <button class="filter-button-text">Filter Results</button>
+    <button id="expand-button" onclick="toggleExpand()">Filter Results</button>
+    <div class="expandable-area" id="expand-area">
+        <div class="filter-inner-container">
+            <ul class="filter-list">
+                <li class="filter-item-header">BPM</li>
+                <li class="filter-item-header">Key</li>
+                <li class="filter-item-header">idk</li>
+            </ul>
+        </div>
+    </div>
 </div>
 <div class="sample-container">
     <div class="sample-inner-container">
@@ -75,5 +84,6 @@
         @endforeach
     </div>
 </div>
+<script src="{{ asset('js/expandButton.js') }}"></script>
 </body>
 </html>
