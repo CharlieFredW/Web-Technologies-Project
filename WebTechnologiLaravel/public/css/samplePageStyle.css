@@ -129,6 +129,11 @@ li {
     border: 1px solid black;
     border-radius: 5px;
     display: none;
+    align-items: center;
+    justify-content: center;
+    max-width: calc(60% - 10px);
+    overflow-x: auto;
+    padding-right: 20px;
 }
 
 #expand-button {
@@ -146,12 +151,13 @@ li {
 .filter-list {
     gap: 40px;
     margin: 5px 40px;
+    white-space: nowrap;
 }
 
 .filter-item-header {
     border-radius: 5px;
     width: 150px;
-    padding: 20px 10px 20px 10px;
+    padding: 15px 20px 10px 20px;
     z-index: 1;
     border: 1px solid black;
     font-size: 16px;

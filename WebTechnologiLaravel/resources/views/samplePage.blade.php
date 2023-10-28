@@ -38,9 +38,12 @@
     <div class="expandable-area" id="expand-area">
         <div class="filter-inner-container">
             <ul class="filter-list">
-                <li class="filter-item-header">BPM</li>
-                <li class="filter-item-header">Key</li>
-                <li class="filter-item-header">idk</li>
+                <li class="filter-item-header"><button>Total Downloads</button></li>
+                <li class="filter-item-header"><button>BPM</button></li>
+                <li class="filter-item-header"><button>Key</button></li>
+                <li class="filter-item-header"><button>Genre</button></li>
+                <li class="filter-item-header"><button>Created Date</button></li>
+                <li class="filter-item-header"><button>Instrument</button></li>
             </ul>
         </div>
     </div>
