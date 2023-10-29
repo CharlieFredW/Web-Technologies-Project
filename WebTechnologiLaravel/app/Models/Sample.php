@@ -19,7 +19,8 @@ class Sample extends Model
         'bpm',
         'key',
         'genre',
-        'instrument'
+        'instrument',
+        'image_url'
     ];
 
     public function ownerUserId()
