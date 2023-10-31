@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Samples\SampleController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,3 +59,22 @@ Route::get('/createSample', [SampleController::class, 'create'])->name('samples.
 
 //Used to upload samples to the database
 Route::post('/storeSample', [SampleController::class, 'store'])->name('samples.store');
+
+
+
+
+// Blog routes
+Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index'); // Show blog posts
+
+// Route for showing the form to create a new blog post
+Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
+
+Route::get('/blogs', [BlogController::class, 'index']);
+
+Route::post('/blogs', [BlogController::class, 'store'])->name('blog.store');
+
+Route::delete('/blogs/{blog}', [BlogController::class, 'delete'])->name('blog.delete');
+
+
+
+

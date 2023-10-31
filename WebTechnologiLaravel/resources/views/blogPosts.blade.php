@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{asset('css/blogPostsStyle.css')}}">
 </head>
 <body>
+
 <div class="header-background">
     <div class="header">
         <div class="logo">
@@ -30,54 +31,72 @@
         </div>
     </div>
 </div>
+
+
 <div class="blog-frontpage">
     <div class="blog-frontpage-title">
-        <p class="blog-frontpage-text">Blog Posts<p>
+        <p class="blog-frontpage-text">Blog Posts</p>
     </div>
-    <div class="flex-row">
-        <div class="blog-preview-side1">
-            <div class="blog-preview-half-page">
-                <a class="blog-preview-image" href="blogposts/TestBlogPost.html">
-                    <img class= "blog-preview-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
-                <a class="blog-preview-title" href="blogposts/TestBlogPost.html">
-                    <h2>Title</h2>
-                </a>
-                <div class="blog-preview-info"> Author | Date </div>
-            </div>
-        </div>
-        <div class="blog-preview-side2">
-            <div class="flex-column">
-                <div class="blog-preview-title-box">
-                    <a class="blog-preview-title" href="blogposts/TestBlogPost.html">
-                        <p class="blog-preview-title-box-text">Title</p>
-                    </a>
-                </div>
 
-                <div class="blog-preview-title-box">
-                    <a class="blog-preview-title" href="blogposts/TestBlogPost.html">
-                        <p class="blog-preview-title-box-text">Title</p>
-                    </a>
-                </div>
+    <div class="blog-posts-container">
+        <div class="blog-post-header">
+            <div class="header-item">Title</div>
+            <div class="header-item">Content</div>
+            <div class="header-item">Author</div>
+            <div class="header-item">Created At</div>
+            <div class="header-item">Actions</div> <!-- Add a new header item for actions -->
+        </div>
+        @foreach($blogs as $blog)
+        <div class="blog-post-item">
+            <div class="blog-item">{{ $blog->title }}</div>
+            <div class="blog-item">{{ $blog->content }}</div>
+            <div class="blog-item">{{ App\Models\User::find($blog->user_id)->email }}</div>
+            <div class="blog-item">{{ $blog->created_at }}</div>
+
+            <div class="blog-item">
+                @php
+                $authenticatedUserId = auth()->user()->id;
+                $blogUserId = $blog->user_id;
+                @endphp
+                @if($authenticatedUserId === $blogUserId)
+                <form method="POST" action="{{ route('blog.delete', ['blog' => $blog->id]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="delete-button">Delete</button>
+                </form>
+
+                @endif
             </div>
         </div>
+        @endforeach
     </div>
-</div>
+
+
+
 <div class="divider"></div>
-<div class="blog-second-page-title">
-    <p class="blog-frontpage-text">Today's Top Blog Post<p>
-</div>
-<div class="blog-preview-full-page">
-    <div class="blog-preview-full-page-inner-box">
-        <a class="blog-preview-image" href="blogposts/TestBlogPost.html">
-            <img class= "blog-preview-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
-        <div class="text-padding">
-            <a class="blog-preview-title" href="blogposts/TestBlogPost.html">
-                <h2>Title</h2>
-            </a>
-            <div class="blog-preview-info"> Author | Date </div>
+
+    <div class="create-post-section">
+        @if(Auth::check())
+        <div class="blog-frontpage-title">
+            <p class="blog-frontpage-text">Create a New Blog Post</p>
         </div>
+        <form method="POST" action="{{ route('blog.store') }}" class="blog-preview-half-page">
+            @csrf
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required><br>
+
+            <label for="content">Content:</label><br>
+            <textarea id="content" name="content" rows="4" cols="50" required></textarea><br>
+
+            <button type="submit" class="login-button">Publish Post</button>
+
+
+
+        </form>
+        @endif
     </div>
+
 </div>
-<div class="divider"></div>
+
 </body>
 </html>
