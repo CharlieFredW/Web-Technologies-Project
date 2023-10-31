@@ -28,7 +28,7 @@ class BlogController extends Controller
         $blog = new Blog;
         $blog->title = $request->input('title');
         $blog->content = $request->input('content');
-        $blog->user = Auth::id();
+        $blog->user_id = Auth::id();
 
 
         //Save to the database
@@ -44,5 +44,18 @@ class BlogController extends Controller
         $blogs = Blog::orderBy('created_at', 'desc')->get(); // Fetch posts in descending order by creation time
         return view('blogPosts', ['blogs' => $blogs]);
     }
+
+    public function delete(Blog $blog)
+    {
+        // Check if the authenticated user is the owner of the blog post
+        if (auth()->user()->id === $blog->user_id) {
+            $blog->delete();
+            return redirect('/blogs')->with('success', 'Blog post deleted successfully!');
+        } else {
+            // Unauthorized attempt to delete
+            return redirect('/blogs')->with('error', 'Unauthorized action!');
+        }
+    }
+
 }
 

@@ -72,3 +72,9 @@ Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.crea
 Route::get('/blogs', [BlogController::class, 'index']);
 
 Route::post('/blogs', [BlogController::class, 'store'])->name('blog.store');
+
+Route::delete('/blogs/{blog}', [BlogController::class, 'delete'])->name('blog.delete');
+
+
+
+
