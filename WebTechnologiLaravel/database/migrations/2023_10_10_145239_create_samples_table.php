@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 return new class extends Migration
 {
     /**
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->string('key')->nullable();
             $table->string('genre')->nullable();
             $table->string('instrument')->nullable();
+            $table->string('image_url')->nullable();
 
             // Users.id is a foreign key for 'owner'
             $table->foreign('owner')->references('id')->on('users');
@@ -30,6 +32,7 @@ return new class extends Migration
         });
     }
 
+
     /**
      * Reverse the migrations.
      */
@@ -37,4 +40,8 @@ return new class extends Migration
     {
         Schema::dropIfExists('samples');
     }
+
+
+
+
 };

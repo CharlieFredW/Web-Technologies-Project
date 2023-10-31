@@ -32,8 +32,9 @@ class SampleController extends Controller
         $sample->key = $request->input('key');
         $sample->genre = $request->input('genre');
         $sample->instrument = $request->input('instrument');
+        $sample->image_url = $this->getRandomImage(); //add a random image url from the image folder to the database
 
-        // owner should be the id of the user
+        //owner should be the id of the user
         $sample->owner = auth()->user()->id;
 
 
@@ -47,6 +48,22 @@ class SampleController extends Controller
         $samples = Sample::all();
 
         return view('samplePage', compact('samples'));
+
+    }
+
+    public function getRandomImage(): string
+    {
+        //get all images file path
+        $imageFiles = array_map(
+            fn($path) => basename($path),
+            glob(public_path('images') . '/*')
+        );
+
+        //get a random images path
+        $randomImageName = $imageFiles[array_rand($imageFiles)];
+
+        //make the path short so it does not get the local::8080 in front so it works
+        return $randomImageUrl = "images/{$randomImageName}";
 
     }
 
