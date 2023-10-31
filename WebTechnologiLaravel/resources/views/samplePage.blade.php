@@ -33,6 +33,9 @@
 <div class="samples-heading">
     <p class="samples-heading-text">Samples</p>
 </div>
+<div class="filter-button">
+    <button class="filter-button-text">Filter Results</button>
+</div>
 <div class="sample-container">
     <div class="sample-inner-container">
         <ul class="sticky-container">
@@ -47,20 +50,7 @@
         </ul>
         @foreach($samples as $sample)
             <ul class="sample-items">
-                <?php
-                    //get all images file path
-                    $imageFiles = array_map(
-                        fn($path) => basename($path),
-                        glob(public_path('images') . '/*')
-                    );
-
-                    //get a random images path
-                    $randomImageName = $imageFiles[array_rand($imageFiles)];
-
-                    //make the path short so it does not get the local::8080 in front so it works
-                    $randomImageUrl = asset("images/{$randomImageName}");
-                ?>
-                <li class="sample-item"><img class="sample-image" src="{{ $randomImageUrl }}" alt="{{ $sample->title }}"></li>
+                <li class="sample-item"><img class="sample-image" src="{{ $sample->image_url }}" alt="{{ $sample->title }}"></li>
                 <li class="sample-item"><h3>{{ $sample->title }}</h3></li>
                 <li class="sample-item"><p>{{ $sample->url }}</p></li>
                 <li class="sample-item"><p>{{ $sample->total_downloads }}</p></li>

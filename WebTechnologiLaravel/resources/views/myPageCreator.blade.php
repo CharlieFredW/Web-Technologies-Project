@@ -22,7 +22,7 @@
                 <li><a href="{{ asset('/') }}" class="home-page-button">Home Page</a></li>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <li><a class="logout-button">Log Out</a></li>
+                    <li><button class="logout-button">Log Out</button></li>
                 </form>
             @else
                 <li><a href="{{ asset('/login') }}" class="login-button">Log In</a></li>
