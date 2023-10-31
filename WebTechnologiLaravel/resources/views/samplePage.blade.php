@@ -87,6 +87,6 @@
         @endforeach
     </div>
 </div>
-<script src="{{ asset('js/expandButton.js') }}"></script>
+<script src="{{ asset('js/samplePageJS.js') }}"></script>
 </body>
 </html>

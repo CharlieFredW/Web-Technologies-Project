@@ -12,3 +12,4 @@ function toggleExpand() {
         expandButton.textContent = 'Filter Results';
     }
 }
+
