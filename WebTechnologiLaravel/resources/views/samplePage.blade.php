@@ -55,7 +55,7 @@
                 <li class="sample-item"><p>{{ $sample->url }}</p></li>
                 <li class="sample-item"><p>{{ $sample->total_downloads }}</p></li>
                 <li class="sample-item"><p>{{ $sample->bpm }}</p></li>
-                <li class="sample-item"><p>{{ $sample->key }}r</p></li>
+                <li class="sample-item"><p>{{ $sample->key }}</p></li>
                 <li class="sample-item"><p>{{ $sample->genre }}</p></li>
                 <li class="sample-item"><p>{{ $sample-> instrument}}</p></li>
             </ul>
