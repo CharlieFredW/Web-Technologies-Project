@@ -42,6 +42,7 @@
             <li class="sample-item-header">Image</li>
             <li class="sample-item-header">Title</li>
             <li class="sample-item-header">URL</li>
+            <li class="sample-item-header">Sample Rating</li>
             <li class="sample-item-header">Total Downloads</li>
             <li class="sample-item-header">BPM</li>
             <li class="sample-item-header">Key</li>
@@ -53,6 +54,13 @@
                 <li class="sample-item"><img class="sample-image" src="{{ $sample->image_url }}" alt="{{ $sample->title }}"></li>
                 <li class="sample-item"><h3>{{ $sample->title }}</h3></li>
                 <li class="sample-item"><p>{{ $sample->url }}</p></li>
+                <li class="star-rating" data-sample-id="{{$sample->id }}"><p>
+                    <span class="star" data-rating="1">☆</span>
+                    <span class="star" data-rating="2">☆</span>
+                    <span class="star" data-rating="3">☆</span>
+                    <span class="star" data-rating="4">☆</span>
+                    <span class="star" data-rating="5">☆</span>
+                    </p></li>
                 <li class="sample-item"><p>{{ $sample->total_downloads }}</p></li>
                 <li class="sample-item"><p>{{ $sample->bpm }}</p></li>
                 <li class="sample-item"><p>{{ $sample->key }}r</p></li>
@@ -61,6 +69,7 @@
             </ul>
         @endforeach
     </div>
+
 </div>
 </body>
 </html>
