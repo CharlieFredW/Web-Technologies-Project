@@ -58,3 +58,6 @@ Route::get('/createSample', [SampleController::class, 'create'])->name('samples.
 
 //Used to upload samples to the database
 Route::post('/storeSample', [SampleController::class, 'store'])->name('samples.store');
+
+//Used to rate samples
+Route::post('/rate-sample', [SampleController::class, 'rateSample']);
