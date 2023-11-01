@@ -47,6 +47,8 @@ Route::get('/samplePage', function () {
 
 Route::get('/samplePage', [SampleController::class, 'showSamples']);
 
+Route::post('/update-total-downloads/{sample}', [SampleController::class, 'updateTotalDownloads']);
+
 //My page routes
 Route::get('/my-page-creator', function () {
     return view('myPageCreator');

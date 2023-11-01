@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Title</title>
     <link rel="stylesheet" href="{{asset('css/samplePageStyle.css')}}">
 </head>
@@ -64,7 +65,9 @@
             <ul class="sample-items">
                 <li class="sample-item"><img class="sample-image" src="{{ $sample->image_url }}" alt="{{ $sample->title }}"></li>
                 <li class="sample-item"><h3>{{ $sample->title }}</h3></li>
-                <li class="sample-item"><p>{{ $sample->url }}</p></li>
+                <li class="sample-item">
+                    <button class="copy-url-button" data-sample-id="{{ $sample->id }}" data-url="{{ $sample->url }}">Copy URL</button>
+                </li>
                 <li class="sample-item"><p>{{ $sample->total_downloads }}</p></li>
                 <li class="sample-item"><p>{{ $sample->bpm }}</p></li>
                 <li class="sample-item"><p>{{ $sample->key }}</p></li>
