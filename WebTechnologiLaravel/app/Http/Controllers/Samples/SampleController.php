@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Samples;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sample;
-use Illuminate\Support\Facades\Auth;
 
 class SampleController extends Controller
 {
@@ -66,35 +65,6 @@ class SampleController extends Controller
         //make the path short so it does not get the local::8080 in front so it works
         return $randomImageUrl = "images/{$randomImageName}";
 
-    }
-
-    public function rateSample(Request $request)
-    {
-        $sampleId = $request->input('sample_id');
-        $rating = $request->input('rating');
-
-        // 1. Validate the input
-        $validatedData = $request->validate([
-            'sample_id' => 'required|exists:samples,id', // Ensure the sample exists
-            //'rating' => 'required|integer|between:1,5', // Rating should be between 1 and 5
-        ]);
-
-        // 2. Authenticate the user (ensure they are logged in)
-        if (Auth::check()) {
-            $sampleId = $request->input('sample_id');
-            $rating = $request->input('rating');
-        }
-
-        // 3. Store the rating in the database
-        $user = Auth::user(); // Assuming you're using Laravel's built-in authentication
-        $user->ratings()->updateOrCreate(
-            ['sample_id' => $sampleId],
-            ['rating' => $rating]
-        );
-
-        // You might want to add some error handling here as well
-
-        return response()->json(['message' => 'Rating saved successfully']);
     }
 
 }
