@@ -60,4 +60,4 @@ Route::get('/createSample', [SampleController::class, 'create'])->name('samples.
 Route::post('/storeSample', [SampleController::class, 'store'])->name('samples.store');
 
 //Used to rate samples
-Route::post('/rate-sample', [SampleController::class, 'rateSample']);
+Route::post('/rate-sample', [SampleController::class, 'rateSample'])->name('sample.rate');

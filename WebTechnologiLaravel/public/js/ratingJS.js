@@ -7,9 +7,10 @@ $('.star-rating .star').on('click', function () {
         url: '/rate-sample', // Create a route for this endpoint
         data: {
             sample_id: sampleId,
-            rating: rating,
+            rating: rating
         },
         success: function (response) {
+
             // Handle success, e.g., update the UI
         },
     });

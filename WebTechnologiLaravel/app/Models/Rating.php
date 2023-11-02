@@ -13,7 +13,9 @@ class Rating extends Model
     protected $table = 'ratings';
 
     protected $fillable = [
-        'title',
+        'sample_id',
+        'user_id',
+        'rating'
 
     ];
 
@@ -25,5 +27,10 @@ class Rating extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(\App\Models\Rating::class);
     }
 }

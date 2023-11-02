@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Samples;
 
 use App\Http\Controllers\Controller;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 use App\Models\Sample;
 use Illuminate\Support\Facades\Auth;
@@ -70,28 +71,38 @@ class SampleController extends Controller
 
     public function rateSample(Request $request)
     {
-        $sampleId = $request->input('sample_id');
-        $rating = $request->input('rating');
 
-        // 1. Validate the input
-        $validatedData = $request->validate([
-            'sample_id' => 'required|exists:samples,id', // Ensure the sample exists
-            //'rating' => 'required|integer|between:1,5', // Rating should be between 1 and 5
+        $request->validate([
+            'sample_id' => 'required', // Ensure the sample exists
+            'user_id' => 'required', // Ensure that the owner exists
+            'rating' => 'required', // Rating should be between 1 and 5
         ]);
 
-        // 2. Authenticate the user (ensure they are logged in)
+        $ratings = new Rating;
+        $ratings -> sample_id = $request->input('sample_id');
+        $ratings -> user_id = $request->input('user_id');
+        $ratings -> rating = $request->input('rating');
+
+        $ratings -> save();
+
+        // 1. Validate the input
+
+
+        /*// 2. Authenticate the user (ensure they are logged in)
         if (Auth::check()) {
             $sampleId = $request->input('sample_id');
+            $user_id = $request->input('user_id');
             $rating = $request->input('rating');
         }
 
         // 3. Store the rating in the database
         $user = Auth::user(); // Assuming you're using Laravel's built-in authentication
-        $user->ratings()->updateOrCreate(
+        $ratings->ratings()->updateOrCreate(
             ['sample_id' => $sampleId],
+            ['user_id' => $user_id],
             ['rating' => $rating]
         );
-
+*/
         // You might want to add some error handling here as well
 
         return response()->json(['message' => 'Rating saved successfully']);

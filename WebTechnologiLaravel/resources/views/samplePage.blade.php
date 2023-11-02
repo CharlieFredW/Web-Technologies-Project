@@ -54,13 +54,17 @@
                 <li class="sample-item"><img class="sample-image" src="{{ $sample->image_url }}" alt="{{ $sample->title }}"></li>
                 <li class="sample-item"><h3>{{ $sample->title }}</h3></li>
                 <li class="sample-item"><p>{{ $sample->url }}</p></li>
+
+
+                <form method="POST" action="{{ route('sample.rate') }}">
                 <li class="star-rating" data-sample-id="{{$sample->id }}"><p>
-                    <span class="star" data-rating="1">☆</span>
-                    <span class="star" data-rating="2">☆</span>
-                    <span class="star" data-rating="3">☆</span>
-                    <span class="star" data-rating="4">☆</span>
-                    <span class="star" data-rating="5">☆</span>
-                    </p></li>
+                        <button class="star" name="data-rating" id="data-rating" value="1">☆</button>
+                        <button class="star" name="data-rating" id="data-rating" value="2">☆</button>
+                        <button class="star" name="data-rating" id="data-rating" value="3">☆</button>
+                        <button class="star" name="data-rating" id="data-rating" value="4">☆</button>
+                        <button class="star" name="data-rating" id="data-rating" value="5">☆</button>
+                   @csrf </form>
+                    </li>
                 <li class="sample-item"><p>{{ $sample->total_downloads }}</p></li>
                 <li class="sample-item"><p>{{ $sample->bpm }}</p></li>
                 <li class="sample-item"><p>{{ $sample->key }}r</p></li>
