@@ -51,6 +51,22 @@ class SampleController extends Controller
 
     }
 
+    public function updateTotalDownloads($sampleId) {
+        //find sample where id =
+        $sample = Sample::where('id', $sampleId)->first();
+
+        if (!$sample) {
+            return response()->json(['message' => 'Sample not found'], 404);
+        }
+
+        //increment total downloads
+        $sample->total_downloads++;
+        $sample->save();
+
+        //add updatedCount for the promise in the js file to get the updated count so it can be used
+        return response()->json(['updatedCount' => $sample->total_downloads]);
+    }
+
     public function getRandomImage(): string
     {
         //get all images file path
