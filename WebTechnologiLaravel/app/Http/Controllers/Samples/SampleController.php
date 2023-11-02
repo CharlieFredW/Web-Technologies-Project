@@ -72,6 +72,7 @@ class SampleController extends Controller
     public function rateSample(Request $request)
     {
 
+        // 1. Validate the input
         $request->validate([
             'sample_id' => 'required', // Ensure the sample exists
             'user_id' => 'required', // Ensure that the owner exists
@@ -80,7 +81,7 @@ class SampleController extends Controller
 
         $ratings = new Rating;
         $ratings -> sample_id = $request->input('sample_id');
-        $ratings -> user_id = $request->input('user_id');
+        $ratings -> user_id = Auth::id();
         $ratings -> rating = $request->input('rating');
 
         $ratings -> save();
