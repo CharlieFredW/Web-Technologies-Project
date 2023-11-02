@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="{{asset('css/samplePageStyle.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="header-background">
@@ -55,16 +56,18 @@
                 <li class="sample-item"><h3>{{ $sample->title }}</h3></li>
                 <li class="sample-item"><p>{{ $sample->url }}</p></li>
 
-
                 <form method="POST" action="{{ route('sample.rate') }}">
-                <li class="star-rating" data-sample-id="{{$sample->id }}"><p>
-                        <button class="star" name="data-rating" id="data-rating" value="1">☆</button>
-                        <button class="star" name="data-rating" id="data-rating" value="2">☆</button>
-                        <button class="star" name="data-rating" id="data-rating" value="3">☆</button>
-                        <button class="star" name="data-rating" id="data-rating" value="4">☆</button>
-                        <button class="star" name="data-rating" id="data-rating" value="5">☆</button>
-                   @csrf </form>
+                    @csrf
+                    <li class="star-rating" data-sample-id="{{$sample->id }}">
+                        <button class="star" data-rating="1">☆</button>
+                        <button class="star" data-rating="2">☆</button>
+                        <button class="star" data-rating="3">☆</button>
+                        <button class="star" data-rating="4">☆</button>
+                        <button class="star" data-rating="5">☆</button>
                     </li>
+                </form>
+
+
                 <li class="sample-item"><p>{{ $sample->total_downloads }}</p></li>
                 <li class="sample-item"><p>{{ $sample->bpm }}</p></li>
                 <li class="sample-item"><p>{{ $sample->key }}r</p></li>

@@ -72,41 +72,31 @@ class SampleController extends Controller
     public function rateSample(Request $request)
     {
 
-        // 1. Validate the input
+        // validate the given input
         $request->validate([
-            'sample_id' => 'required', // Ensure the sample exists
-            'user_id' => 'required', // Ensure that the owner exists
-            'rating' => 'required', // Rating should be between 1 and 5
+            'sample_id' => 'integer', // Ensure the sample exists
+            'user_id' => 'integer', // Ensure that the owner exists
+            'rating' => 'integer', // Rating should be between 1 and 5
         ]);
 
-        $ratings = new Rating;
-        $ratings -> sample_id = $request->input('sample_id');
-        $ratings -> user_id = Auth::id();
-        $ratings -> rating = $request->input('rating');
-
-        $ratings -> save();
-
-        // 1. Validate the input
-
-
-        /*// 2. Authenticate the user (ensure they are logged in)
-        if (Auth::check()) {
-            $sampleId = $request->input('sample_id');
-            $user_id = $request->input('user_id');
-            $rating = $request->input('rating');
+        try {
+            // catch the exception
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'An error occurred while saving the rating.']);
         }
 
-        // 3. Store the rating in the database
-        $user = Auth::user(); // Assuming you're using Laravel's built-in authentication
-        $ratings->ratings()->updateOrCreate(
-            ['sample_id' => $sampleId],
-            ['user_id' => $user_id],
-            ['rating' => $rating]
-        );
-*/
-        // You might want to add some error handling here as well
+        $ratings = new Rating;
+        $ratings->sample_id = $request->input('sample_id');
+        $ratings->user_id = Auth::id(); // Assuming you have user authentication
+        $ratings->rating = $request->input('rating');
+        $ratings->save();
 
+
+
+
+        /*success message?
         return response()->json(['message' => 'Rating saved successfully']);
+        */
     }
 
 }

@@ -1,17 +1,21 @@
-$('.star-rating .star').on('click', function () {
-    const sampleId = $(this).parent().data('data-sample-id');
-    const rating = $(this).data('data-rating');
+$(document).ready(function () {
+    $(".star").click(function () {
+        const sampleId = $(this).parent().data('sample-id');
+        const rating = $(this).data('rating');
 
-    $.ajax({
-        type: 'POST',
-        url: '/rate-sample', // Create a route for this endpoint
-        data: {
-            sample_id: sampleId,
-            rating: rating
-        },
-        success: function (response) {
+        console.log('Sample ID:', sampleId);
+        console.log('Rating:', rating);
 
-            // Handle success, e.g., update the UI
-        },
-    });
+        $.ajax({
+            type: 'POST',
+            url: '/rate-sample', // Create a route for this endpoint
+            data: {
+                sample_id: sampleId,
+                rating: rating,
+            },
+
+        });
+
+
+})
 });

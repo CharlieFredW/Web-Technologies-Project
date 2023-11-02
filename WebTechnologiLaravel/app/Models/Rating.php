@@ -19,6 +19,7 @@ class Rating extends Model
 
     ];
 
+
     public function sample()
     {
         return $this->belongsTo(\App\Models\Sample::class);
