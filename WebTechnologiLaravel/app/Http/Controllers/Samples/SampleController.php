@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Samples;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sample;
+use Illuminate\Support\Facades\View;
 
 class SampleController extends Controller
 {
@@ -43,11 +44,19 @@ class SampleController extends Controller
         return redirect('/my-page-creator');
     }
 
+    public function showSamplesPage() {
+        $showAllSamples = $this->showSamples();
+
+        return View::make('samplePage', [
+            "samples" => $showAllSamples
+        ]);
+    }
+
     public function showSamples() {
 
         $samples = Sample::all();
 
-        return view('samplePage', compact('samples'));
+        return $samples;
 
     }
 

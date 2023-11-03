@@ -35,38 +35,12 @@
         <p>New Samples</p>
     </div>
     <div class="new-samples-images-container">
+    @for ($i = 0; $i < min(6, count($newSamples)); $i++)
         <div class="new-samples-image-container">
-            <img src="placeholder1.jpg" alt="Placeholder Image 1">
-            <p class="new-samples-image-caption">Placeholder text1</p>
+            <img class="sample-image" src="{{ $newSamples[$i]->image_url }}" alt="{{ $newSamples[$i]->title }}">
+            <p class="new-samples-image-caption">{{ $newSamples[$i]->title }}</p>
         </div>
-        <div class="new-samples-image-container">
-            <img src="placeholder1.jpg" alt="Placeholder Image 2">
-            <p class="new-samples-image-caption">Placeholder text2</p>
-        </div>
-        <div class="new-samples-image-container">
-            <img src="placeholder1.jpg" alt="Placeholder Image 3">
-            <p class="new-samples-image-caption">Placeholder text3</p>
-        </div>
-        <div class="new-samples-image-container">
-            <img src="placeholder1.jpg" alt="Placeholder Image 4">
-            <p class="new-samples-image-caption">Placeholder text4</p>
-        </div>
-        <div class="new-samples-image-container">
-            <img src="placeholder1.jpg" alt="Placeholder Image 4">
-            <p class="new-samples-image-caption">Placeholder text4</p>
-        </div>
-        <div class="new-samples-image-container">
-            <img src="placeholder1.jpg" alt="Placeholder Image 4">
-            <p class="new-samples-image-caption">Placeholder text4</p>
-        </div>
-        <div class="new-samples-image-container">
-            <img src="placeholder1.jpg" alt="Placeholder Image 4">
-            <p class="new-samples-image-caption">Placeholder text4</p>
-        </div>
-        <div class="new-samples-image-container">
-            <img src="placeholder1.jpg" alt="Placeholder Image 4">
-            <p class="new-samples-image-caption">Placeholder text4</p>
-        </div>
+        @endfor
     </div>
 </div>
 <div class="divider"></div>
@@ -93,38 +67,12 @@
         <p>Today's Top Picks</p>
     </div>
     <div class="today-picks-images-container">
-        <div class="today-picks-image-container">
-            <img src="placeholder1.jpg" alt="Placeholder Image 1">
-            <p class="today-picks-image-caption">Placeholder text1</p>
-        </div>
-        <div class="today-picks-image-container">
-            <img src="placeholder1.jpg" alt="Placeholder Image 2">
-            <p class="today-picks-image-caption">Placeholder text2</p>
-        </div>
-        <div class="today-picks-image-container">
-            <img src="placeholder1.jpg" alt="Placeholder Image 3">
-            <p class="today-picks-image-caption">Placeholder text3</p>
-        </div>
-        <div class="today-picks-image-container">
-            <img src="placeholder1.jpg" alt="Placeholder Image 4">
-            <p class="today-picks-image-caption">Placeholder text4</p>
-        </div>
-        <div class="today-picks-image-container">
-            <img src="placeholder1.jpg" alt="Placeholder Image 4">
-            <p class="today-picks-image-caption">Placeholder text4</p>
-        </div>
-        <div class="today-picks-image-container">
-            <img src="placeholder1.jpg" alt="Placeholder Image 4">
-            <p class="today-picks-image-caption">Placeholder text4</p>
-        </div>
-        <div class="today-picks-image-container">
-            <img src="placeholder1.jpg" alt="Placeholder Image 4">
-            <p class="today-picks-image-caption">Placeholder text4</p>
-        </div>
-        <div class="today-picks-image-container">
-            <img src="placeholder1.jpg" alt="Placeholder Image 4">
-            <p class="today-picks-image-caption">Placeholder text4</p>
-        </div>
+        @for ($i = 0; $i < min(6, count($todaySamples)); $i++)
+            <div class="today-picks-image-container">
+                <img class="sample-image" src="{{ $todaySamples[$i]->image_url }}" alt="{{ $todaySamples[$i]->title }}">
+                <p class="today-picks-image-caption">{{ $todaySamples[$i]->title }}</p>
+            </div>
+        @endfor
     </div>
 </div>
 <div class="divider"></div>

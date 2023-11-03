@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\Samples\SampleController;
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
@@ -18,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('homepage');
-});
+Route::get('/', [HomePageController::class, 'showHomepage']);
 
 //Login routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
@@ -41,11 +40,8 @@ Route::get('/blogs', function () {
     });
 
 //Sample page routes
-Route::get('/samplePage', function () {
-    return view('samplePage');
-    });
 
-Route::get('/samplePage', [SampleController::class, 'showSamples']);
+Route::get('/samplePage', [SampleController::class, 'showSamplesPage']);
 
 Route::post('/update-total-downloads/{sample}', [SampleController::class, 'updateTotalDownloads']);
 
