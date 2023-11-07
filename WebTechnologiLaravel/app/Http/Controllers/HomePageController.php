@@ -36,13 +36,13 @@ class HomePageController extends Controller
 
         $sortTodaySamples = Sample::whereDate('created_at', $today)
             ->orderBy('total_downloads', 'desc')
-            ->get();
+            ->take(6)->get();
 
         return $sortTodaySamples;
     }
 
     public function todayBlogPosts() {
-        $sortBlogPosts = Blog::orderBy('created_at', 'desc')->get();
+        $sortBlogPosts = Blog::orderBy('created_at', 'desc')->take(3)->get();
         return $sortBlogPosts;
     }
 
@@ -52,7 +52,7 @@ class HomePageController extends Controller
 
         $topCreatorsThisWeek = Sample::whereBetween('created_at', [$startOfWeek, $endOfWeek])
             ->orderBy('total_downloads', 'desc')
-            ->get();
+            ->take(8)->get();
         return $topCreatorsThisWeek;
     }
 

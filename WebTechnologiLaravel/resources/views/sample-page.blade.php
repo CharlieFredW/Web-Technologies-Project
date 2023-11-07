@@ -1,11 +1,11 @@
+@extends('layouts.main')
+@section('content')
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Title</title>
     <link rel="stylesheet" href="{{asset('css/samplePageStyle.css')}}">
 </head>
-@extends('layouts.main')
-@section('content')
 <div class="samples-heading">
     <p class="samples-heading-text">Samples</p>
 </div>

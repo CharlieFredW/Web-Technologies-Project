@@ -1,10 +1,10 @@
+@extends('layouts.main')
+@section('content')
 <head>
     <meta charset="UTF-8">
     <title>Blog Posts</title>
     <link rel="stylesheet" href="{{asset('css/blogPostsStyle.css')}}">
 </head>
-@extends('layouts.main')
-@section('content')
 <div class="blog-frontpage">
     <div class="blog-frontpage-title">
         <p class="blog-frontpage-text">Blog Posts</p>

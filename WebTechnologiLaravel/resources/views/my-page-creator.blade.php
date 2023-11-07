@@ -5,7 +5,6 @@
     <title>My Page</title>
     <link rel="stylesheet" href="{{asset('css/myPageCreatorStyle.css')}}">
 </head>
-<body>
 
 <div class="my-page-frontpage-title">
     <p class="my-page-frontpage-text"> My Page (creator)</p>

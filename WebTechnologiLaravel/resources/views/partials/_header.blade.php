@@ -15,7 +15,11 @@
         </div>
         <div class="login-info">
             @if(Auth::check())
-                <li><a href="{{ asset('/my-page-creator') }}" class="my-page-button">My Page</a></li>
+                @if(Request::is('my-page-creator'))
+                    <li><a href="{{ asset('/') }}" class="my-page-button">Home</a></li>
+                @else
+                    <li><a href="{{ asset('/my-page-creator') }}" class="my-page-button">My Page</a></li>
+                @endif
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <li><button class="logout-button">Log Out</button></li>
