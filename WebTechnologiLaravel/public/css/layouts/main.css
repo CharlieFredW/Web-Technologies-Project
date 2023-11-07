@@ -1,0 +1,19 @@
+body {
+    background-color: #FBFAF8;
+    padding: 0;
+    margin: 0;
+}
+
+button {
+    all: unset;
+}
+
+ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}

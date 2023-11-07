@@ -42,7 +42,7 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::orderBy('created_at', 'desc')->get(); // Fetch posts in descending order by creation time
-        return view('blogPosts', ['blogs' => $blogs]);
+        return view('blog-posts', ['blogs' => $blogs]);
     }
 
     public function delete(Blog $blog)

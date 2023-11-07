@@ -11,7 +11,7 @@ class LoginController extends Controller
     //goes to login page
     public function showLoginForm()
     {
-        return view('loginPage');
+        return view('login-page');
     }
 
     public function login(Request $request)
@@ -19,7 +19,7 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect('/'); // if login is successful return to page...
+            return redirect('/'); // redirect to homepage
         }
 
         return back()->withErrors(['email' => 'Invalid login credentials']); // Redirect back with an error message on failed login

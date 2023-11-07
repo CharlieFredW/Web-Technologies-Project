@@ -11,7 +11,7 @@ class SampleController extends Controller
 {
     public function create()
     {
-        return view('createSamples');
+        return view('create-samples');
     }
 
     public function store(Request $request) // store samples in the database
@@ -47,7 +47,7 @@ class SampleController extends Controller
     public function showSamplesPage() {
         $showAllSamples = $this->showSamples();
 
-        return View::make('samplePage', [
+        return View::make('sample-page', [
             "samples" => $showAllSamples
         ]);
     }

@@ -36,27 +36,27 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 //Blog routes
 Route::get('/blogs', function () {
-    return view('blogPosts');
+    return view('blog-posts');
     });
 
 //Sample page routes
 
-Route::get('/samplePage', [SampleController::class, 'showSamplesPage']);
+Route::get('/sample-page', [SampleController::class, 'showSamplesPage']);
 
 Route::post('/update-total-downloads/{sample}', [SampleController::class, 'updateTotalDownloads']);
 
 //My page routes
 Route::get('/my-page-creator', function () {
-    return view('myPageCreator');
-})->name('myPageCreator')->middleware('auth');
+    return view('my-page-creator');
+})->name('my-page-creator')->middleware('auth');
 
 
 //Sample routes
 //Used to display the sample upload form
-Route::get('/createSample', [SampleController::class, 'create'])->name('samples.create');
+Route::get('/create-sample', [SampleController::class, 'create'])->name('samples.create');
 
 //Used to upload samples to the database
-Route::post('/storeSample', [SampleController::class, 'store'])->name('samples.store');
+Route::post('/store-sample', [SampleController::class, 'store'])->name('samples.store');
 
 
 

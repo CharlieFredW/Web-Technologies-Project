@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.main')
+@section('content')
 <head>
     <meta charset="UTF-8">
     <title>My Page</title>
@@ -7,41 +7,17 @@
 </head>
 <body>
 
-<div class="header-background">
-    <div class="header">
-        <div class="logo">
-            <h2>Header Logo</h2>
-            <div class="header-links-box">
-                <li><a href="{{ asset('/samplePage') }}" class="header-link">Samples</a></li>
-                <li><a href="google.com" class="header-link">Community</a></li>
-                <li><a href="{{ asset('/blogs') }}" class="header-link">Blog</a></li>
-            </div>
-        </div>
-        <div class="login-info">
-            @if(Auth::check())
-                <li><a href="{{ asset('/') }}" class="home-page-button">Home Page</a></li>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <li><button class="logout-button">Log Out</button></li>
-                </form>
-            @else
-                <li><a href="{{ asset('/login') }}" class="login-button">Log In</a></li>
-                <li><a href="{{ asset('/signup') }}" class="signup-button">Sign Up</a></li>
-            @endif
-        </div>
-    </div>
-</div>
 <div class="my-page-frontpage-title">
     <p class="my-page-frontpage-text"> My Page (creator)</p>
 </div>
 
 <div class="flex-column">
-    <img class="avatar-picture" src="https://i.imgur.com/PoyiRJw.png">
+    <img class="avatar-picture" src="https://i.imgur.com/PoyiRJw.png" alt="yee">
     <h2>USERNAME</h2>
 </div>
 
 <div class="upload-button-box">
-    <a href="/createSample" class="upload-button">Upload Sample</a>
+    <a href="/create-sample" class="upload-button">Upload Sample</a>
 </div>
 
 <div class="my-samples-heading">
@@ -126,8 +102,6 @@
     </div>
 
 </div>
-
 <div class="space-between-elements"></div>
-<div class="divider"></div>
-</body>
-</html>
+
+@endsection
