@@ -50,6 +50,10 @@ Route::get('/my-page-creator', function () {
     return view('my-page-creator');
 })->name('my-page-creator')->middleware('auth');
 
+//Edit my page
+Route::get('/edit-profile-page', function () {
+    return view('edit-profile-page');
+})->name('edit-profile-page')->middleware('auth');
 
 //Sample routes
 //Used to display the sample upload form
@@ -57,9 +61,6 @@ Route::get('/create-sample', [SampleController::class, 'create'])->name('samples
 
 //Used to upload samples to the database
 Route::post('/store-sample', [SampleController::class, 'store'])->name('samples.store');
-
-
-
 
 // Blog routes
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index'); // Show blog posts

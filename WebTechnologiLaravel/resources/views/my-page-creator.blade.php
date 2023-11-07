@@ -13,6 +13,9 @@
 <div class="flex-column">
     <img class="avatar-picture" src="https://i.imgur.com/PoyiRJw.png" alt="yee">
     <h2>USERNAME</h2>
+    <div class="edit-profile">
+        <button><a href="{{ asset('/edit-profile-page') }}" class="edit-profile-text">Edit Profile</a></button>
+    </div>
 </div>
 
 <div class="upload-button-box">
