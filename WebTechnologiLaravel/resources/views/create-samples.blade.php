@@ -1,38 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.main')
+@section('content')
 <head>
     <meta charset="UTF-8">
     <title>Upload Sample</title>
     <link rel="stylesheet" href="{{asset('css/uploadSampleForm.css')}}">
 </head>
 <body>
-<div class="header-background">
-    <div class="header">
-        <div class="logo">
-            <h2>Header Logo</h2>
-            <div class="header-links-box">
-                <li><a href="{{ asset('/samplePage') }}" class="header-link">Samples</a></li>
-                <li><a href="google.com" class="header-link">Community</a></li>
-                <li><a href="{{ asset('/blogs') }}" class="header-link">Blog</a></li>
-            </div>
-        </div>
-        <div class="login-info">
-            @if(Auth::check())
-                <li><a href="{{ asset('/my-page-creator') }}" class="my-page-button">My Page</a></li>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <li><a class="logout-button">Log Out</a></li>
-                </form>
-            @else
-                <li><a href="{{ asset('/login') }}" class="login-button">Log In</a></li>
-                <li><a href="{{ asset('/signup') }}" class="signup-button">Sign Up</a></li>
-            @endif
-        </div>
-    </div>
-</div>
-
-
-
 <div class="sample-form">
     <h1>Upload Sample</h1>
 
@@ -77,8 +50,5 @@
         <button type="submit" class="submit-button">Upload Sample</button>
     </form>
 </div>
+@endsection
 
-
-<div class="divider"></div>
-</body>
-</html>

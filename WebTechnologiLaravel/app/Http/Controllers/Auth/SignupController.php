@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\View;
 class SignupController extends Controller
 {
     public function showSignupForm() {
-        return view::make('signupPage');
+        return view::make('signup-page');
     }
     public function signup(Request $request) {
 

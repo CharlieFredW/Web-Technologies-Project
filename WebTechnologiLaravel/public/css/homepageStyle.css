@@ -1,94 +1,3 @@
-body {
-    background-color: #FBFAF8;
-    padding: 0;
-    margin: 0;
-}
-
-button {
-    all: unset;
-}
-
-.header-background {
-    background-color: #E7DECD;
-    padding: 12px 24px 72px 24px;
-}
-
-.header {
-    background: #698F3F;
-    justify-content: space-between;
-    align-items: center;
-    display: flex;
-    border-radius: 5px;
-    margin-left: 48px;
-    margin-right: 48px;
-}
-
-.logo {
-    padding: 12px 12px 12px 48px;
-    color: #F2E0C9;
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-}
-
-ul {
-    display: flex;
-    padding: 0;
-    margin: 0;
-}
-
-li {
-    list-style: none;
-}
-
-.header-link {
-    padding: 6px 12px 6px 12px;
-    background: #E7DECD;
-    color: #804E49;
-
-}
-
-.header-link:hover, .login-button:hover, .signup-button:hover, .logout-button:hover, .my-page-button:hover {
-    color: #804E49;
-    border-color: black;
-    background-color: #E7DECD;
-
-}
-
-.header-links-box {
-    padding-left: 36px;
-}
-
-.header-links-box, .login-info{
-    display: flex;
-    font-size: 18px;
-    justify-content: center;
-    margin-right: 8px;
-    cursor: pointer;
-}
-
-
-.header-link, .login-button, .signup-button, .logout-button, .my-page-button {
-    display: flex;
-    list-style: none;
-    margin-right: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: bold;
-    text-decoration: none;
-    letter-spacing: 1px;
-    transition: border-color 0.3s, color 0.3s;
-    border: 1px solid transparent;
-
-}
-
-.login-button, .signup-button, .logout-button, .my-page-button {
-    padding: 20px 24px;
-    background-color: #804E49;
-    color: #E7DECD;
-}
-
 .new-samples-text, .today-picks-text, .this-weeks-creators-text {
     flex: 1;
     border: 2px solid #040711;
@@ -183,9 +92,9 @@ li {
 
 
 .this-weeks-creators-image-container img {
-    max-width: 100%;
-    height: auto;
-    border: 1px solid #ddd;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .new-samples-image-caption, .today-picks-image-caption {
@@ -203,11 +112,14 @@ li {
 
 .this-weeks-creators-image-caption {
     color: #333;
-    font-size: 14px;
+    font-size: 18px;
     text-align: center;
     position: absolute;
     bottom: 0;
     left: 150px;
+    padding-right: 20px;
+    width: 200px;
+    margin-bottom: 30px;
 }
 
 .this-weeks-creators-box2 {
