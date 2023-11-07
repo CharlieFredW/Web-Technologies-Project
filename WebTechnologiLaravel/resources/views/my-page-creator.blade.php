@@ -22,67 +22,21 @@
 <div class="my-samples-heading">
     <p class="my-samples-heading-text">My Samples</p>
 </div>
-<div class="my-samples-box">
-    <div class="flex-row">
-        <article class="my-page-list">
+<div class="new-samples-box">
 
-            <div class="sample">
-                <a class="blog-preview-image" href="google.dk">
-                    <img class="my-page-sample-preview"
-                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
-                <a class="my-page-sample-title" href="google.dk">
-                    <h3>Title</h3>
-                </a>
-                <div class="my-page-sample-info"> Date</div>
+    <div class="my-samples-images-container">
+        @foreach($mySamples as $mySample)
+            <div class="my-samples-image-container">
+                <img class="sample-image" src="{{ $mySample->image_url }}" alt="{{ $mySample->title }}">
+                <p class="my-samples-image-caption">{{ $mySample->title }}</p>
             </div>
-            <div class="my-samples">
-                <a class="blog-preview-image" href="google.dk">
-                    <img class="my-page-sample-preview"
-                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
-                <a class="my-page-sample-title" href="google.dk">
-                    <h3>Title</h3>
-                </a>
-                <div class="my-page-sample-info"> Date</div>
-            </div>
-
-        </article>
-
+        @endforeach
     </div>
-
 </div>
 
 <div class="space-between-elements"></div>
 <div class="downloaded-samples-heading">
     <p class="downloaded-samples-text">Downloaded Samples</p>
-</div>
-<div class="my-samples-box">
-    <div class="flex-row">
-        <article class="my-page-list">
-
-            <div class="sample">
-                <a class="blog-preview-image" href="google.dk">
-                    <img class="my-page-sample-preview"
-                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
-                <a class="my-page-sample-title" href="google.dk">
-                    <h3>Title</h3>
-                </a>
-                <div class="my-page-sample-info"> Date</div>
-            </div>
-            <div class="my-samples">
-                <a class="blog-preview-image" href="google.dk">
-                    <img class="my-page-sample-preview"
-                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
-                <a class="my-page-sample-title" href="google.dk">
-                    <h3>Title</h3>
-                </a>
-                <div class="my-page-sample-info"> Date</div>
-            </div>
-
-
-        </article>
-
-    </div>
-
 </div>
 
 <div class="space-between-elements"></div>

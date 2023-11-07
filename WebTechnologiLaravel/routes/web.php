@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\Samples\SampleController;
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
@@ -46,10 +47,8 @@ Route::get('/sample-page', [SampleController::class, 'showSamplesPage']);
 Route::post('/update-total-downloads/{sample}', [SampleController::class, 'updateTotalDownloads']);
 
 //My page routes
-Route::get('/my-page-creator', function () {
-    return view('my-page-creator');
-})->name('my-page-creator')->middleware('auth');
 
+Route::get('/my-page-creator', [MyPageController::class, 'showMySamples'])->name('my-page-creator')->middleware('auth');
 
 //Sample routes
 //Used to display the sample upload form
