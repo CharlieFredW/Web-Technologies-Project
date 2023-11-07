@@ -47,7 +47,14 @@ Route::get('/sample-page', [SampleController::class, 'showSamplesPage']);
 
 //My page routes
 
+<<<<<<< HEAD
 Route::get('/my-page-creator', [MyPageController::class, 'showMySamples'])->name('my-page-creator')->middleware('auth');
+=======
+//Edit my page
+Route::get('/edit-profile-page', function () {
+    return view('edit-profile-page');
+})->name('edit-profile-page')->middleware('auth');
+>>>>>>> d1bc864 (added edit profile button that links to new page)
 
 //Sample routes
 //Used to display the sample upload form
@@ -63,9 +70,6 @@ Route::post('/update-total-downloads/{sample}', [SampleController::class, 'updat
 
 //Used to upload samples to the database
 Route::post('/samples/store', [SampleController::class, 'store'])->name('samples.store');
-
-
-
 
 // Blog routes
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index'); // Show blog posts
