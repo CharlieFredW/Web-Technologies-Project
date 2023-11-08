@@ -82,6 +82,7 @@ class SampleController extends Controller
         $request->validate([
             'sample_id' => 'required|integer', // Ensure the sample exists and it's not null
             'rating' => 'required|integer|between:1,5', // Rating should be between 1 and 5
+            'user_id' => 'required|integer',
         ]);
 
         try {
@@ -103,3 +104,6 @@ class SampleController extends Controller
     }
 
 }
+
+
+
