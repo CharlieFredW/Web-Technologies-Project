@@ -92,4 +92,36 @@ class SampleController extends Controller
 
     }
 
+    public function destroy(Sample $sample)
+    {
+        // Check if the authenticated user is the owner of the sample post
+        if (auth()->user()->id === $sample->owner) {
+            $sample->delete();
+            return redirect('/my-page-creator')->with('success', 'Sample deleted successfully!');
+        } else {
+            // Unauthorized attempt to delete
+            return redirect('/')->with('error', 'Unauthorized action!');
+        }
+    }
+
+    public function edit(Sample $sample)
+    {
+        if (auth()->user()->id === $sample->owner) {
+            return view('edit-samples', compact('sample'));
+        } else {
+            // Unauthorized attempt to delete
+            return redirect('/')->with('error', 'Unauthorized action!');
+        }
+
+    }
+
+    // Updates the sample with the provided $id in the database
+    public function update(Request $request, $id)
+    {
+        Sample::find($id)->update($request->all());
+
+        // Redirect to a relevant page after the update, e.g., the sample's detail page
+        return redirect()->route('my-page-creator');
+    }
+
 }

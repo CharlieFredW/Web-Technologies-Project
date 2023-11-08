@@ -246,11 +246,11 @@ li {
     padding: 15px 15px 60px 15px;
     flex-basis: calc(12% - 5px);
     text-align: center;
-    height: 150px;
+    height: 175px;
     width: 150px;
     margin-left: 15px;
     flex-direction: column;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     align-items: center;
     position: relative;
     border-radius: 5px;
@@ -292,3 +292,26 @@ li {
     flex: 6;
     justify-content: flex-start;
 }
+.sample-title {
+    white-space: nowrap;
+}
+
+.button-hyperlink {
+    background: none;
+    border: none;
+
+    font: inherit;
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+    font-size: 14px;
+    flex-basis: calc(15% - 30px);
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+}
+
+

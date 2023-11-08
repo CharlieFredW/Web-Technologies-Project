@@ -16,19 +16,30 @@
 </div>
 
 <div class="upload-button-box">
-    <a href="/create-sample" class="upload-button">Upload Sample</a>
+    <a href="/samples/create" class="upload-button">Upload Sample</a>
 </div>
 
 <div class="my-samples-heading">
     <p class="my-samples-heading-text">My Samples</p>
 </div>
-<div class="new-samples-box">
+<div class="my-samples-box">
 
     <div class="my-samples-images-container">
         @foreach($mySamples as $mySample)
+
             <div class="my-samples-image-container">
                 <img class="sample-image" src="{{ $mySample->image_url }}" alt="{{ $mySample->title }}">
-                <p class="my-samples-image-caption">{{ $mySample->title }}</p>
+                <p class="my-samples-image-caption"><span class="sample-title">Title: {{ $mySample->title }}</span><br>
+                    {{ $mySample->created_at }} <br>
+                    <a href="{{ route('samples.edit', $mySample) }}">Edit</a>
+                    <a href="{{ route('samples.destroy', $mySample) }}" >
+                        <form action="{{ route('samples.destroy', $mySample) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="button-hyperlink">Delete</button>
+                        </form>
+                    </a>
+                </p>
             </div>
         @endforeach
     </div>
@@ -38,7 +49,35 @@
 <div class="downloaded-samples-heading">
     <p class="downloaded-samples-text">Downloaded Samples</p>
 </div>
+<div class="my-samples-box">
+    <div class="flex-row">
+        <article class="my-page-list">
 
+            <div class="sample">
+                <a class="blog-preview-image" href="google.dk">
+                    <img class="my-page-sample-preview"
+                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
+                <a class="my-page-sample-title" href="google.dk">
+                    <h3>Title</h3>
+                </a>
+                <div class="my-page-sample-info"> Date</div>
+            </div>
+            <div class="my-samples">
+                <a class="blog-preview-image" href="google.dk">
+                    <img class="my-page-sample-preview"
+                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Treble_a.svg/1024px-Treble_a.svg.png"></a>
+                <a class="my-page-sample-title" href="google.dk">
+                    <h3>Title</h3>
+                </a>
+                <div class="my-page-sample-info"> Date</div>
+            </div>
+
+
+        </article>
+
+    </div>
+
+</div>
 <div class="space-between-elements"></div>
 
 <div class="sample-statistics-heading">

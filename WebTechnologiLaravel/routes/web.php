@@ -44,7 +44,6 @@ Route::get('/blogs', function () {
 
 Route::get('/sample-page', [SampleController::class, 'showSamplesPage']);
 
-Route::post('/update-total-downloads/{sample}', [SampleController::class, 'updateTotalDownloads']);
 
 //My page routes
 
@@ -52,10 +51,18 @@ Route::get('/my-page-creator', [MyPageController::class, 'showMySamples'])->name
 
 //Sample routes
 //Used to display the sample upload form
-Route::get('/create-sample', [SampleController::class, 'create'])->name('samples.create');
+Route::get('/samples/create', [SampleController::class, 'create'])->name('samples.create');
+
+Route::delete('/samples/{sample}', [SampleController::class, 'destroy'])->name('samples.destroy');
+
+Route::get('/samples/{sample}/edit', [SampleController::class, 'edit'])->name('samples.edit');
+
+Route::put('/samples/{sample}', [SampleController::class, 'update'])->name('samples.update');
+
+Route::post('/update-total-downloads/{sample}', [SampleController::class, 'updateTotalDownloads']);
 
 //Used to upload samples to the database
-Route::post('/store-sample', [SampleController::class, 'store'])->name('samples.store');
+Route::post('/samples/store', [SampleController::class, 'store'])->name('samples.store');
 
 
 
