@@ -7,6 +7,7 @@ use App\Models\Rating;
 use Illuminate\Http\Request;
 use App\Models\Sample;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class SampleController extends Controller
 {
@@ -71,32 +72,34 @@ class SampleController extends Controller
 
     public function rateSample(Request $request)
     {
+        // Log the received data for debugging
+        Log::info('Received sample_id: ' . $request->input('sample_id'));
+        Log::info('Received rating: ' . $request->input('rating'));
+        Log::info('Received user_id: ' . $request->input('user_id'));
 
-        // validate the given input
+
+        // Validate the given input
         $request->validate([
-            'sample_id' => 'integer', // Ensure the sample exists
-            'user_id' => 'integer', // Ensure that the owner exists
-            'rating' => 'integer', // Rating should be between 1 and 5
+            'sample_id' => 'required|integer', // Ensure the sample exists and it's not null
+            'rating' => 'required|integer|between:1,5', // Rating should be between 1 and 5
         ]);
 
         try {
-            // catch the exception
+            $ratings = new Rating;
+            $ratings->sample_id = $request->input('sample_id');
+            $ratings->user_id = Auth::id(); // Assuming you have user authentication
+            $ratings->rating = $request->input('rating');
+            $ratings->save();
+
+            // Return a success response
+            return response()->json(['message' => 'Rating saved successfully']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'An error occurred while saving the rating.']);
+            // Log the error for debugging purposes
+            Log::error('Error saving rating: ' . $e->getMessage());
+
+            // Return an error response
+            return response()->json(['error' => 'An error occurred while saving the rating.'], 500);
         }
-
-        $ratings = new Rating;
-        $ratings->sample_id = $request->input('sample_id');
-        $ratings->user_id = Auth::id(); // Assuming you have user authentication
-        $ratings->rating = $request->input('rating');
-        $ratings->save();
-
-
-
-
-        /*success message?
-        return response()->json(['message' => 'Rating saved successfully']);
-        */
     }
 
 }

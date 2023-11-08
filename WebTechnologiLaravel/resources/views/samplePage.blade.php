@@ -51,20 +51,23 @@
             <li class="sample-item-header">Instrument</li>
         </ul>
         @foreach($samples as $sample)
+        <form method="POST" action="{{ route('sample.rate') }}">
+            @csrf
+            <input type="hidden" name="sample_id" value="{{ $sample->id }}">
+            <input type="hidden" id="rating-input" name="rating"> <!-- Hidden input to store rating value -->
+
             <ul class="sample-items">
                 <li class="sample-item"><img class="sample-image" src="{{ $sample->image_url }}" alt="{{ $sample->title }}"></li>
                 <li class="sample-item"><h3>{{ $sample->title }}</h3></li>
                 <li class="sample-item"><p>{{ $sample->url }}</p></li>
 
-                <form method="POST" action="{{ route('sample.rate') }}">
-                    @csrf
-                    <li class="star-rating" data-sample-id="{{$sample->id }}">
-                        <button class="star" data-rating="1">☆</button>
-                        <button class="star" data-rating="2">☆</button>
-                        <button class="star" data-rating="3">☆</button>
-                        <button class="star" data-rating="4">☆</button>
-                        <button class="star" data-rating="5">☆</button>
-                    </li>
+                <li class="star-rating" data-sample-id="{{ $sample->id }}">
+                    <button class="star" data-rating="1">☆</button>
+                    <button class="star" data-rating="2">☆</button>
+                    <button class="star" data-rating="3">☆</button>
+                    <button class="star" data-rating="4">☆</button>
+                    <button class="star" data-rating="5">☆</button>
+                </li>
                 </form>
 
 
