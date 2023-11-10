@@ -122,6 +122,11 @@ li {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-.submit-button {
+.submit-button, .cancel-button {
     border: 1px solid;
+    padding: 5px 10px;
+    background-color: #e2e2e2;
+}
+.submit-button:hover, .cancel-button:hover {
+    background-color: #bbbbbb;
 }

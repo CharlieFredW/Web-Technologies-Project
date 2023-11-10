@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\Samples\SampleController;
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
@@ -43,20 +44,25 @@ Route::get('/blogs', function () {
 
 Route::get('/sample-page', [SampleController::class, 'showSamplesPage']);
 
-Route::post('/update-total-downloads/{sample}', [SampleController::class, 'updateTotalDownloads']);
 
 //My page routes
-Route::get('/my-page-creator', function () {
-    return view('my-page-creator');
-})->name('my-page-creator')->middleware('auth');
 
+Route::get('/my-page-creator', [MyPageController::class, 'showMySamples'])->name('my-page-creator')->middleware('auth');
 
 //Sample routes
 //Used to display the sample upload form
-Route::get('/create-sample', [SampleController::class, 'create'])->name('samples.create');
+Route::get('/samples/create', [SampleController::class, 'create'])->name('samples.create');
+
+Route::delete('/samples/{sample}', [SampleController::class, 'destroy'])->name('samples.destroy');
+
+Route::get('/samples/{sample}/edit', [SampleController::class, 'edit'])->name('samples.edit');
+
+Route::put('/samples/{sample}', [SampleController::class, 'update'])->name('samples.update');
+
+Route::post('/update-total-downloads/{sample}', [SampleController::class, 'updateTotalDownloads']);
 
 //Used to upload samples to the database
-Route::post('/store-sample', [SampleController::class, 'store'])->name('samples.store');
+Route::post('/samples/store', [SampleController::class, 'store'])->name('samples.store');
 
 
 
