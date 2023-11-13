@@ -1,16 +1,22 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Auth; // Import the Auth facade
+
+
 
 class CommentsController extends Controller
 {
     public function store(Request $request)
     {
+        // Log the authenticated user information
+        logger()->info('User ID: ' . Auth::id());
+        logger()->info('User: ' . print_r(Auth::user(), true));
+
         // Validate the request data
         $validator = Validator::make($request->all(), [
             'blogId' => 'required|exists:blogs,id',
@@ -31,14 +37,14 @@ class CommentsController extends Controller
         $comment->save();
 
         // Return a JSON response with the new comment
-        return response()->json(['comment' => $comment->comment], 201);
+        return response()->json(['user' => Auth::user(), 'comment' => $comment->comment], 201);
     }
+
     public function getComments($blogId)
     {
         // Replace the following line with your logic to fetch comments for the given $blogId
         $comments = Comment::where('blog_id', $blogId)->get();
         $comments = Comment::with('user')->where('blog_id', $blogId)->get();
         return response()->json(['comments' => $comments]);
-
     }
 }

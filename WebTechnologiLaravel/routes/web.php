@@ -66,16 +66,15 @@ Route::post('/store-sample', [SampleController::class, 'store'])->name('samples.
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index'); // Show blog posts
 
 // Route for showing the form to create a new blog post
-Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create');
+Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create')->middleware('auth'); // Add middleware here
 
 Route::get('/blogs', [BlogController::class, 'index']);
 
-Route::post('/blogs', [BlogController::class, 'store'])->name('blog.store');
+Route::post('/blogs', [BlogController::class, 'store'])->name('blog.store')->middleware('auth'); // Add middleware here
 
-Route::delete('/blogs/{blog}', [BlogController::class, 'delete'])->name('blog.delete');
+Route::delete('/blogs/{blog}', [BlogController::class, 'delete'])->name('blog.delete')->middleware('auth'); // Add middleware here
 
 Route::get('/comments/{blogId}', [CommentsController::class, 'getComments']);
 
-Route::post('/comments', [CommentsController::class, 'postComment']);
-
-Route::post('/comments', [CommentsController::class, 'store'])->name('comments.store');
+// Add middleware to the route that requires authentication to post a comment
+Route::post('/comments', [CommentsController::class, 'store'])->name('comments.store')->middleware('auth'); // Add middleware here

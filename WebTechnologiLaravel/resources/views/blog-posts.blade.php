@@ -81,7 +81,7 @@
             var commentList = document.getElementById('commentList');
             var commentForm = document.getElementById('commentForm');
 
-            // Set the current blog ID
+            // Set the current blog ID based on the clicked element
             currentBlogId = element.getAttribute('data-blog-id');
 
             titleElement.innerText = title;
@@ -104,6 +104,7 @@
                 contentDiv.style.display = 'none';
             }
         }
+
 
         function postComment() {
             var commentInput = document.getElementById('comment');
@@ -129,20 +130,15 @@
                 })
                 .then(data => {
                     console.log('Comment posted successfully:', data);
-                    // Add the new comment to the commentList
-                    var commentList = document.getElementById('commentList');
-                    var li = document.createElement('li');
-                    li.innerText = data.user.name + ' commented: ' + commentInput.value;
-                    commentList.appendChild(li);
+                    // Load comments for the selected blog to update the display
+                    loadComments(currentBlogId);
+                    // Clear the comment input
+                    commentInput.value = '';
                 })
                 .catch(error => {
                     console.error('Error posting comment:', error);
                 });
-
-            // Clear the comment input
-            commentInput.value = '';
         }
-
 
         function loadComments(blogId) {
             fetch('/comments/' + blogId)
@@ -166,16 +162,19 @@
             var commentList = document.getElementById('commentList');
             commentList.innerHTML = ''; // Clear previous comments
 
-            if (Array.isArray(comments)) {
-                comments.forEach(function (comment) {
-                    var li = document.createElement('li');
-                    // Check if comment.user is not null before accessing its properties
-                    if (comment.user && comment.user.name) {
-                        li.innerText = comment.user.name + ' commented: ' + comment.comment;
-                    } else {
-                        li.innerText = 'A user commented: ' + comment.comment;
+            if (Array.isArray(comments.comments)) {
+                comments.comments.forEach(function (comment) {
+                    // Check if the comment belongs to the currently selected blog
+                    if (comment.blog_id == currentBlogId) {
+                        var li = document.createElement('li');
+                        // Check if comment.user is not null before accessing its properties
+                        if (comment.user && comment.user.name) {
+                            li.innerText = comment.user.name + ' commented: ' + comment.comment;
+                        } else {
+                            li.innerText = 'A user commented: ' + comment.comment;
+                        }
+                        commentList.appendChild(li);
                     }
-                    commentList.appendChild(li);
                 });
             } else {
                 console.error('Invalid comments data:', comments);
