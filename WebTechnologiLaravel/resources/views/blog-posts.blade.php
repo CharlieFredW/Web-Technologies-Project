@@ -217,6 +217,36 @@
                 });
         }
 
+
+
+        function deleteComment(commentId) {
+            fetch('/comments/' + commentId, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Comment deleted successfully:', data);
+                    // Reload comments after deleting
+                    loadComments(currentBlogId);
+                })
+                .catch(error => {
+                    console.error('Error deleting comment:', error);
+                });
+        }
+
+
+
+
+
         function displayComments(comments) {
             var commentList = document.getElementById('commentList');
             commentList.innerHTML = '';
@@ -238,6 +268,13 @@
                                 editComment(comment.id, comment.comment);
                             };
                             li.appendChild(editButton);
+
+                            var deleteButton = document.createElement('button');
+                            deleteButton.innerText = 'Delete';
+                            deleteButton.onclick = function() {
+                                deleteComment(comment.id);
+                            };
+                            li.appendChild(deleteButton);
                         }
 
                         commentList.appendChild(li);
@@ -248,6 +285,8 @@
                 console.error('Invalid comments data:', comments);
             }
         }
+
+
 
     </script>
 

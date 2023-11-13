@@ -76,4 +76,22 @@ class CommentsController extends Controller
         // Return a JSON response with the updated comment
         return response()->json(['comment' => $comment->comment], 200);
     }
+
+    public function destroy(Comment $comment)
+    {
+        // Ensure the user is authenticated
+        if (!Auth::check()) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        // Check if the authenticated user is the owner of the comment
+        if (Auth::user()->id !== $comment->user_id) {
+            return response()->json(['error' => 'Permission denied'], 403);
+        }
+
+        // Delete the comment
+        $comment->delete();
+
+        return response()->json(['message' => 'Comment deleted successfully']);
+    }
 }

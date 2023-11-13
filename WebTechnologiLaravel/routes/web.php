@@ -79,3 +79,5 @@ Route::get('/comments/{blogId}', [CommentsController::class, 'getComments']);
 Route::post('/comments', [CommentsController::class, 'store'])->name('comments.store')->middleware('auth'); // Add middleware here
 
 Route::put('/comments/{comment}', [CommentsController::class, 'update']);
+
+Route::delete('/comments/{comment}', [CommentsController::class, 'destroy'])->name('comments.destroy');

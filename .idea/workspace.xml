@@ -7,8 +7,6 @@
     <list default="true" id="2e970d12-bd77-4f1c-9b8f-2da23ca0e40a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebTechnologiLaravel/app/Http/Controllers/CommentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologiLaravel/app/Http/Controllers/CommentsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebTechnologiLaravel/app/Models/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologiLaravel/app/Models/Comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebTechnologiLaravel/database/database.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologiLaravel/database/database.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebTechnologiLaravel/resources/views/blog-posts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologiLaravel/resources/views/blog-posts.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebTechnologiLaravel/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologiLaravel/routes/web.php" afterDir="false" />
     </list>
