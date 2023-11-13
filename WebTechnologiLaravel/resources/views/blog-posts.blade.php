@@ -38,6 +38,7 @@
             <div id="commentSection">
                 <h3>Comments</h3>
                 <ul id="commentList"></ul>
+                <div id="loadingMessage" style="display: none;">Loading comments...</div>
                 <form id="commentForm">
                     @csrf
                     <input type="hidden" id="blogId" value="{{ $blog->id }}">
@@ -79,6 +80,7 @@
             var authorElement = document.getElementById('selectedBlogAuthor');
             var dateElement = document.getElementById('selectedBlogDate');
             var commentList = document.getElementById('commentList');
+            var loadingMessage = document.getElementById('loadingMessage');
             var commentForm = document.getElementById('commentForm');
 
             // Set the current blog ID based on the clicked element
@@ -88,6 +90,12 @@
             textElement.innerText = content;
             authorElement.innerText = 'Author: ' + author;
             dateElement.innerText = 'Date: ' + date;
+
+            // Hide comment list initially
+            commentList.style.display = 'none';
+
+            // Show loading message while comments are being loaded
+            loadingMessage.style.display = 'block';
 
             // Load comments for the selected blog
             loadComments(currentBlogId);
@@ -149,7 +157,17 @@
                     return response.json();
                 })
                 .then(response => {
-                    displayComments(response);
+                    // Hide loading message when comments are loaded
+                    var loadingMessage = document.getElementById('loadingMessage');
+                    loadingMessage.style.display = 'none';
+
+                    // Display comments only if there are comments available
+                    if (response.comments && response.comments.length > 0) {
+                        displayComments(response);
+                    } else {
+                        var commentList = document.getElementById('commentList');
+                        commentList.innerHTML = '<li>No comments yet.</li>';
+                    }
                 })
                 .catch(error => {
                     console.error('Error loading comments:', error);
@@ -176,6 +194,8 @@
                         commentList.appendChild(li);
                     }
                 });
+                // Show comment list after loading comments
+                commentList.style.display = 'block';
             } else {
                 console.error('Invalid comments data:', comments);
             }
