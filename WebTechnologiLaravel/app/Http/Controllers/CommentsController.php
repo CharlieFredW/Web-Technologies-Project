@@ -42,9 +42,38 @@ class CommentsController extends Controller
 
     public function getComments($blogId)
     {
-        // Replace the following line with your logic to fetch comments for the given $blogId
-        $comments = Comment::where('blog_id', $blogId)->get();
         $comments = Comment::with('user')->where('blog_id', $blogId)->get();
-        return response()->json(['comments' => $comments]);
+        $userIsOwner = Auth::check();
+
+        // Add the is_owner attribute to the user information in each comment
+        foreach ($comments as $comment) {
+            $comment->user->is_owner = $userIsOwner && ($comment->user_id === Auth::id());
+        }
+
+        return response()->json(['comments' => $comments, 'userIsOwner' => $userIsOwner]);
+    }
+
+    public function update(Request $request, Comment $comment)
+    {
+        // Check if the authenticated user is the owner of the comment
+        if (!$comment->isOwner()) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        // Validate the request data
+        $validator = Validator::make($request->all(), [
+            'comment' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+
+        // Update the comment content
+        $comment->comment = $request->input('comment');
+        $comment->save();
+
+        // Return a JSON response with the updated comment
+        return response()->json(['comment' => $comment->comment], 200);
     }
 }

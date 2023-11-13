@@ -39,12 +39,11 @@
                 <h3>Comments</h3>
                 <ul id="commentList"></ul>
                 <div id="loadingMessage" style="display: none;">Loading comments...</div>
-                <form id="commentForm">
+                <form id="commentForm" data-comment-id="">
                     @csrf
-                    <input type="hidden" id="blogId" value="{{ $blog->id }}">
                     <label for="comment">Your Comment:</label>
                     <textarea id="comment" name="comment" rows="4" cols="50" required></textarea><br>
-                    <button type="button" onclick="postComment('{{ $blog->id }}')">Post Comment</button>
+                    <button type="button" onclick="postComment()">Post Comment</button>
                 </form>
             </div>
         </div>
@@ -70,8 +69,9 @@
     </div>
 
     <script>
-        // Define a global variable to store the current blog ID
         var currentBlogId = null;
+        var commentInput = null; // Declare the variable globally
+
 
         function toggleContent(title, content, author, date, element) {
             var contentDiv = document.getElementById('selectedBlogContent');
@@ -83,7 +83,6 @@
             var loadingMessage = document.getElementById('loadingMessage');
             var commentForm = document.getElementById('commentForm');
 
-            // Set the current blog ID based on the clicked element
             currentBlogId = element.getAttribute('data-blog-id');
 
             titleElement.innerText = title;
@@ -91,43 +90,59 @@
             authorElement.innerText = 'Author: ' + author;
             dateElement.innerText = 'Date: ' + date;
 
-            // Hide comment list initially
             commentList.style.display = 'none';
-
-            // Show loading message while comments are being loaded
             loadingMessage.style.display = 'block';
 
-            // Load comments for the selected blog
             loadComments(currentBlogId);
 
-            // Toggle the display of the content
             if (contentDiv.style.display === 'none' || contentDiv.style.display === '') {
-                // Show the content and move the titles down
                 var titleRect = element.getBoundingClientRect();
-                contentDiv.style.top = (titleRect.bottom + window.scrollY) + 'px'; // Adjust for page scroll
+                contentDiv.style.top = (titleRect.bottom + window.scrollY) + 'px';
                 contentDiv.style.left = titleRect.left + 'px';
                 contentDiv.style.display = 'block';
             } else {
-                // Hide the content
                 contentDiv.style.display = 'none';
             }
         }
 
+        function editComment(commentId, commentContent) {
+            commentInput = document.getElementById('comment'); // Update the global variable
+            var commentForm = document.getElementById('commentForm');
+
+            commentForm.setAttribute('data-comment-id', commentId);
+            commentInput.value = commentContent;
+
+            commentInput.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
 
         function postComment() {
-            var commentInput = document.getElementById('comment');
+            commentInput = document.getElementById('comment'); // Update the global variable
+            var commentForm = document.getElementById('commentForm');
+            var commentId = commentForm.getAttribute('data-comment-id');
 
-            console.log('Posting comment for blogId:', currentBlogId);
+            if (commentId) {
+                // Update existing comment
+                updateComment(commentId, commentInput.value);
+            } else {
+                // Post new comment
+                postNewComment(commentInput.value);
+            }
 
+            // Clear the textarea and reset data-comment-id attribute after posting/editing
+            commentForm.removeAttribute('data-comment-id');
+            commentInput.value = '';
+        }
+
+        function postNewComment(commentContent) {
             fetch('/comments', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}', // Include the CSRF token
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
                 },
                 body: JSON.stringify({
                     blogId: currentBlogId,
-                    comment: commentInput.value,
+                    comment: commentContent,
                 }),
             })
                 .then(response => {
@@ -137,14 +152,44 @@
                     return response.json();
                 })
                 .then(data => {
-                    console.log('Comment posted successfully:', data);
-                    // Load comments for the selected blog to update the display
                     loadComments(currentBlogId);
-                    // Clear the comment input
-                    commentInput.value = '';
+                    commentInput.value = ''; // Clear the textarea
                 })
                 .catch(error => {
                     console.error('Error posting comment:', error);
+                });
+        }
+
+
+
+        function updateComment(commentId) {
+            // Retrieve the updated comment from the textarea
+            var updatedComment = document.getElementById('comment').value;
+
+            // Make an AJAX request to update the comment
+            fetch('/comments/' + commentId, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                },
+                body: JSON.stringify({
+                    comment: updatedComment,
+                }),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Comment updated successfully:', data);
+                    // Reload comments after updating
+                    loadComments(currentBlogId);
+                })
+                .catch(error => {
+                    console.error('Error updating comment:', error);
                 });
         }
 
@@ -157,11 +202,9 @@
                     return response.json();
                 })
                 .then(response => {
-                    // Hide loading message when comments are loaded
                     var loadingMessage = document.getElementById('loadingMessage');
                     loadingMessage.style.display = 'none';
 
-                    // Display comments only if there are comments available
                     if (response.comments && response.comments.length > 0) {
                         displayComments(response);
                     } else {
@@ -175,32 +218,36 @@
         }
 
         function displayComments(comments) {
-            console.log('Received comments:', comments);
-
             var commentList = document.getElementById('commentList');
-            commentList.innerHTML = ''; // Clear previous comments
+            commentList.innerHTML = '';
 
             if (Array.isArray(comments.comments)) {
                 comments.comments.forEach(function (comment) {
-                    // Check if the comment belongs to the currently selected blog
                     if (comment.blog_id == currentBlogId) {
                         var li = document.createElement('li');
-                        // Check if comment.user is not null before accessing its properties
                         if (comment.user && comment.user.name) {
                             li.innerText = comment.user.name + ' commented: ' + comment.comment;
                         } else {
                             li.innerText = 'A user commented: ' + comment.comment;
                         }
+
+                        if (comment.user && comment.user.is_owner) {
+                            var editButton = document.createElement('button');
+                            editButton.innerText = 'Edit';
+                            editButton.onclick = function() {
+                                editComment(comment.id, comment.comment);
+                            };
+                            li.appendChild(editButton);
+                        }
+
                         commentList.appendChild(li);
                     }
                 });
-                // Show comment list after loading comments
                 commentList.style.display = 'block';
             } else {
                 console.error('Invalid comments data:', comments);
             }
         }
-
 
     </script>
 

@@ -68,13 +68,14 @@ Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index'); // 
 // Route for showing the form to create a new blog post
 Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create')->middleware('auth'); // Add middleware here
 
-Route::get('/blogs', [BlogController::class, 'index']);
-
 Route::post('/blogs', [BlogController::class, 'store'])->name('blog.store')->middleware('auth'); // Add middleware here
 
 Route::delete('/blogs/{blog}', [BlogController::class, 'delete'])->name('blog.delete')->middleware('auth'); // Add middleware here
 
+// Comments routes
 Route::get('/comments/{blogId}', [CommentsController::class, 'getComments']);
 
 // Add middleware to the route that requires authentication to post a comment
 Route::post('/comments', [CommentsController::class, 'store'])->name('comments.store')->middleware('auth'); // Add middleware here
+
+Route::put('/comments/{comment}', [CommentsController::class, 'update']);
