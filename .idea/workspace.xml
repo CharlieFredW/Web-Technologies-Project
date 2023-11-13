@@ -7,9 +7,9 @@
     <list default="true" id="2e970d12-bd77-4f1c-9b8f-2da23ca0e40a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/a409b9dc-79d9-49ba-b952-1ec257763d05.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a409b9dc-79d9-49ba-b952-1ec257763d05.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebTechnologiLaravel/app/Http/Controllers/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologiLaravel/app/Http/Controllers/BlogController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebTechnologiLaravel/app/Models/Blog.php" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologiLaravel/app/Models/Blog.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebTechnologiLaravel/database/database.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologiLaravel/database/database.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebTechnologiLaravel/public/css/blogPostsStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologiLaravel/public/css/blogPostsStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebTechnologiLaravel/resources/views/blog-posts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologiLaravel/resources/views/blog-posts.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebTechnologiLaravel/resources/views/blogPosts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologiLaravel/resources/views/blogPosts.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebTechnologiLaravel/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologiLaravel/routes/web.php" afterDir="false" />
     </list>

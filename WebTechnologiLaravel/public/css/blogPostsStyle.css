@@ -136,7 +136,8 @@ li {
 }
 
 .divider {
-    padding: 60px 150px;
+    margin-top: 250px; /* Add margin to the top */
+    padding: 60px 150px; /* Adjust the top and bottom padding */
     background: #E7DECD;
     text-align: center;
 }
@@ -271,4 +272,124 @@ li {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: center;
+}
+
+.blog-frontpage {
+    text-align: center;
+}
+
+.blog-dropdown-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #804E49;
+}
+
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown-content {
+    display: block; /* Change from 'none' to 'block' */
+    position: absolute;
+    background-color: #E7DECD;
+    border: 2px solid #804E49;
+    border-radius: 4px;
+    padding: 10px;
+    z-index: 1;
+    width: 200px; /* Adjust the width as needed */
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #804E49;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: #804E49;
+    color: #E7DECD;
+}
+
+#selectedBlogContent {
+    position: absolute;
+    background-color: #E7DECD;
+    border: 2px solid #804E49;
+    border-radius: 4px;
+    padding: 20px;
+    z-index: 1;
+}
+
+
+#blogTitles {
+    position: absolute;
+    top: 400px; /* Adjust as needed */
+    left: 20px; /* Adjust as needed */
+    font-size: 24px;
+    margin-bottom: 250px; /* Add margin to the bottom */
+}
+
+#blogTitles p {
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#blogTitles p:hover {
+    text-decoration: underline;
+}
+
+#create-post-section {
+    position: relative; /* Change to relative positioning */
+    background-color: #E7DECD;
+    border-radius: 4px;
+    padding: 25px;
+    margin: 20px auto; /* Center the container horizontally */
+    border: 2px solid #804E49;
+    width: 80%;
+    margin-top: 400px; /* Adjust as needed */
+}
+
+#create-post-section label {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#create-post-section input[type="text"],
+#create-post-section textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#create-post-section button {
+    padding: 15px 40px;
+    background-color: #804E49;
+    color: #E7DECD;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 15%;
+}
+
+#create-post-section button:hover {
+    background-color: #70453F;
+}
+
+#selectedBlogAuthor,
+#selectedBlogDate {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#selectedBlogDate {
+    margin-bottom: 10px;
 }

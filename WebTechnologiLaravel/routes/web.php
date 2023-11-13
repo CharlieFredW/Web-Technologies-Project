@@ -7,6 +7,7 @@ use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\Samples\SampleController;
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CommentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,8 @@ Route::post('/blogs', [BlogController::class, 'store'])->name('blog.store');
 
 Route::delete('/blogs/{blog}', [BlogController::class, 'delete'])->name('blog.delete');
 
+Route::get('/comments/{blogId}', [CommentsController::class, 'getComments']);
 
+Route::post('/comments', [CommentsController::class, 'postComment']);
 
-
+Route::post('/comments', [CommentsController::class, 'store'])->name('comments.store');
