@@ -5,6 +5,13 @@
     <title>Title</title>
     <link rel="stylesheet" href="{{asset('css/samplePageStyle.css')}}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function assignValue(sample_id, value) {
+            document.getElementById('rating_' + sample_id).value = value;
+        }
+    </script>
+
 </head>
 <body>
 <div class="header-background">
@@ -54,22 +61,21 @@
         <form method="POST" action="{{ route('sample.rate') }}">
             @csrf
             <input type="hidden" name="sample_id" value="{{ $sample->id }}">
-            <input type="hidden" id="rating-input" name="rating"> <!-- Hidden input to store rating value -->
+            <input type="hidden" name="rating" id="rating_{{ $sample->id }}" value=""> <!-- Hidden input to store rating value -->
 
             <ul class="sample-items">
                 <li class="sample-item"><img class="sample-image" src="{{ $sample->image_url }}" alt="{{ $sample->title }}"></li>
                 <li class="sample-item"><h3>{{ $sample->title }}</h3></li>
                 <li class="sample-item"><p>{{ $sample->url }}</p></li>
 
-                <li class="star-rating" data-sample-id="{{ $sample->id }}">
-                    <button class="star" data-rating="1">☆</button>
-                    <button class="star" data-rating="2">☆</button>
-                    <button class="star" data-rating="3">☆</button>
-                    <button class="star" data-rating="4">☆</button>
-                    <button class="star" data-rating="5">☆</button>
-                </li>
-                </form>
+                <li class="sample-item">
+                    <button class="star" onclick="assignValue({{ $sample->id }}, 1)">1☆</button>
+                    <button class="star" onclick="assignValue({{ $sample->id }}, 2)">2☆</button>
+                    <button class="star" onclick="assignValue({{ $sample->id }}, 3)">3☆</button>
+                    <button class="star" onclick="assignValue({{ $sample->id }}, 4)">4☆</button>
+                    <button class="star" onclick="assignValue({{ $sample->id }}, 5)">5☆</button>
 
+                </li>
 
                 <li class="sample-item"><p>{{ $sample->total_downloads }}</p></li>
                 <li class="sample-item"><p>{{ $sample->bpm }}</p></li>
@@ -77,6 +83,7 @@
                 <li class="sample-item"><p>{{ $sample->genre }}</p></li>
                 <li class="sample-item"><p>{{ $sample-> instrument}}</p></li>
             </ul>
+        </form>
         @endforeach
     </div>
 

@@ -75,14 +75,13 @@ class SampleController extends Controller
         // Log the received data for debugging
         Log::info('Received sample_id: ' . $request->input('sample_id'));
         Log::info('Received rating: ' . $request->input('rating'));
-        Log::info('Received user_id: ' . $request->input('user_id'));
+        Log::info('Received user_id: ' . $request->user());
 
 
         // Validate the given input
         $request->validate([
             'sample_id' => 'required|integer', // Ensure the sample exists and it's not null
             'rating' => 'required|integer|between:1,5', // Rating should be between 1 and 5
-            'user_id' => 'required|integer',
         ]);
 
         try {
@@ -92,8 +91,20 @@ class SampleController extends Controller
             $ratings->rating = $request->input('rating');
             $ratings->save();
 
-            // Return a success response
+           return redirect('samplePage');
+
+           // TODO Users must only have one rating per sample. If a rating already exists it should be updated
+
+            // TODO update UI
+
+            // TODO Calculate the average rating of a sample
+
+
+           /*
+           // Return a success response
             return response()->json(['message' => 'Rating saved successfully']);
+           */
+
         } catch (\Exception $e) {
             // Log the error for debugging purposes
             Log::error('Error saving rating: ' . $e->getMessage());
