@@ -14,13 +14,13 @@
     <!-- Blogs Section -->
     <div id="blogContainer">
         <div id="blogTitles" class="blog-titles">
-            <p class="blog-dropdown-title">Blogs:</p>
+            <p class="blog-dropdown-title">Blogs Title:</p>
             @foreach($blogs as $blog)
             <p
                 data-blog-id="{{ $blog->id }}"
                 onclick="toggleContent('{{ $blog->title }}', '{{ $blog->content }}', '{{ $blog->user->name }}', '{{ $blog->created_at }}', this)"
             >
-                {{ $blog->title }} (ID: {{ $blog->id }})
+                {{ $blog->title }}
             </p>
             @endforeach
         </div>
