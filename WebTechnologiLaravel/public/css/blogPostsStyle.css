@@ -136,7 +136,7 @@
     }
 
     .divider {
-        margin-top: 250px; /* Add margin to the top */
+        margin-top: 550px; /* Add margin to the top */
         padding: 60px 150px; /* Adjust the top and bottom padding */
         background: #E7DECD;
         text-align: center;
@@ -408,10 +408,11 @@
     #commentList {
         list-style: none;
         padding: 0;
+
     }
 
     #commentList li {
-        margin-bottom: 10px; /* Add some spacing between comments */
+        margin-bottom: 15px; /* Add some spacing between comments */
     }
 
     #commentList button {
@@ -432,4 +433,16 @@
 
     #commentList button:last-child {
         margin-right: 0; /* Remove right margin for the last button */
+    }
+
+    #titlesRectangle {
+        position: absolute;
+        top: 25px; /* Adjust as needed */
+        left: calc(20px + 250px); /* Adjust as needed based on the width of your titles */
+        width: 950px; /* Adjust the width as needed */
+        height: 100%; /* Extend the rectangle to the bottom of the container */
+        background-color: #E7DECD;
+        border: 2px solid #70453F; /* Use a darker brown for the border */
+        border-radius: 4px;
+        z-index: 0; /* Place it behind other elements */
     }

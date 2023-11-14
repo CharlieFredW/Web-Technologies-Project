@@ -14,6 +14,7 @@
     <!-- Blogs Section -->
     <div id="blogContainer">
         <div id="blogTitles" class="blog-titles">
+            <div id="titlesRectangle"></div>
             <p class="blog-dropdown-title">Blogs Title:</p>
             @foreach($blogs as $blog)
             <p
@@ -95,10 +96,21 @@
 
             loadComments(currentBlogId);
 
+
             if (contentDiv.style.display === 'none' || contentDiv.style.display === '') {
-                var titleRect = element.getBoundingClientRect();
-                contentDiv.style.top = (titleRect.bottom + window.scrollY) + 'px';
-                contentDiv.style.left = titleRect.left + 'px';
+                var titlesRectangle = document.getElementById('titlesRectangle').getBoundingClientRect();
+
+                // Calculate the required height based on titlesRectangle height and additional space for comments
+                var requiredHeight = titlesRectangle.height + 200; // Adjust the additional space as needed
+
+                // Adjust for scroll position
+                var scrollTop = window.scrollY || document.documentElement.scrollTop;
+                var scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+
+                contentDiv.style.top = titlesRectangle.top + scrollTop + 'px';
+                contentDiv.style.left = titlesRectangle.left + 'px';
+                contentDiv.style.width = '950px'; // Adjust the width as needed
+                contentDiv.style.height = requiredHeight + 'px'; // Set height dynamically
                 contentDiv.style.display = 'block';
             } else {
                 contentDiv.style.display = 'none';
