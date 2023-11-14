@@ -195,4 +195,15 @@ li {
     border: 3px solid #804E49;
 }
 
+.star {
+    letter-spacing: -10px;
+    font-size: 50px;
+    color: black;
+}
+
+.star.active,
+.star:hover {
+
+    color: yellow;
+}
 

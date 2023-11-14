@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $(".star").click(function () {
+    $(".rating").click(function () {
         const sampleId = $(this).parent().data('sample-id');
         const rating = $(this).data('rating');
 
@@ -19,3 +19,4 @@ $(document).ready(function () {
 
 })
 });
+

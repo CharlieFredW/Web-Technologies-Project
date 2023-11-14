@@ -5,13 +5,53 @@
     <title>Title</title>
     <link rel="stylesheet" href="{{asset('css/samplePageStyle.css')}}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <script>
         function assignValue(sample_id, value) {
             document.getElementById('rating_' + sample_id).value = value;
         }
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var samples = document.querySelectorAll('.rating');
 
+            samples.forEach(function (rating) {
+                var stars = rating.querySelectorAll('.star');
+
+                stars.forEach(function (star) {
+                    star.addEventListener('mouseover', function () {
+                        var value = star.getAttribute('data-value');
+                        highlightStars(rating, value);
+                    });
+
+                    star.addEventListener('mouseout', function () {
+                        resetStars(rating);
+                    });
+                });
+            });
+        });
+
+        function highlightStars(rating, value) {
+            var stars = rating.querySelectorAll('.star');
+            stars.forEach(function (star, index) {
+                if (index < value) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+
+            var ratingInput = rating.parentElement.querySelector('input[name="rating"]');
+            ratingInput.value = value; // Set the hidden input value
+        }
+
+        function resetStars(rating) {
+            var stars = rating.querySelectorAll('.star');
+            stars.forEach(function (star) {
+                star.classList.remove('active');
+            });
+        }
+
+    </script>
 </head>
 <body>
 <div class="header-background">
@@ -69,12 +109,22 @@
                 <li class="sample-item"><p>{{ $sample->url }}</p></li>
 
                 <li class="sample-item">
-                    <button class="star" onclick="assignValue({{ $sample->id }}, 1)">1☆</button>
-                    <button class="star" onclick="assignValue({{ $sample->id }}, 2)">2☆</button>
-                    <button class="star" onclick="assignValue({{ $sample->id }}, 3)">3☆</button>
-                    <button class="star" onclick="assignValue({{ $sample->id }}, 4)">4☆</button>
-                    <button class="star" onclick="assignValue({{ $sample->id }}, 5)">5☆</button>
+                    <div class="rating">
+                        <p>
+                            Average Rating:
+                            @if ($sample->averageRating !== null)
+                                {{ $sample->averageRating }}
+                            @else
+                                No Ratings Yet
+                            @endif
+                        </p>
+                        <button class="star" data-value="1" onclick="assignValue({{ $sample->id }}, 1)">&#9733</button>
+                    <button class="star" data-value="2" onclick="assignValue({{ $sample->id }}, 2)">&#9733</button>
+                    <button class="star" data-value="3" onclick="assignValue({{ $sample->id }}, 3)">&#9733</button>
+                    <button class="star" data-value="4" onclick="assignValue({{ $sample->id }}, 4)">&#9733</button>
+                    <button class="star" data-value="5" onclick="assignValue({{ $sample->id }}, 5)">&#9733</button>
 
+                    </div>
                 </li>
 
                 <li class="sample-item"><p>{{ $sample->total_downloads }}</p></li>

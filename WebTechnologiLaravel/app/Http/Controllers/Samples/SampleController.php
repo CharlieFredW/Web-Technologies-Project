@@ -46,9 +46,15 @@ class SampleController extends Controller
         return redirect('/my-page-creator');
     }
 
-    public function showSamples() {
+    public function showSamples()
+    {
+        $this->AverageRating();
 
         $samples = Sample::all();
+
+        foreach ($samples as $sample) {
+            Log::info('Sample ID: ' . $sample->id . ' - Average Rating: ' . $sample->averageRating);
+        }
 
         return view('samplePage', compact('samples'));
 
@@ -72,9 +78,15 @@ class SampleController extends Controller
 
     public function rateSample(Request $request)
     {
+
+        if (!Auth::check()) {
+            // Check if user is logged in, if not go to login page
+            return view('loginPage');
+        }
+
         // Log the received data for debugging
-        Log::info('Received sample_id: ' . $request->input('sample_id'));
-        Log::info('Received rating: ' . $request->input('rating'));
+        Log::info('Received sample_id: ' . $sampleId = $request->input('sample_id'));
+        Log::info('Received rating: ' . $rating = $request->input('rating'));
         Log::info('Received user_id: ' . $request->user());
 
 
@@ -84,26 +96,16 @@ class SampleController extends Controller
             'rating' => 'required|integer|between:1,5', // Rating should be between 1 and 5
         ]);
 
+        /* Checks if a user has already given a rating to the specific sample
+        and either creates or updates the users rating for that sample */
+
         try {
-            $ratings = new Rating;
-            $ratings->sample_id = $request->input('sample_id');
-            $ratings->user_id = Auth::id(); // Assuming you have user authentication
-            $ratings->rating = $request->input('rating');
-            $ratings->save();
-
-           return redirect('samplePage');
-
-           // TODO Users must only have one rating per sample. If a rating already exists it should be updated
-
-            // TODO update UI
-
-            // TODO Calculate the average rating of a sample
-
-
-           /*
-           // Return a success response
-            return response()->json(['message' => 'Rating saved successfully']);
-           */
+            $user = Auth::user();
+            $user->ratings()->updateOrCreate(
+                ['sample_id' => $sampleId],
+                ['rating' => $rating]
+            );
+            return redirect('samplePage');
 
         } catch (\Exception $e) {
             // Log the error for debugging purposes
@@ -111,10 +113,40 @@ class SampleController extends Controller
 
             // Return an error response
             return response()->json(['error' => 'An error occurred while saving the rating.'], 500);
+
+        }
+
+    }
+
+    public function averageRating()
+    {
+        $samples = Sample::all();
+
+        // for each sample, take their ratings
+        foreach ($samples as $sample) {
+            $ratings = $sample->ratings()->pluck('rating')->toArray();
+
+            // calculate the average rating for each rating and round it to 2 decimals
+            if (!empty($ratings)) {
+                $averageRating = $sample->ratings()->avg('rating');
+                $roundedAverage = round($averageRating, 2);
+
+                // logging for debugging
+                Log::info('Sample ID: ' . $sample->id);
+                Log::info('Ratings: ' . json_encode($ratings));
+                Log::info('Average Rating: ' . $averageRating);
+                Log::info('Rounded Average: ' . $roundedAverage);
+
+                // store the rounded average rating  for eah sample in the database
+                $sample->averageRating = $roundedAverage;
+                $sample->save();
+            }
         }
     }
 
+
 }
+
 
 
 

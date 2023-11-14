@@ -33,4 +33,8 @@ class Sample extends Model
         return $this->hasMany(\App\Models\Rating::class);
     }
 
+    protected $casts = [
+        'averageRating' => 'float',
+    ];
+
 }
