@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\SignupController;
+use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\Samples\SampleController;
-use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,14 +48,13 @@ Route::get('/sample-page', [SampleController::class, 'showSamplesPage']);
 
 //My page routes
 
-<<<<<<< HEAD
-Route::get('/my-page-creator', [MyPageController::class, 'showMySamples'])->name('my-page-creator')->middleware('auth');
-=======
+Route::get('/my-page-creator', [MyPageController::class, 'showMyPage'])->name('my-page-creator')->middleware('auth');
+
 //Edit my page
-Route::get('/edit-profile-page', function () {
-    return view('edit-profile-page');
-})->name('edit-profile-page')->middleware('auth');
->>>>>>> d1bc864 (added edit profile button that links to new page)
+Route::get('/edit-profile-page', [UserController::class, 'showProfile'])->name('edit-profile-page')->middleware('auth');
+Route::put('/update-username', [UserController::class, 'updateUsername'])->name('update.username')->middleware('auth');
+Route::put('/update-password', [UserController::class, 'updatePassword'])->name('update.password')->middleware('auth');
+
 
 //Sample routes
 //Used to display the sample upload form

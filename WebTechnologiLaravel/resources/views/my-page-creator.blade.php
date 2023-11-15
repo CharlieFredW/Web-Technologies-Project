@@ -8,7 +8,7 @@
 
 <div class="flex-column">
     <img class="avatar-picture" src="{{asset('images/avatar/PoyiRJw.png')}}" alt="yee">
-    <h2>USERNAME</h2>
+    <h2 class="username-text">{{ $username->name }}</h2>
     <div class="edit-profile">
         <button><a href="{{ asset('/edit-profile-page') }}" class="edit-profile-text">Edit Profile</a></button>
     </div>
