@@ -79,6 +79,8 @@ Route::post('/blogs', [BlogController::class, 'store'])->name('blog.store');
 
 Route::delete('/blogs/{blog}', [BlogController::class, 'delete'])->name('blog.delete');
 
+Route::post('/rate-sample', [SampleController::class, 'rateSample'])->name('sample.rate');
+
 
 
 
