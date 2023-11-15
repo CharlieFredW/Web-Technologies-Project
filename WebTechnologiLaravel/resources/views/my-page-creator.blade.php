@@ -6,12 +6,8 @@
     <link rel="stylesheet" href="{{asset('css/myPageCreatorStyle.css')}}">
 </head>
 
-<div class="my-page-frontpage-title">
-    <p class="my-page-frontpage-text"> My Page (creator)</p>
-</div>
-
 <div class="flex-column">
-    <img class="avatar-picture" src="https://i.imgur.com/PoyiRJw.png" alt="yee">
+    <img class="avatar-picture" src="{{asset('images/avatar/PoyiRJw.png')}}" alt="yee">
     <h2>USERNAME</h2>
     <div class="edit-profile">
         <button><a href="{{ asset('/edit-profile-page') }}" class="edit-profile-text">Edit Profile</a></button>

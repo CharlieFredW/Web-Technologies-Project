@@ -1,23 +1,4 @@
 
-.my-page-frontpage-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 60px;
-}
-
-.my-page-frontpage-text {
-    padding: 20px 50px 20px 50px;
-    display: inline-block;
-    font-size: 28px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: bold;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: #804E49;
-    color: #E7DECD;
-}
-
 .my-samples-box {
     padding: 24px;
     background: #E7DECD;
@@ -115,6 +96,7 @@
 }
 
 .avatar-picture {
+    margin-top: 100px;
     width: 150px;
 }
 

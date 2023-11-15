@@ -30,7 +30,7 @@ class SignupController extends Controller
         ]);
 
         auth()->login($user);
-        return redirect('/'); // Change the URL to the success or login page
+        return redirect('/'); // Change the URL to the success page
     }
 
 }
