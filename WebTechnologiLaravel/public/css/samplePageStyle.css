@@ -159,6 +159,18 @@
     background-color: #E7DECD;
 }
 
+.star {
+    letter-spacing: -10px;
+    font-size: 50px;
+    color: black;
+}
+
+.star.active,
+.star:hover {
+
+    color: yellow;
+}
+
 
 
 

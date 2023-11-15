@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('genre')->nullable();
             $table->string('instrument')->nullable();
             $table->string('image_url')->nullable();
+            $table->integer('averageRating')->nullable();
 
             // Users.id is a foreign key for 'owner'
             $table->foreign('owner')->references('id')->on('users');

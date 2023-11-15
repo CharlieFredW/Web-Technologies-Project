@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Samples;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Rating;
 use App\Models\Sample;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 
 class SampleController extends Controller
@@ -122,6 +125,74 @@ class SampleController extends Controller
 
         // Redirect to a relevant page after the update, e.g., the sample's detail page
         return redirect()->route('my-page-creator');
+    }
+
+    public function rateSample(Request $request)
+    {
+
+        if (!Auth::check()) {
+            // Check if user is logged in, if not go to login page
+            return view('login-page');
+        }
+
+        // Log the received data for debugging
+        Log::info('Received sample_id: ' . $sampleId = $request->input('sample_id'));
+        Log::info('Received rating: ' . $rating = $request->input('rating'));
+        Log::info('Received user_id: ' . $request->user());
+
+
+        // Validate the given input
+        $request->validate([
+            'sample_id' => 'required|integer', // Ensure the sample exists and it's not null
+            'rating' => 'required|integer|between:1,5', // Rating should be between 1 and 5
+        ]);
+
+        /* Checks if a user has already given a rating to the specific sample
+        and either creates or updates the users rating for that sample */
+
+        try {
+            $user = Auth::user();
+            $user->ratings()->updateOrCreate(
+                ['sample_id' => $sampleId],
+                ['rating' => $rating]
+            );
+            return redirect('sample-page');
+
+        } catch (\Exception $e) {
+            // Log the error for debugging purposes
+            Log::error('Error saving rating: ' . $e->getMessage());
+
+            // Return an error response
+            return response()->json(['error' => 'An error occurred while saving the rating.'], 500);
+
+        }
+
+    }
+
+    public function averageRating()
+    {
+        $samples = Sample::all();
+
+        // for each sample, take their ratings
+        foreach ($samples as $sample) {
+            $ratings = $sample->ratings()->pluck('rating')->toArray();
+
+            // calculate the average rating for each rating and round it to 2 decimals
+            if (!empty($ratings)) {
+                $averageRating = $sample->ratings()->avg('rating');
+                $roundedAverage = round($averageRating, 2);
+
+                // logging for debugging
+                Log::info('Sample ID: ' . $sample->id);
+                Log::info('Ratings: ' . json_encode($ratings));
+                Log::info('Average Rating: ' . $averageRating);
+                Log::info('Rounded Average: ' . $roundedAverage);
+
+                // store the rounded average rating  for eah sample in the database
+                $sample->averageRating = $roundedAverage;
+                $sample->save();
+            }
+        }
     }
 
 }
