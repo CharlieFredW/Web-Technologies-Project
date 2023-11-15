@@ -78,6 +78,7 @@
             <li class="sample-item-header">Image</li>
             <li class="sample-item-header">Title</li>
             <li class="sample-item-header">URL</li>
+            <li class="sample-item-header">Sample Rating</li>
             <li class="sample-item-header">Total Downloads</li>
             <li class="sample-item-header">BPM</li>
             <li class="sample-item-header">Key</li>
