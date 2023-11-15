@@ -57,7 +57,13 @@ class SampleController extends Controller
 
     public function showSamples() {
 
+        $this->AverageRating();
+
         $samples = Sample::all();
+
+        foreach ($samples as $sample) {
+            Log::info('Sample ID: ' . $sample->id . ' - Average Rating: ' . $sample->averageRating);
+        }
 
         return $samples;
 
@@ -152,7 +158,7 @@ class SampleController extends Controller
 
         try {
             $user = Auth::user();
-            $user->ratings()->updateOrCreate(
+            $user->rating()->updateOrCreate(
                 ['sample_id' => $sampleId],
                 ['rating' => $rating]
             );
