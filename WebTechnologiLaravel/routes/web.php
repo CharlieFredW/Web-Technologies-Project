@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\VerifyController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\Samples\SampleController;
@@ -26,6 +27,11 @@ Route::get('/', [HomePageController::class, 'showHomepage']);
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+
+// 2 factor authentication routes
+Route::get('/verify', [VerifyController::class, 'showVerificationForm'])->name('verify.show');
+Route::post('/verify', [VerifyController::class, 'verify'])->name('verify.verify');
 
 //Signup routes
 Route::get('/signup', [SignupController::class, 'showSignupForm'])->name('signup.form');
@@ -80,6 +86,7 @@ Route::post('/blogs', [BlogController::class, 'store'])->name('blog.store');
 Route::delete('/blogs/{blog}', [BlogController::class, 'delete'])->name('blog.delete');
 
 Route::post('/rate-sample', [SampleController::class, 'rateSample'])->name('sample.rate');
+
 
 
 
