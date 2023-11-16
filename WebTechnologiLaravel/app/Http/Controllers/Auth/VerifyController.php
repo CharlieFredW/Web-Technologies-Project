@@ -8,25 +8,26 @@ use Illuminate\Support\Facades\Session;
 
 class VerifyController extends Controller
 {
-    // show verification form
+    // show the 2FA verification form
     public function showVerificationForm()
     {
         return view('emails.verification-page');
     }
 
-    // verify the entered code
+    // Verify the entered code
     public function verify(Request $request)
     {
         $enteredCode = $request->input('verification_code');
         $storedCode = Session::get('verification_code');
 
         if ($enteredCode == $storedCode) {
-            // Verification successful, log in the user
-            auth()->loginUsingId(Session::pull('user_id')); // Replace 'user_id' with your user identifier
+            // If the entered code is correct, log in the user
+            auth()->loginUsingId(Session::pull('user_id'));
 
             return redirect('/'); // Redirect to homepage after successful login
         }
 
-        return back()->withErrors(['verification_code' => 'Invalid verification code']); // Redirect back with an error message on failed verification
+        // Error if the entered code is wrong
+        return back()->withErrors(['verification_code' => 'Invalid verification code']);
     }
 }

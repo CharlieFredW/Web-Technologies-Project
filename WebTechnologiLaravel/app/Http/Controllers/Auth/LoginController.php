@@ -22,27 +22,28 @@ class LoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            /*return redirect('/'); // redirect to homepage*/
+        if (Auth::attempt($credentials)) { // Checking if the entered email and password is correct
+
+            // If the credentials are correct, generate a new verification code and send it to the users email
             $verificationCode = $this->generateVerificationCode();
             $this->sendVerificationCode($request->input('email'), $verificationCode);
 
-            // Step 3: Store verification code in session
+            // The verification code is stored in the session
             Session::put('verification_code', $verificationCode);
 
-            return redirect()->route('verify.show'); // redirect to verification page
+            return redirect()->route('verify.show'); // Redirect to verification page
         }
 
-        return back()->withErrors(['email' => 'Invalid login credentials']); // Redirect back with an error message on failed login
+        return back()->withErrors(['email' => 'Invalid login credentials']); // Error message on failed login
     }
 
-    // generate a random verification code
+    // Function to generate a random verification code
     private function generateVerificationCode()
     {
         return rand(100000, 999999);
     }
 
-    // send the verification code to the user's email
+    // Function to send the verification code to the user's email
     private function sendVerificationCode($email, $code)
     {
         Mail::to($email)->send(new VerificationCodeMail($code));
