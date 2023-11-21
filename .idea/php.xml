@@ -113,6 +113,11 @@
       <path value="$PROJECT_DIR$/WebTechnologiLaravel/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/WebTechnologiLaravel/vendor/symfony/polyfill-intl-grapheme" />
       <path value="$PROJECT_DIR$/WebTechnologiLaravel/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/WebTechnologiLaravel/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/WebTechnologiLaravel/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/WebTechnologiLaravel/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/WebTechnologiLaravel/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/WebTechnologiLaravel/vendor/psr/cache" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

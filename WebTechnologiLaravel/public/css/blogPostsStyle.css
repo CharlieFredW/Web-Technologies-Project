@@ -412,37 +412,37 @@
     }
 
     #commentList li {
-        margin-bottom: 15px; /* Add some spacing between comments */
+        margin-bottom: 15px;
     }
 
     #commentList button {
         margin-left: 10px;
-        padding: 8px 12px; /* Adjust padding for a more button-like shape */
-        background-color: #698F3F; /* Choose a suitable background color */
-        color: #E7DECD; /* Choose a suitable text color */
-        border: 1px solid #698F3F; /* Add a border for a button-like appearance */
-        border-radius: 3px; /* Add border-radius for rounded corners */
+        padding: 8px 12px;
+        background-color: #698F3F;
+        color: #E7DECD;
+        border: 1px solid #698F3F;
+        border-radius: 3px;
         cursor: pointer;
     }
 
     #commentList button:hover {
-        background-color: #804E49; /* Change background color on hover */
-        border-color: #804E49; /* Change border color on hover */
-        color: #E7DECD; /* Change text color on hover */
+        background-color: #804E49;
+        border-color: #804E49;
+        color: #E7DECD;
     }
 
     #commentList button:last-child {
-        margin-right: 0; /* Remove right margin for the last button */
+        margin-right: 0;
     }
 
     #titlesRectangle {
         position: absolute;
-        top: 25px; /* Adjust as needed */
-        left: calc(20px + 250px); /* Adjust as needed based on the width of your titles */
-        width: 950px; /* Adjust the width as needed */
-        height: 100%; /* Extend the rectangle to the bottom of the container */
+        top: 25px;
+        left: calc(20px + 250px);
+        width: 950px;
+        height: 100%;
         background-color: #E7DECD;
-        border: 2px solid #70453F; /* Use a darker brown for the border */
+        border: 2px solid #70453F;
         border-radius: 4px;
-        z-index: 0; /* Place it behind other elements */
+        z-index: 0;
     }

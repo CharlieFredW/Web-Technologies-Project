@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e970d12-bd77-4f1c-9b8f-2da23ca0e40a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Web-Technologies-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Web-Technologies-Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebTechnologiLaravel/app/Http/Controllers/BlogController.php" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologiLaravel/app/Http/Controllers/BlogController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebTechnologiLaravel/app/Models/Blog.php" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologiLaravel/app/Models/Blog.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebTechnologiLaravel/public/css/blogPostsStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologiLaravel/public/css/blogPostsStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebTechnologiLaravel/resources/views/blog-posts.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/WebTechnologiLaravel/resources/views/blog-posts.blade.php" afterDir="false" />
     </list>
@@ -139,6 +143,11 @@
       <path value="$PROJECT_DIR$/WebTechnologiLaravel/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/WebTechnologiLaravel/vendor/symfony/polyfill-intl-grapheme" />
       <path value="$PROJECT_DIR$/WebTechnologiLaravel/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/WebTechnologiLaravel/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/WebTechnologiLaravel/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/WebTechnologiLaravel/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/WebTechnologiLaravel/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/WebTechnologiLaravel/vendor/psr/cache" />
     </include_path>
   </component>
   <component name="ProjectId" id="2V4x7YGnkz4HYuJnavQ0BZMK4QO" />
@@ -201,6 +210,7 @@
       <workItem from="1698326050658" duration="194000" />
       <workItem from="1698758437785" duration="7051000" />
       <workItem from="1699884452880" duration="4124000" />
+      <workItem from="1700567248809" duration="1345000" />
     </task>
     <servers />
   </component>

@@ -1,5 +1,4 @@
 @extends('layouts.main')
-
 @section('content')
 <head>
     <meta charset="UTF-8">
@@ -11,7 +10,7 @@
         <p class="blog-frontpage-text">Blog Posts</p>
     </div>
 
-    <!-- Blogs Section -->
+    <!-- Blogs Section Things -->
     <div id="blogContainer">
         <div id="blogTitles" class="blog-titles">
             <div id="titlesRectangle"></div>
@@ -28,14 +27,14 @@
 
         <div class="divider"></div>
 
-        <!-- Selected Blog Content Popup -->
+        <!-- Selected Blog Content dropdownStyle menu -->
         <div id="selectedBlogContent" style="display: none; position: absolute;">
             <h2 id="selectedBlogTitle"></h2>
             <p id="selectedBlogText"></p>
             <p id="selectedBlogAuthor"></p>
             <p id="selectedBlogDate"></p>
 
-            <!-- Comment Section -->
+            <!-- Comment Section Things -->
             <div id="commentSection">
                 <h3>Comments</h3>
                 <ul id="commentList"></ul>
@@ -50,7 +49,7 @@
         </div>
     </div>
 
-    <!-- Create a New Blog Post Section -->
+    <!--New Blog Post Section-->
     <div class="create-post-section">
         @if(Auth::check())
         <div class="blog-frontpage-title">
@@ -71,10 +70,12 @@
 
     <script>
         var currentBlogId = null;
-        var commentInput = null; // Declare the variable globally
+        var commentInput = null;
 
 
         function toggleContent(title, content, author, date, element) {
+
+            //All the content for the dropdown menu for selected blog post
             var contentDiv = document.getElementById('selectedBlogContent');
             var titleElement = document.getElementById('selectedBlogTitle');
             var textElement = document.getElementById('selectedBlogText');
@@ -84,6 +85,7 @@
             var loadingMessage = document.getElementById('loadingMessage');
             var commentForm = document.getElementById('commentForm');
 
+            //The ID of the selected blog post
             currentBlogId = element.getAttribute('data-blog-id');
 
             titleElement.innerText = title;
@@ -94,31 +96,30 @@
             commentList.style.display = 'none';
             loadingMessage.style.display = 'block';
 
+            //The method that reloads the comments
             loadComments(currentBlogId);
 
-
+            //Placemment of the content dropdown menu
             if (contentDiv.style.display === 'none' || contentDiv.style.display === '') {
                 var titlesRectangle = document.getElementById('titlesRectangle').getBoundingClientRect();
-
-                // Calculate the required height based on titlesRectangle height and additional space for comments
-                var requiredHeight = titlesRectangle.height + 200; // Adjust the additional space as needed
-
-                // Adjust for scroll position
+                var requiredHeight = titlesRectangle.height + 200;
                 var scrollTop = window.scrollY || document.documentElement.scrollTop;
                 var scrollLeft = window.scrollX || document.documentElement.scrollLeft;
 
+                //More placement
                 contentDiv.style.top = titlesRectangle.top + scrollTop + 'px';
                 contentDiv.style.left = titlesRectangle.left + 'px';
-                contentDiv.style.width = '950px'; // Adjust the width as needed
-                contentDiv.style.height = requiredHeight + 'px'; // Set height dynamically
+                contentDiv.style.width = '950px';
+                contentDiv.style.height = requiredHeight + 'px';
                 contentDiv.style.display = 'block';
             } else {
                 contentDiv.style.display = 'none';
             }
         }
 
+        //Functino to edit a comment if the user created the comment
         function editComment(commentId, commentContent) {
-            commentInput = document.getElementById('comment'); // Update the global variable
+            commentInput = document.getElementById('comment');
             var commentForm = document.getElementById('commentForm');
 
             commentForm.setAttribute('data-comment-id', commentId);
@@ -140,11 +141,13 @@
                 postNewComment(commentInput.value);
             }
 
-            // Clear the textarea and reset data-comment-id attribute after posting/editing
+            // Clear the textarea and reset dataCommentId
             commentForm.removeAttribute('data-comment-id');
             commentInput.value = '';
         }
 
+
+        //Method for posting a new comment
         function postNewComment(commentContent) {
             fetch('/comments', {
                 method: 'POST',
@@ -152,20 +155,23 @@
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': '{{ csrf_token() }}',
                 },
+                //Make strings from the comment information
                 body: JSON.stringify({
                     blogId: currentBlogId,
                     comment: commentContent,
                 }),
             })
+                //Give json respons upon error
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
                     return response.json();
                 })
+                //Reaload the comments after posting comment
                 .then(data => {
                     loadComments(currentBlogId);
-                    commentInput.value = ''; // Clear the textarea
+                    commentInput.value = '';
                 })
                 .catch(error => {
                     console.error('Error posting comment:', error);
@@ -175,10 +181,10 @@
 
 
         function updateComment(commentId) {
-            // Retrieve the updated comment from the textarea
+            // Updated comment
             var updatedComment = document.getElementById('comment').value;
 
-            // Make an AJAX request to update the comment
+            // AJAX request to update the comment using fetch
             fetch('/comments/' + commentId, {
                 method: 'PUT',
                 headers: {
@@ -197,7 +203,7 @@
                 })
                 .then(data => {
                     console.log('Comment updated successfully:', data);
-                    // Reload comments after updating
+                    // Reload comments
                     loadComments(currentBlogId);
                 })
                 .catch(error => {
@@ -205,6 +211,7 @@
                 });
         }
 
+        //Loads the comments on a blog post
         function loadComments(blogId) {
             fetch('/comments/' + blogId)
                 .then(response => {
@@ -213,6 +220,7 @@
                     }
                     return response.json();
                 })
+                //Styling settings
                 .then(response => {
                     var loadingMessage = document.getElementById('loadingMessage');
                     loadingMessage.style.display = 'none';
@@ -230,8 +238,10 @@
         }
 
 
-
+        //Delete method for comemnts
         function deleteComment(commentId) {
+
+            //Using ajax, Fetch request
             fetch('/comments/' + commentId, {
                 method: 'DELETE',
                 headers: {
@@ -247,7 +257,7 @@
                 })
                 .then(data => {
                     console.log('Comment deleted successfully:', data);
-                    // Reload comments after deleting
+                    // Reload comments
                     loadComments(currentBlogId);
                 })
                 .catch(error => {
@@ -258,13 +268,18 @@
 
 
 
-
+        //Display the comments
         function displayComments(comments) {
+            //gets the comment by ID
             var commentList = document.getElementById('commentList');
             commentList.innerHTML = '';
 
+            //If the comments is working
             if (Array.isArray(comments.comments)) {
+                //Loop and get all the comments for the specific blog ppost
                 comments.comments.forEach(function (comment) {
+
+                    //Shows all the comments with user who created it
                     if (comment.blog_id == currentBlogId) {
                         var li = document.createElement('li');
                         if (comment.user && comment.user.name) {
@@ -273,6 +288,8 @@
                             li.innerText = 'A user commented: ' + comment.comment;
                         }
 
+                        //If the user authenticated is the creater of the comment,
+                        // add an edit and delete button
                         if (comment.user && comment.user.is_owner) {
                             var editButton = document.createElement('button');
                             editButton.innerText = 'Edit';

@@ -11,43 +11,45 @@ class BlogController extends Controller
     // Show the form to create a new blog post
     public function create()
     {
-        return view('blog.create'); // Create a new Blade template for the form if needed
+        return view('blog.create'); // Create a new Blade if have to
     }
-
-    // Store the new blog post in the database
     public function store(Request $request)
     {
-        // Validate the form data
+        //Get things that is required and validate them
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
         ]);
 
 
-        // Create a new blog post
+        // New blog post
         $blog = new Blog;
+
         $blog->title = $request->input('title');
+
         $blog->content = $request->input('content');
+
         $blog->user_id = Auth::id();
 
 
         //Save to the database
         $blog->save();
 
-        // Redirect the user after creating the post
+        // Redirect the user after creating blog post succesfully
         return redirect('/blogs')->with('success', 'Blog post created successfully!');
     }
 
-    // Show the list of blog posts
+    // Show the list of blog posts that users created
     public function index()
     {
-        $blogs = Blog::orderBy('created_at', 'desc')->get(); // Fetch posts in descending order by creation time
+        $blogs = Blog::orderBy('created_at', 'desc')->get();
         return view('blog-posts', ['blogs' => $blogs]);
     }
 
+    //Delete the blog method
     public function delete(Blog $blog)
     {
-        // Check if the authenticated user is the owner of the blog post
+        // Check if the user is authenticated and made the specific blog post
         if (auth()->user()->id === $blog->user_id) {
             $blog->delete();
             return redirect('/blogs')->with('success', 'Blog post deleted successfully!');
