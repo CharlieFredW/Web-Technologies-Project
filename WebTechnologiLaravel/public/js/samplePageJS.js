@@ -13,6 +13,38 @@ function toggleExpand() {
     }
 }
 
+function toggleDropdown(dropdownId, button) {
+    const dropdown = document.getElementById(dropdownId);
+    setDropdownPosition(dropdown, button);
+    dropdown.style.display = (dropdown.style.display === "block") ? "none" : "block";
+
+    hideOtherDropdowns(dropdownId);
+}
+
+
+function setDropdownPosition(dropdown, button) {
+    const buttonRect = button.getBoundingClientRect();
+    console.log(buttonRect);
+
+    dropdown.style.position = "absolute";
+    dropdown.style.left = buttonRect.left + window.scrollX + (buttonRect.width / 2) - (dropdown.offsetWidth / 2) - 87 + "px";
+    dropdown.style.top = buttonRect.bottom + window.scrollY + "px";
+
+
+    console.log(buttonRect.left);
+
+}
+
+
+function hideOtherDropdowns(currentDropdownId) {
+    const dropdowns = document.querySelectorAll('.dropdown-content');
+    dropdowns.forEach(function(dropdown) {
+        if (dropdown.id !== currentDropdownId) {
+            dropdown.style.display = "none";
+        }
+    });
+}
+
 
 // Copy URL to the users clipboard when you press the copy URL button & send Ajax call to update the total downloads
 document.addEventListener('DOMContentLoaded', function () {
