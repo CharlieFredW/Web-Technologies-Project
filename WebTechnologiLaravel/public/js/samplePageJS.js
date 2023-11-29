@@ -1,4 +1,12 @@
 
+//on click buttons
+const expandArea = document.getElementById('expand-button');
+expandArea.addEventListener("click", toggleExpand)
+
+const expandDropdown = document.getElementById('expand-button');
+expandArea.addEventListener("click", toggleExpand)
+
+
 // Expand area when button is pressed
 function toggleExpand() {
     const expandArea = document.getElementById('expand-area');
@@ -13,6 +21,7 @@ function toggleExpand() {
     }
 }
 
+//dropdown for buttons
 function toggleDropdown(dropdownId, button) {
     const dropdown = document.getElementById(dropdownId);
     setDropdownPosition(dropdown, button);
@@ -21,7 +30,7 @@ function toggleDropdown(dropdownId, button) {
     hideOtherDropdowns(dropdownId);
 }
 
-
+//get button position for dropdown
 function setDropdownPosition(dropdown, button) {
     const buttonRect = button.getBoundingClientRect();
     console.log(buttonRect);
@@ -35,7 +44,7 @@ function setDropdownPosition(dropdown, button) {
 
 }
 
-
+//hide other buttons dropdown if new is clicked
 function hideOtherDropdowns(currentDropdownId) {
     const dropdowns = document.querySelectorAll('.dropdown-content');
     dropdowns.forEach(function(dropdown) {

@@ -58,7 +58,7 @@
     <p class="samples-heading-text">Samples</p>
 </div>
 <div class="filter-button">
-    <button id="expand-button" onclick="toggleExpand()">Filter Results</button>
+    <button id="expand-button">Filter Results</button>
     <div class="expandable-area" id="expand-area">
         <div class="filter-inner-container">
             <ul class="filter-list">
@@ -84,77 +84,77 @@
         </div>
     </div>
     <div id="download-sort-dropdown" class="dropdown-content">
-        <button onclick="sortSamples('highest')">Sort by Highest</button>
-        <button onclick="sortSamples('lowest')">Sort by Lowest</button>
+        <button onclick="sortSamples('highest')" class="download-sort-button">Sort by Highest</button> <br>
+        <button onclick="sortSamples('lowest')" class="download-sort-button">Sort by Lowest</button> <br>
     </div>
     <div id="bpm-search-dropdown" class="dropdown-content">
-        <label for="bpm-input">Enter BPM:</label>
-        <input type="number" id="bpm-input" placeholder="Enter BPM">
-        <button onclick="searchByBpm()">Search</button>
+        <label for="bpm-input" class="bpm-search-dropdown-label">Enter BPM:</label> <br>
+        <input type="number" id="bpm-input" placeholder="Enter BPM" class="bpm-search-dropdown-label"> <br>
+        <button onclick="searchByBpm()" class="bpm-search-dropdown-button">Search</button> <br>
     </div>
     <div id="key-dropdown" class="dropdown-content">
         <!-- major keys -->
-        <button onclick="sortSamples('C')">Sort by C</button>
-        <button onclick="sortSamples('C#')">Sort by C#</button>
-        <button onclick="sortSamples('D')">Sort by D</button>
-        <button onclick="sortSamples('D#')">Sort by D#</button>
-        <button onclick="sortSamples('E')">Sort by E</button>
-        <button onclick="sortSamples('F')">Sort by F</button>
-        <button onclick="sortSamples('F#')">Sort by F#</button>
-        <button onclick="sortSamples('G')">Sort by G</button>
-        <button onclick="sortSamples('G#')">Sort by G#</button>
-        <button onclick="sortSamples('A')">Sort by A</button>
-        <button onclick="sortSamples('A#')">Sort by A#</button>
-        <button onclick="sortSamples('B')">Sort by B</button>
+        <button onclick="sortSamples('C')" class="key-dropdown-button">Sort by C</button> <br>
+        <button onclick="sortSamples('C#')" class="key-dropdown-button">Sort by C#</button> <br>
+        <button onclick="sortSamples('D')" class="key-dropdown-button">Sort by D</button> <br>
+        <button onclick="sortSamples('D#')" class="key-dropdown-button">Sort by D#</button> <br>
+        <button onclick="sortSamples('E')" class="key-dropdown-button">Sort by E</button> <br>
+        <button onclick="sortSamples('F')" class="key-dropdown-button">Sort by F</button> <br>
+        <button onclick="sortSamples('F#')" class="key-dropdown-button">Sort by F#</button> <br>
+        <button onclick="sortSamples('G')" class="key-dropdown-button">Sort by G</button> <br>
+        <button onclick="sortSamples('G#')" class="key-dropdown-button">Sort by G#</button> <br>
+        <button onclick="sortSamples('A')" class="key-dropdown-button">Sort by A</button> <br>
+        <button onclick="sortSamples('A#')" class="key-dropdown-button">Sort by A#</button> <br>
+        <button onclick="sortSamples('B')" class="key-dropdown-button">Sort by B</button> <br>
 
         <!-- minor keys -->
-        <button onclick="sortSamples('Am')">Sort by Am</button>
-        <button onclick="sortSamples('A#m')">Sort by A#m</button>
-        <button onclick="sortSamples('Bm')">Sort by Bm</button>
-        <button onclick="sortSamples('Cm')">Sort by Cm</button>
-        <button onclick="sortSamples('C#m')">Sort by C#m</button>
-        <button onclick="sortSamples('Dm')">Sort by Dm</button>
-        <button onclick="sortSamples('D#m')">Sort by D#m</button>
-        <button onclick="sortSamples('Em')">Sort by Em</button>
-        <button onclick="sortSamples('Fm')">Sort by Fm</button>
-        <button onclick="sortSamples('F#m')">Sort by F#m</button>
-        <button onclick="sortSamples('Gm')">Sort by Gm</button>
-        <button onclick="sortSamples('G#m')">Sort by G#m</button>
+        <button onclick="sortSamples('Am')" class="key-dropdown-button">Sort by Am</button> <br>
+        <button onclick="sortSamples('A#m')" class="key-dropdown-button">Sort by A#m</button> <br>
+        <button onclick="sortSamples('Bm')" class="key-dropdown-button">Sort by Bm</button> <br>
+        <button onclick="sortSamples('Cm')" class="key-dropdown-button">Sort by Cm</button> <br>
+        <button onclick="sortSamples('C#m')" class="key-dropdown-button">Sort by C#m</button> <br>
+        <button onclick="sortSamples('Dm')" class="key-dropdown-button">Sort by Dm</button> <br>
+        <button onclick="sortSamples('D#m')" class="key-dropdown-button">Sort by D#m</button> <br>
+        <button onclick="sortSamples('Em')" class="key-dropdown-button">Sort by Em</button> <br>
+        <button onclick="sortSamples('Fm')" class="key-dropdown-button">Sort by Fm</button> <br>
+        <button onclick="sortSamples('F#m')" class="key-dropdown-button">Sort by F#m</button> <br>
+        <button onclick="sortSamples('Gm')" class="key-dropdown-button">Sort by Gm</button> <br>
+        <button onclick="sortSamples('G#m')" class="key-dropdown-button">Sort by G#m</button> <br>
     </div>
     <div id="genre-dropdown" class="dropdown-content">
-        <label><input type="checkbox" name="genre" value="pop"> Pop</label>
-        <label><input type="checkbox" name="genre" value="rock"> Rock</label>
-        <label><input type="checkbox" name="genre" value="hip-hop"> Hip Hop</label>
-        <label><input type="checkbox" name="genre" value="country"> Country</label>
-        <label><input type="checkbox" name="genre" value="jazz"> Jazz</label>
-        <label><input type="checkbox" name="genre" value="blues"> Blues</label>
-        <label><input type="checkbox" name="genre" value="classical"> Classical</label>
-        <label><input type="checkbox" name="genre" value="reggae"> Reggae</label>
-        <label><input type="checkbox" name="genre" value="electronic"> Electronic</label>
-        <label><input type="checkbox" name="genre" value="indie"> Indie</label>
-        <label><input type="checkbox" name="genre" value="metal"> Metal</label>
-        <label><input type="checkbox" name="genre" value="folk"> Folk</label>
-        <label><input type="checkbox" name="genre" value="rap"> Rap</label>
-        <label><input type="checkbox" name="genre" value="latin"> Latin</label>
-        <label><input type="checkbox" name="genre" value="punk"> Punk</label>
-        <label><input type="checkbox" name="genre" value="r&b"> R&B</label>
-        <label><input type="checkbox" name="genre" value="soul"> Soul</label>
-        <label><input type="checkbox" name="genre" value="funk"> Funk</label>
-        <label><input type="checkbox" name="genre" value="disco"> Disco</label>
-        <label><input type="checkbox" name="genre" value="world"> World</label>
+        <label><input type="checkbox" name="genre" value="pop" class="genre-dropdown-button"> Pop</label> <br>
+        <label><input type="checkbox" name="genre" value="rock" class="genre-dropdown-button"> Rock</label> <br>
+        <label><input type="checkbox" name="genre" value="hip-hop" class="genre-dropdown-button"> Hip Hop</label> <br>
+        <label><input type="checkbox" name="genre" value="country" class="genre-dropdown-button"> Country</label> <br>
+        <label><input type="checkbox" name="genre" value="jazz" class="genre-dropdown-button"> Jazz</label> <br>
+        <label><input type="checkbox" name="genre" value="blues" class="genre-dropdown-button"> Blues</label> <br>
+        <label><input type="checkbox" name="genre" value="classical" class="genre-dropdown-button"> Classical</label> <br>
+        <label><input type="checkbox" name="genre" value="reggae" class="genre-dropdown-button"> Reggae</label> <br>
+        <label><input type="checkbox" name="genre" value="electronic" class="genre-dropdown-button"> Electronic</label> <br>
+        <label><input type="checkbox" name="genre" value="indie" class="genre-dropdown-button"> Indie</label> <br>
+        <label><input type="checkbox" name="genre" value="metal" class="genre-dropdown-button"> Metal</label> <br>
+        <label><input type="checkbox" name="genre" value="folk" class="genre-dropdown-button"> Folk</label> <br>
+        <label><input type="checkbox" name="genre" value="rap" class="genre-dropdown-button"> Rap</label> <br>
+        <label><input type="checkbox" name="genre" value="latin" class="genre-dropdown-button"> Latin</label> <br>
+        <label><input type="checkbox" name="genre" value="punk" class="genre-dropdown-button"> Punk</label> <br>
+        <label><input type="checkbox" name="genre" value="r&b" class="genre-dropdown-button"> R&B</label> <br>
+        <label><input type="checkbox" name="genre" value="soul" class="genre-dropdown-button"> Soul</label> <br>
+        <label><input type="checkbox" name="genre" value="funk" class="genre-dropdown-button"> Funk</label> <br>
+        <label><input type="checkbox" name="genre" value="disco" class="genre-dropdown-button"> Disco</label> <br>
+        <label><input type="checkbox" name="genre" value="world" class="genre-dropdown-button"> World</label> <br>
     </div>
     <div id="date-dropdown" class="dropdown-content">
-        <button onclick="sortSamples('newest')">Newest First</button>
-        <button onclick="sortSamples('oldest')">Oldest First</button>
+        <button onclick="sortSamples('newest')" class="date-dropdown-button">Newest First</button> <br>
+        <button onclick="sortSamples('oldest')" class="date-dropdown-button">Oldest First</button> <br>
     </div>
     <div id="instrument-dropdown" class="dropdown-content">
-        <label><input type="radio" name="instrument" value="guitar"> Guitar</label>
-        <label><input type="radio" name="instrument" value="piano"> Piano</label>
-        <label><input type="radio" name="instrument" value="drums"> Drums</label>
-        <label><input type="radio" name="instrument" value="bass"> Bass</label>
-        <label><input type="radio" name="instrument" value="violin"> Violin</label>
-        <label><input type="radio" name="instrument" value="saxophone"> Saxophone</label>
-        <label><input type="radio" name="instrument" value="trumpet"> Trumpet</label>
+        <label><input type="radio" name="instrument" value="guitar" class="instrument-dropdown-button"> Guitar</label> <br>
+        <label><input type="radio" name="instrument" value="piano" class="instrument-dropdown-button"> Piano</label> <br>
+        <label><input type="radio" name="instrument" value="drums" class="instrument-dropdown-button"> Drums</label> <br>
+        <label><input type="radio" name="instrument" value="bass" class="instrument-dropdown-button"> Bass</label> <br>
+        <label><input type="radio" name="instrument" value="violin" class="instrument-dropdown-button"> Violin</label> <br>
+        <label><input type="radio" name="instrument" value="saxophone" class="instrument-dropdown-button"> Saxophone</label> <br>
+        <label><input type="radio" name="instrument" value="trumpet" class="instrument-dropdown-button"> Trumpet</label> <br>
     </div>
 </div>
 <div class="sample-container">

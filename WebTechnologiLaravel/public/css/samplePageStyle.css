@@ -86,28 +86,69 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    padding: 12px;
+    padding: 10px;
     z-index: 1;
     width: 150px;
+    background-color: #E7DECD;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
-.dropdown-btn {
+.download-sort-button, .key-dropdown-button, .date-dropdown-button {
+    padding: 10px;
+    border: 1px solid black;
+    width: 130px;
+    margin-bottom: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #804E49;
+    color: #E7DECD;
+    border-radius: 2px;
     cursor: pointer;
 }
 
-#download-sort-dropdown {
-
+.download-sort-button:hover, .key-dropdown-button:hover, .date-dropdown-button:hover {
+    color: #804E49;
+    border: 1px solid black;
+    background-color: #E7DECD;
+    cursor: pointer;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-#bpm-search-dropdown {
-
+.bpm-search-dropdown-label {
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
 }
 
-#key-dropdown {
-    max-height: 100px;
-    overflow-y: auto;
+.bpm-search-dropdown-button {
+    padding: 10px;
+    border: 1px solid black;
+    width: 130px;
+    margin-bottom: 10px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: #804E49;
+    color: #E7DECD;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.bpm-search-dropdown-button:hover {
+    color: #804E49;
+    border: 1px solid black;
+    background-color: #E7DECD;
+    cursor: pointer;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.genre-dropdown-button, .instrument-dropdown-button {
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .sample-container {
