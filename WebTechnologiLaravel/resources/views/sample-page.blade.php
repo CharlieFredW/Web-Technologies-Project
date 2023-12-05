@@ -84,8 +84,8 @@
         </div>
     </div>
     <div id="download-sort-dropdown" class="dropdown-content">
-        <button onclick="sortSamples('highest')" class="download-sort-button">Sort by Highest</button> <br>
-        <button onclick="sortSamples('lowest')" class="download-sort-button">Sort by Lowest</button> <br>
+        <button id="sort-highest" class="download-sort-button">Sort by Highest</button> <br>
+        <button id="sort-lowest" class="download-sort-button">Sort by Lowest</button> <br>
     </div>
     <div id="bpm-search-dropdown" class="dropdown-content">
         <label for="bpm-input" class="bpm-search-dropdown-label">Enter BPM:</label> <br>
@@ -158,7 +158,7 @@
     </div>
 </div>
 <div class="sample-container">
-    <div class="sample-inner-container">
+    <div class="sample-inner-container" id="sample-container">
         <ul class="sticky-container">
             <li class="sample-item-header">Image</li>
             <li class="sample-item-header">Title</li>
@@ -170,44 +170,46 @@
             <li class="sample-item-header">Genre</li>
             <li class="sample-item-header">Instrument</li>
         </ul>
-        @foreach($samples as $sample)
-            <form method="POST" action="{{ route('sample.rate') }}">
-                @csrf
-                <input type="hidden" name="sample_id" value="{{ $sample->id }}">
-                <input type="hidden" name="rating" id="rating_{{ $sample->id }}" value="">
+        <div id="generated-html">
+            @foreach($samples as $sample)
+                <form method="POST" action="{{ route('sample.rate') }}">
+                    @csrf
+                    <input type="hidden" name="sample_id" value="{{ $sample->id }}">
+                    <input type="hidden" name="rating" id="rating_{{ $sample->id }}" value="">
 
-            <ul class="sample-items">
-                <li class="sample-item"><img class="sample-image" src="{{ $sample->image_url }}" alt="{{ $sample->title }}"></li>
-                <li class="sample-item"><h3>{{ $sample->title }}</h3></li>
-                <li class="sample-item">
-                    <button class="copy-url-button" data-sample-id="{{ $sample->id }}" data-url="{{ $sample->url }}">Copy URL</button>
-                </li>
+                    <ul class="sample-items">
+                        <li class="sample-item"><img class="sample-image" src="{{ $sample->image_url }}" alt="{{ $sample->title }}"></li>
+                        <li class="sample-item"><h3>{{ $sample->title }}</h3></li>
+                        <li class="sample-item">
+                            <button class="copy-url-button" data-sample-id="{{ $sample->id }}" data-url="{{ $sample->url }}">Copy URL</button>
+                        </li>
 
-                <li class="sample-item">
-                    <div class="rating">
-                        <p>
-                            Average Rating:
-                            @if ($sample->averageRating !== null)
-                                {{ $sample->averageRating }}
-                            @else
-                                No Ratings Yet
-                            @endif
-                        </p>
-                        <button class="star" data-value="1" onclick="assignValue({{ $sample->id }}, 1)">&#9733</button>
-                        <button class="star" data-value="2" onclick="assignValue({{ $sample->id }}, 2)">&#9733</button>
-                        <button class="star" data-value="3" onclick="assignValue({{ $sample->id }}, 3)">&#9733</button>
-                        <button class="star" data-value="4" onclick="assignValue({{ $sample->id }}, 4)">&#9733</button>
-                        <button class="star" data-value="5" onclick="assignValue({{ $sample->id }}, 5)">&#9733</button>
-                    </div>
-                </li>
-                <li class="sample-item"><p>{{ $sample->total_downloads }}</p></li>
-                <li class="sample-item"><p>{{ $sample->bpm }}</p></li>
-                <li class="sample-item"><p>{{ $sample->key }}</p></li>
-                <li class="sample-item"><p>{{ $sample->genre }}</p></li>
-                <li class="sample-item"><p>{{ $sample-> instrument}}</p></li>
-            </ul>
-            </form>
-        @endforeach
+                        <li class="sample-item">
+                            <div class="rating">
+                                <p>
+                                    Average Rating:
+                                    @if ($sample->averageRating !== null)
+                                        {{ $sample->averageRating }}
+                                    @else
+                                        No Ratings Yet
+                                    @endif
+                                </p>
+                                <button class="star" data-value="1" onclick="assignValue({{ $sample->id }}, 1)">&#9733</button>
+                                <button class="star" data-value="2" onclick="assignValue({{ $sample->id }}, 2)">&#9733</button>
+                                <button class="star" data-value="3" onclick="assignValue({{ $sample->id }}, 3)">&#9733</button>
+                                <button class="star" data-value="4" onclick="assignValue({{ $sample->id }}, 4)">&#9733</button>
+                                <button class="star" data-value="5" onclick="assignValue({{ $sample->id }}, 5)">&#9733</button>
+                            </div>
+                        </li>
+                        <li class="sample-item"><p>{{ $sample->total_downloads }}</p></li>
+                        <li class="sample-item"><p>{{ $sample->bpm }}</p></li>
+                        <li class="sample-item"><p>{{ $sample->key }}</p></li>
+                        <li class="sample-item"><p>{{ $sample->genre }}</p></li>
+                        <li class="sample-item"><p>{{ $sample-> instrument}}</p></li>
+                    </ul>
+                </form>
+            @endforeach
+        </div>
     </div>
 </div>
 <script src="{{ asset('js/samplePageJS.js') }}"></script>

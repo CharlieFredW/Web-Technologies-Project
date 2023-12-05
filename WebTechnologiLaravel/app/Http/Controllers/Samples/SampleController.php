@@ -87,17 +87,21 @@ class SampleController extends Controller
 
     public function getRandomImage(): string
     {
+
+        $imageFiles = glob(public_path('images') . '/*');
+
+        $imageToExclude = public_path('images/avatar');
+
         //get all images file path
-        $imageFiles = array_map(
-            fn($path) => basename($path),
-            glob(public_path('images') . '/*')
-        );
+        $imageFiles = array_filter($imageFiles, function ($path) use ($imageToExclude) {
+            return $path !== $imageToExclude;
+        });
 
-        //get a random images path
-        $randomImageName = $imageFiles[array_rand($imageFiles)];
+        $randomImagePath = $imageFiles[array_rand($imageFiles)];
 
-        //make the path short so it does not get the local::8080 in front so it works
-        return $randomImageUrl = "images/{$randomImageName}";
+        $randomImageUrl = basename($randomImagePath);
+
+        return "images/{$randomImageUrl}";
 
     }
 
@@ -198,6 +202,24 @@ class SampleController extends Controller
                 $sample->averageRating = $roundedAverage;
                 $sample->save();
             }
+        }
+    }
+
+    public function sortSamples(Request $request)
+    {
+        try {
+            $sortType = $request->input('sortType');
+
+            $samples = Sample::orderBy('total_downloads', $sortType)->get();
+
+            $samplesArray = $samples->toArray();
+
+            return response()->json(['samples' => $samplesArray, 'success' => true, 'message' => 'Sorting successful']);
+
+        } catch (\Exception $e) {
+            \Log::error('Exception in sortSamples: ' . $e->getMessage());
+
+            return response()->json(['success' => false, 'message' => 'Internal Server Error'], 500);
         }
     }
 

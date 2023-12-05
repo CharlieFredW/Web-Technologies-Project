@@ -6,6 +6,25 @@ expandArea.addEventListener("click", toggleExpand)
 const expandDropdown = document.getElementById('expand-button');
 expandArea.addEventListener("click", toggleExpand)
 
+function attachEventListeners() {
+    const sortHighestButton = document.getElementById('sort-highest');
+    const sortLowestButton = document.getElementById('sort-lowest');
+
+        sortHighestButton.addEventListener("click", function () {
+            sortSamples('desc');
+        });
+
+        sortLowestButton.addEventListener("click", function () {
+            sortSamples('asc');
+        });
+}
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 
 // Expand area when button is pressed
 function toggleExpand() {
@@ -15,6 +34,8 @@ function toggleExpand() {
     if (expandArea.style.display === 'none' || expandArea.style.display === '') {
         expandArea.style.display = 'block';
         expandButton.textContent = 'Hide';
+
+        attachEventListeners()
     } else {
         expandArea.style.display = 'none';
         expandButton.textContent = 'Filter Results';
@@ -95,5 +116,74 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+function sortSamples(sortType) {
+    $.ajax({
+        type: 'POST',
+        url: '/sort-samples',
+        data: { sortType: sortType },
+        success: function (response) {
+            console.log(response);
+            const samples = response.samples;
+
+            if (samples && samples.length) {
+                console.log(samples);
+
+                //get container div to clear
+                const generatedHtmlContainer = document.getElementById('generated-html');
+
+                //clear everything in the html div
+                generatedHtmlContainer.innerHTML = '';
+
+                //loop samples and append the html string to the document
+                samples.forEach(sample => {
+                    console.log(samples.length);
+                    console.log('Sample ID:', sample.id);
+                    const sampleHtml = `
+                    <form method="POST" action="{{ route('sample.rate') }}">
+                        <input type="hidden" name="sample_id" value="${sample.id}">
+                        <input type="hidden" name="rating" id="rating_${sample.id}" value="">
+
+                        <ul class="sample-items">
+                            <li class="sample-item"><img class="sample-image" src="${sample.image_url}" alt="${sample.title}"></li>
+                            <li class="sample-item"><h3>${sample.title}</h3></li>
+                            <li class="sample-item">
+                                <button class="copy-url-button" data-sample-id="${sample.id}" data-url="${sample.url}">Copy URL</button>
+                            </li>
+                            <li class="sample-item">
+                                <div class="rating">
+                                    <p>
+                                        Average Rating:
+                                        ${sample.averageRating !== null ? sample.averageRating : 'No Ratings Yet'}
+                                    </p>
+                                    <button class="star" data-value="1" onclick="assignValue(${sample.id}, 1)">&#9733</button>
+                                    <button class="star" data-value="2" onclick="assignValue(${sample.id}, 2)">&#9733</button>
+                                    <button class="star" data-value="3" onclick="assignValue(${sample.id}, 3)">&#9733</button>
+                                    <button class="star" data-value="4" onclick="assignValue(${sample.id}, 4)">&#9733</button>
+                                    <button class="star" data-value="5" onclick="assignValue(${sample.id}, 5)">&#9733</button>
+                                </div>
+                            </li>
+                            <li class="sample-item"><p>${sample.total_downloads}</p></li>
+                            <li class="sample-item"><p>${sample.bpm}</p></li>
+                            <li class="sample-item"><p>${sample.key}</p></li>
+                            <li class="sample-item"><p>${sample.genre}</p></li>
+                            <li class="sample-item"><p>${sample.instrument}</p></li>
+                        </ul>
+                    </form>
+                `;
+                    //insert html into the selected div
+                    console.log(sampleHtml)
+                    generatedHtmlContainer.innerHTML += sampleHtml;
+                });
+            }
+            else {
+                console.error('Invalid or missing samples data in the response');
+            }
+        },
+        error: function (error) {
+            console.error('Error:', error);
+        }
+    });
+}
 
 

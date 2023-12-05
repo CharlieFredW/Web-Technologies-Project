@@ -45,6 +45,8 @@ Route::get('/blogs', function () {
 
 Route::get('/sample-page', [SampleController::class, 'showSamplesPage']);
 
+Route::post('/sort-samples', [SampleController::class, 'sortSamples']);
+
 
 //My page routes
 
