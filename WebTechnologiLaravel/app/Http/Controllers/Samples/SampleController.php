@@ -9,6 +9,7 @@ use App\Models\Sample;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
+use mysql_xdevapi\Exception;
 
 class SampleController extends Controller
 {
@@ -205,7 +206,7 @@ class SampleController extends Controller
         }
     }
 
-    public function sortSamples(Request $request)
+    public function sortSamplesDownloads(Request $request)
     {
         try {
             $sortType = $request->input('sortType');
@@ -222,5 +223,42 @@ class SampleController extends Controller
             return response()->json(['success' => false, 'message' => 'Internal Server Error'], 500);
         }
     }
+
+    public function sortSamplesBPM(Request $request)
+    {
+        try {
+            $sortType = $request->input('sortType');
+
+            $samples = Sample::where('bpm', $sortType)->get();
+
+            return response()->json(['samples' => $samples, 'success' => true, 'message' => 'Sorting successful']);
+
+        } catch (\Exception) {
+            return response()->json(['success' => false, 'message' => 'Internal Server Error'], 500);
+        }
+
+
+    }
+
+    public function sortSamplesKey(Request $request)
+    {
+        try {
+            $sortType = $request->input('sortType');
+
+            $samples = Sample::where('key', $sortType)->get();
+
+            if ($samples->isEmpty()) {
+                return response()->json(['success' => false, 'message' => 'No samples found for the specified key'], 404);
+            }
+
+            return response()->json(['samples' => $samples, 'success' => true, 'message' => 'Sorting successful']);
+
+        } catch (\Exception) {
+            return response()->json(['success' => false, 'message' => 'Internal Server Error'], 500);
+        }
+
+
+    }
+
 
 }

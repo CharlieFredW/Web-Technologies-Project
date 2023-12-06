@@ -45,7 +45,11 @@ Route::get('/blogs', function () {
 
 Route::get('/sample-page', [SampleController::class, 'showSamplesPage']);
 
-Route::post('/sort-samples', [SampleController::class, 'sortSamples']);
+Route::post('/sort-samples-downloads', [SampleController::class, 'sortSamplesDownloads']);
+
+Route::post('/sort-samples-bpm', [SampleController::class, 'sortSamplesBPM']);
+
+Route::post('/sort-samples-key', [SampleController::class, 'sortSamplesKey']);
 
 
 //My page routes

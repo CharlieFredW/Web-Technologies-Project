@@ -90,36 +90,36 @@
     <div id="bpm-search-dropdown" class="dropdown-content">
         <label for="bpm-input" class="bpm-search-dropdown-label">Enter BPM:</label> <br>
         <input type="number" id="bpm-input" placeholder="Enter BPM" class="bpm-search-dropdown-label"> <br>
-        <button onclick="searchByBpm()" class="bpm-search-dropdown-button">Search</button> <br>
+        <button class="bpm-search-dropdown-button" id="bpm-button">Search</button> <br>
     </div>
     <div id="key-dropdown" class="dropdown-content">
         <!-- major keys -->
-        <button onclick="sortSamples('C')" class="key-dropdown-button">Sort by C</button> <br>
-        <button onclick="sortSamples('C#')" class="key-dropdown-button">Sort by C#</button> <br>
-        <button onclick="sortSamples('D')" class="key-dropdown-button">Sort by D</button> <br>
-        <button onclick="sortSamples('D#')" class="key-dropdown-button">Sort by D#</button> <br>
-        <button onclick="sortSamples('E')" class="key-dropdown-button">Sort by E</button> <br>
-        <button onclick="sortSamples('F')" class="key-dropdown-button">Sort by F</button> <br>
-        <button onclick="sortSamples('F#')" class="key-dropdown-button">Sort by F#</button> <br>
-        <button onclick="sortSamples('G')" class="key-dropdown-button">Sort by G</button> <br>
-        <button onclick="sortSamples('G#')" class="key-dropdown-button">Sort by G#</button> <br>
-        <button onclick="sortSamples('A')" class="key-dropdown-button">Sort by A</button> <br>
-        <button onclick="sortSamples('A#')" class="key-dropdown-button">Sort by A#</button> <br>
-        <button onclick="sortSamples('B')" class="key-dropdown-button">Sort by B</button> <br>
+        <button id="sortC" class="key-dropdown-button">Sort by C</button> <br>
+        <button id="sortC#" class="key-dropdown-button">Sort by C#</button> <br>
+        <button id="sortD" class="key-dropdown-button">Sort by D</button> <br>
+        <button id="sortD#" class="key-dropdown-button">Sort by D#</button> <br>
+        <button id="sortE" class="key-dropdown-button">Sort by E</button> <br>
+        <button id="sortF" class="key-dropdown-button">Sort by F</button> <br>
+        <button id="sortF#" class="key-dropdown-button">Sort by F#</button> <br>
+        <button id="sortG" class="key-dropdown-button">Sort by G</button> <br>
+        <button id="sortG#" class="key-dropdown-button">Sort by G#</button> <br>
+        <button id="sortA" class="key-dropdown-button">Sort by A</button> <br>
+        <button id="sortA#" class="key-dropdown-button">Sort by A#</button> <br>
+        <button id="sortB" class="key-dropdown-button">Sort by B</button> <br>
 
         <!-- minor keys -->
-        <button onclick="sortSamples('Am')" class="key-dropdown-button">Sort by Am</button> <br>
-        <button onclick="sortSamples('A#m')" class="key-dropdown-button">Sort by A#m</button> <br>
-        <button onclick="sortSamples('Bm')" class="key-dropdown-button">Sort by Bm</button> <br>
-        <button onclick="sortSamples('Cm')" class="key-dropdown-button">Sort by Cm</button> <br>
-        <button onclick="sortSamples('C#m')" class="key-dropdown-button">Sort by C#m</button> <br>
-        <button onclick="sortSamples('Dm')" class="key-dropdown-button">Sort by Dm</button> <br>
-        <button onclick="sortSamples('D#m')" class="key-dropdown-button">Sort by D#m</button> <br>
-        <button onclick="sortSamples('Em')" class="key-dropdown-button">Sort by Em</button> <br>
-        <button onclick="sortSamples('Fm')" class="key-dropdown-button">Sort by Fm</button> <br>
-        <button onclick="sortSamples('F#m')" class="key-dropdown-button">Sort by F#m</button> <br>
-        <button onclick="sortSamples('Gm')" class="key-dropdown-button">Sort by Gm</button> <br>
-        <button onclick="sortSamples('G#m')" class="key-dropdown-button">Sort by G#m</button> <br>
+        <button id="sortAm" class="key-dropdown-button">Sort by Am</button> <br>
+        <button id="sortA#m" class="key-dropdown-button">Sort by A#m</button> <br>
+        <button id="sortBm" class="key-dropdown-button">Sort by Bm</button> <br>
+        <button id="sortCm" class="key-dropdown-button">Sort by Cm</button> <br>
+        <button id="sortC#m" class="key-dropdown-button">Sort by C#m</button> <br>
+        <button id="sortDm" class="key-dropdown-button">Sort by Dm</button> <br>
+        <button id="sortD#m" class="key-dropdown-button">Sort by D#m</button> <br>
+        <button id="sortEm" class="key-dropdown-button">Sort by Em</button> <br>
+        <button id="sortFm" class="key-dropdown-button">Sort by Fm</button> <br>
+        <button id="sortF#m" class="key-dropdown-button">Sort by F#m</button> <br>
+        <button id="sortGm" class="key-dropdown-button">Sort by Gm</button> <br>
+        <button id="sortG#m" class="key-dropdown-button">Sort by G#m</button> <br>
     </div>
     <div id="genre-dropdown" class="dropdown-content">
         <label><input type="checkbox" name="genre" value="pop" class="genre-dropdown-button"> Pop</label> <br>
