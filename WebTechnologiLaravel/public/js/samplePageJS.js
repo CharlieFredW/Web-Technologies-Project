@@ -43,7 +43,18 @@ function attachEventListeners() {
     const sortASharpM = document.getElementById('sortA#m');
     const sortBM = document.getElementById('sortBm');
 
-        sortHighestButton.addEventListener("click", function () {
+    // genre listener
+    const checkboxesGenre = document.querySelectorAll('.genre-dropdown-button');
+
+    // Date listener
+    const sortNewest = document.getElementById('sort-date-newest')
+    const sortOldest = document.getElementById('sort-date-oldest')
+
+    // instrument listener
+    const checkboxesInstrument = document.querySelectorAll('.instrument-dropdown-button');
+
+
+    sortHighestButton.addEventListener("click", function () {
             sortSamplesDownloads('desc');
         });
 
@@ -152,6 +163,50 @@ function attachEventListeners() {
         sortBM.addEventListener("click", function () {
             sortSamplesKey('B minor');
         })
+
+        // Genre listener
+    checkboxesGenre.forEach(function (checkbox) {
+        checkbox.addEventListener('click', function () {
+            handleGenreCheckbox();
+        });
+    });
+
+        // date created listener
+    sortNewest.addEventListener("click", function () {
+        sortSamplesDate('desc')
+    })
+
+    sortOldest.addEventListener("click", function () {
+        sortSamplesDate('asc')
+    })
+
+    //instrument listener
+    checkboxesInstrument.forEach(function (checkbox) {
+        checkbox.addEventListener('click', function () {
+            handleInstrumentCheckbox()
+        });
+    });
+
+}
+
+function handleGenreCheckbox() {
+    const checkedCheckboxes = document.querySelectorAll('.genre-dropdown-button:checked');
+
+    const selectedGenres = Array.from(checkedCheckboxes).map(function (checkbox) {
+        return checkbox.value;
+    });
+
+    sortSamplesGenre(selectedGenres.sort());
+    console.log(selectedGenres);
+}
+
+function handleInstrumentCheckbox() {
+    const selectedRadio = document.querySelector('.instrument-dropdown-button:checked');
+
+    const selectedInstrument = selectedRadio.value;
+    sortSamplesInstrument(selectedInstrument);
+
+    console.log(selectedRadio);
 }
 
 $.ajaxSetup({
@@ -209,6 +264,18 @@ function hideOtherDropdowns(currentDropdownId) {
         }
     });
 }
+
+//get original content in the samples div
+
+const originalContent = document.getElementById('generated-html').innerHTML;
+
+function clearAndReloadContent() {
+    const generatedHtmlDiv = document.getElementById('generated-html');
+    generatedHtmlDiv.innerHTML = '';
+
+    generatedHtmlDiv.innerHTML = originalContent;
+}
+
 
 
 // Copy URL to the users clipboard when you press the copy URL button & send Ajax call to update the total downloads
@@ -458,6 +525,217 @@ function sortSamplesKey(sortType) {
         }
     });
 }
+
+function sortSamplesGenre(sortType) {
+    $.ajax({
+        type: 'POST',
+        url: '/sort-samples-genre',
+        data: { sortType: sortType },
+        success: function (response) {
+            console.log(response);
+            const samples = response.samples;
+
+            if (samples && samples.length) {
+                console.log(samples);
+
+                //get container div to clear
+                const generatedHtmlContainer = document.getElementById('generated-html');
+
+                //clear everything in the html div
+                generatedHtmlContainer.innerHTML = '';
+
+                //loop samples and append the html string to the document
+                samples.forEach(sample => {
+                    console.log(samples.length);
+                    console.log('Sample ID:', sample.id);
+                    const sampleHtml = `
+                    <form method="POST" action="{{ route('sample.rate') }}">
+                        <input type="hidden" name="sample_id" value="${sample.id}">
+                        <input type="hidden" name="rating" id="rating_${sample.id}" value="">
+
+                        <ul class="sample-items">
+                            <li class="sample-item"><img class="sample-image" src="${sample.image_url}" alt="${sample.title}"></li>
+                            <li class="sample-item"><h3>${sample.title}</h3></li>
+                            <li class="sample-item">
+                                <button class="copy-url-button" data-sample-id="${sample.id}" data-url="${sample.url}">Copy URL</button>
+                            </li>
+                            <li class="sample-item">
+                                <div class="rating">
+                                    <p>
+                                        Average Rating:
+                                        ${sample.averageRating !== null ? sample.averageRating : 'No Ratings Yet'}
+                                    </p>
+                                    <button class="star" data-value="1" onclick="assignValue(${sample.id}, 1)">&#9733</button>
+                                    <button class="star" data-value="2" onclick="assignValue(${sample.id}, 2)">&#9733</button>
+                                    <button class="star" data-value="3" onclick="assignValue(${sample.id}, 3)">&#9733</button>
+                                    <button class="star" data-value="4" onclick="assignValue(${sample.id}, 4)">&#9733</button>
+                                    <button class="star" data-value="5" onclick="assignValue(${sample.id}, 5)">&#9733</button>
+                                </div>
+                            </li>
+                            <li class="sample-item"><p>${sample.total_downloads}</p></li>
+                            <li class="sample-item"><p>${sample.bpm}</p></li>
+                            <li class="sample-item"><p>${sample.key}</p></li>
+                            <li class="sample-item"><p>${sample.genre}</p></li>
+                            <li class="sample-item"><p>${sample.instrument}</p></li>
+                        </ul>
+                    </form>
+                `;
+                    //insert html into the selected div
+                    console.log(sampleHtml)
+                    generatedHtmlContainer.innerHTML += sampleHtml;
+                });
+            }
+            else {
+                clearAndReloadContent()
+                console.error('Invalid or missing samples data in the response');
+            }
+        },
+        error: function (error) {
+            console.error('Error:', error);
+        }
+    });
+}
+
+function sortSamplesDate(sortType) {
+    $.ajax({
+        type: 'POST',
+        url: '/sort-samples-date',
+        data: { sortType: sortType },
+        success: function (response) {
+            console.log(response);
+            const samples = response.samples;
+
+            if (samples && samples.length) {
+                console.log(samples);
+
+                //get container div to clear
+                const generatedHtmlContainer = document.getElementById('generated-html');
+
+                //clear everything in the html div
+                generatedHtmlContainer.innerHTML = '';
+
+                //loop samples and append the html string to the document
+                samples.forEach(sample => {
+                    console.log(samples.length);
+                    console.log('Sample ID:', sample.id);
+                    const sampleHtml = `
+                    <form method="POST" action="{{ route('sample.rate') }}">
+                        <input type="hidden" name="sample_id" value="${sample.id}">
+                        <input type="hidden" name="rating" id="rating_${sample.id}" value="">
+
+                        <ul class="sample-items">
+                            <li class="sample-item"><img class="sample-image" src="${sample.image_url}" alt="${sample.title}"></li>
+                            <li class="sample-item"><h3>${sample.title}</h3></li>
+                            <li class="sample-item">
+                                <button class="copy-url-button" data-sample-id="${sample.id}" data-url="${sample.url}">Copy URL</button>
+                            </li>
+                            <li class="sample-item">
+                                <div class="rating">
+                                    <p>
+                                        Average Rating:
+                                        ${sample.averageRating !== null ? sample.averageRating : 'No Ratings Yet'}
+                                    </p>
+                                    <button class="star" data-value="1" onclick="assignValue(${sample.id}, 1)">&#9733</button>
+                                    <button class="star" data-value="2" onclick="assignValue(${sample.id}, 2)">&#9733</button>
+                                    <button class="star" data-value="3" onclick="assignValue(${sample.id}, 3)">&#9733</button>
+                                    <button class="star" data-value="4" onclick="assignValue(${sample.id}, 4)">&#9733</button>
+                                    <button class="star" data-value="5" onclick="assignValue(${sample.id}, 5)">&#9733</button>
+                                </div>
+                            </li>
+                            <li class="sample-item"><p>${sample.total_downloads}</p></li>
+                            <li class="sample-item"><p>${sample.bpm}</p></li>
+                            <li class="sample-item"><p>${sample.key}</p></li>
+                            <li class="sample-item"><p>${sample.genre}</p></li>
+                            <li class="sample-item"><p>${sample.instrument}</p></li>
+                        </ul>
+                    </form>
+                `;
+                    //insert html into the selected div
+                    console.log(sampleHtml)
+                    generatedHtmlContainer.innerHTML += sampleHtml;
+                });
+            }
+            else {
+                clearAndReloadContent()
+                console.error('Invalid or missing samples data in the response');
+            }
+        },
+        error: function (error) {
+            console.error('Error:', error);
+        }
+    });
+}
+
+function sortSamplesInstrument(sortType) {
+    $.ajax({
+        type: 'POST',
+        url: '/sort-samples-instrument',
+        data: { sortType: sortType },
+        success: function (response) {
+            console.log(response);
+            const samples = response.samples;
+
+            if (samples && samples.length) {
+                console.log(samples);
+
+                //get container div to clear
+                const generatedHtmlContainer = document.getElementById('generated-html');
+
+                //clear everything in the html div
+                generatedHtmlContainer.innerHTML = '';
+
+                //loop samples and append the html string to the document
+                samples.forEach(sample => {
+                    console.log(samples.length);
+                    console.log('Sample ID:', sample.id);
+                    const sampleHtml = `
+                    <form method="POST" action="{{ route('sample.rate') }}">
+                        <input type="hidden" name="sample_id" value="${sample.id}">
+                        <input type="hidden" name="rating" id="rating_${sample.id}" value="">
+
+                        <ul class="sample-items">
+                            <li class="sample-item"><img class="sample-image" src="${sample.image_url}" alt="${sample.title}"></li>
+                            <li class="sample-item"><h3>${sample.title}</h3></li>
+                            <li class="sample-item">
+                                <button class="copy-url-button" data-sample-id="${sample.id}" data-url="${sample.url}">Copy URL</button>
+                            </li>
+                            <li class="sample-item">
+                                <div class="rating">
+                                    <p>
+                                        Average Rating:
+                                        ${sample.averageRating !== null ? sample.averageRating : 'No Ratings Yet'}
+                                    </p>
+                                    <button class="star" data-value="1" onclick="assignValue(${sample.id}, 1)">&#9733</button>
+                                    <button class="star" data-value="2" onclick="assignValue(${sample.id}, 2)">&#9733</button>
+                                    <button class="star" data-value="3" onclick="assignValue(${sample.id}, 3)">&#9733</button>
+                                    <button class="star" data-value="4" onclick="assignValue(${sample.id}, 4)">&#9733</button>
+                                    <button class="star" data-value="5" onclick="assignValue(${sample.id}, 5)">&#9733</button>
+                                </div>
+                            </li>
+                            <li class="sample-item"><p>${sample.total_downloads}</p></li>
+                            <li class="sample-item"><p>${sample.bpm}</p></li>
+                            <li class="sample-item"><p>${sample.key}</p></li>
+                            <li class="sample-item"><p>${sample.genre}</p></li>
+                            <li class="sample-item"><p>${sample.instrument}</p></li>
+                        </ul>
+                    </form>
+                `;
+                    //insert html into the selected div
+                    console.log(sampleHtml)
+                    generatedHtmlContainer.innerHTML += sampleHtml;
+                });
+            }
+            else {
+                clearAndReloadContent()
+                console.error('Invalid or missing samples data in the response');
+            }
+        },
+        error: function (error) {
+            console.error('Error:', error);
+        }
+    });
+}
+
 
 
 

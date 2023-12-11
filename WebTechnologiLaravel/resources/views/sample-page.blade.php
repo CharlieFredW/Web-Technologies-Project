@@ -144,8 +144,8 @@
         <label><input type="checkbox" name="genre" value="world" class="genre-dropdown-button"> World</label> <br>
     </div>
     <div id="date-dropdown" class="dropdown-content">
-        <button onclick="sortSamples('newest')" class="date-dropdown-button">Newest First</button> <br>
-        <button onclick="sortSamples('oldest')" class="date-dropdown-button">Oldest First</button> <br>
+        <button id="sort-date-newest" class="date-dropdown-button">Newest First</button> <br>
+        <button id="sort-date-oldest" class="date-dropdown-button">Oldest First</button> <br>
     </div>
     <div id="instrument-dropdown" class="dropdown-content">
         <label><input type="radio" name="instrument" value="guitar" class="instrument-dropdown-button"> Guitar</label> <br>

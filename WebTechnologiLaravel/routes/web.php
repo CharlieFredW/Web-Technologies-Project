@@ -51,6 +51,12 @@ Route::post('/sort-samples-bpm', [SampleController::class, 'sortSamplesBPM']);
 
 Route::post('/sort-samples-key', [SampleController::class, 'sortSamplesKey']);
 
+Route::post('/sort-samples-genre', [SampleController::class, 'sortSamplesGenre']);
+
+Route::post('/sort-samples-date', [SampleController::class, 'sortSamplesDate']);
+
+Route::post('/sort-samples-instrument', [SampleController::class, 'sortSamplesInstrument']);
+
 
 //My page routes
 

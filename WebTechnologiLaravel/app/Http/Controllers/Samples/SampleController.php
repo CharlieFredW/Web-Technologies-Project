@@ -260,5 +260,61 @@ class SampleController extends Controller
 
     }
 
+    public function sortSamplesGenre(Request $request)
+    {
+        try {
+            $sortType = $request->input('sortType');
+
+            $samples = Sample::whereIn('genre', $sortType)->get();
+
+            if ($samples->isEmpty()) {
+                return response()->json(['success' => false, 'message' => 'No samples found for the specified key'], 404);
+            }
+
+            return response()->json(['samples' => $samples, 'success' => true, 'message' => 'Sorting successful']);
+
+        } catch (\Exception) {
+            return response()->json(['success' => false, 'message' => 'Internal Server Error'], 500);
+        }
+
+
+    }
+
+    public function sortSamplesDate(Request $request)
+    {
+        try {
+            $sortType = $request->input('sortType');
+
+            $samples = Sample::orderBy('created_at', $sortType)->get();
+
+            $samplesArray = $samples->toArray();
+
+            return response()->json(['samples' => $samplesArray, 'success' => true, 'message' => 'Sorting successful']);
+
+        } catch (\Exception $e) {
+            \Log::error('Exception in sortSamples: ' . $e->getMessage());
+
+            return response()->json(['success' => false, 'message' => 'Internal Server Error'], 500);
+        }
+    }
+
+    public function sortSamplesInstrument(Request $request)
+    {
+        try {
+            $sortType = $request->input('sortType');
+
+            $samples = Sample::where('instrument', $sortType)->get();
+
+            if ($samples->isEmpty()) {
+                return response()->json(['success' => false, 'message' => 'No samples found for the specified key'], 404);
+            }
+
+            return response()->json(['samples' => $samples, 'success' => true, 'message' => 'Sorting successful']);
+
+        } catch (\Exception) {
+            return response()->json(['success' => false, 'message' => 'Internal Server Error'], 500);
+        }
+    }
+
 
 }
