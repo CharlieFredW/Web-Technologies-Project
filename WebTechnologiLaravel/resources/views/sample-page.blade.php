@@ -212,5 +212,8 @@
         </div>
     </div>
 </div>
+<div class="pagination-container">
+    {{ $samples->appends(request()->all())->links() }}
+</div>
 <script src="{{ asset('js/samplePageJS.js') }}"></script>
 @endsection

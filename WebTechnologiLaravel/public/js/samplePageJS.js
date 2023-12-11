@@ -319,14 +319,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-function sortSamplesDownloads(sortType) {
+function sortSamplesDownloads(sortType, page = 1) {
+
+
     $.ajax({
         type: 'POST',
         url: '/sort-samples-downloads',
-        data: { sortType: sortType },
+        data: { sortType: sortType, page: page},
         success: function (response) {
+
             console.log(response);
-            const samples = response.samples;
+            const samples = response.samples.data;
 
             if (samples && samples.length) {
                 console.log(samples);
@@ -395,7 +398,7 @@ function sortSamplesBPM(sortType) {
         data: { sortType: sortType },
         success: function (response) {
             console.log(response);
-            const samples = response.samples;
+            const samples = response.samples.data;
 
             if (samples && samples.length) {
                 console.log(samples);
@@ -464,7 +467,7 @@ function sortSamplesKey(sortType) {
         data: { sortType: sortType },
         success: function (response) {
             console.log(response);
-            const samples = response.samples;
+            const samples = response.samples.data;
 
             if (samples && samples.length) {
                 console.log(samples);
@@ -533,7 +536,7 @@ function sortSamplesGenre(sortType) {
         data: { sortType: sortType },
         success: function (response) {
             console.log(response);
-            const samples = response.samples;
+            const samples = response.samples.data;
 
             if (samples && samples.length) {
                 console.log(samples);
@@ -603,7 +606,7 @@ function sortSamplesDate(sortType) {
         data: { sortType: sortType },
         success: function (response) {
             console.log(response);
-            const samples = response.samples;
+            const samples = response.samples.data;
 
             if (samples && samples.length) {
                 console.log(samples);
@@ -673,7 +676,7 @@ function sortSamplesInstrument(sortType) {
         data: { sortType: sortType },
         success: function (response) {
             console.log(response);
-            const samples = response.samples;
+            const samples = response.samples.data;
 
             if (samples && samples.length) {
                 console.log(samples);

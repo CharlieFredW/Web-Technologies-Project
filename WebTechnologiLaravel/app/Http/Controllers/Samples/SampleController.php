@@ -58,9 +58,10 @@ class SampleController extends Controller
 
     public function showSamples() {
 
+        $samples = Sample::paginate(6);
+
         $this->AverageRating();
 
-        $samples = Sample::all();
 
         foreach ($samples as $sample) {
             Log::info('Sample ID: ' . $sample->id . ' - Average Rating: ' . $sample->averageRating);
@@ -211,7 +212,7 @@ class SampleController extends Controller
         try {
             $sortType = $request->input('sortType');
 
-            $samples = Sample::orderBy('total_downloads', $sortType)->get();
+            $samples = Sample::orderBy('total_downloads', $sortType)->paginate(6);
 
             $samplesArray = $samples->toArray();
 
@@ -229,7 +230,7 @@ class SampleController extends Controller
         try {
             $sortType = $request->input('sortType');
 
-            $samples = Sample::where('bpm', $sortType)->get();
+            $samples = Sample::where('bpm', $sortType)->paginate(6);
 
             return response()->json(['samples' => $samples, 'success' => true, 'message' => 'Sorting successful']);
 
@@ -245,7 +246,7 @@ class SampleController extends Controller
         try {
             $sortType = $request->input('sortType');
 
-            $samples = Sample::where('key', $sortType)->get();
+            $samples = Sample::where('key', $sortType)->paginate(6);
 
             if ($samples->isEmpty()) {
                 return response()->json(['success' => false, 'message' => 'No samples found for the specified key'], 404);
@@ -265,7 +266,7 @@ class SampleController extends Controller
         try {
             $sortType = $request->input('sortType');
 
-            $samples = Sample::whereIn('genre', $sortType)->get();
+            $samples = Sample::whereIn('genre', $sortType)->paginate(6);
 
             if ($samples->isEmpty()) {
                 return response()->json(['success' => false, 'message' => 'No samples found for the specified key'], 404);
@@ -285,7 +286,7 @@ class SampleController extends Controller
         try {
             $sortType = $request->input('sortType');
 
-            $samples = Sample::orderBy('created_at', $sortType)->get();
+            $samples = Sample::orderBy('created_at', $sortType)->paginate(6);
 
             $samplesArray = $samples->toArray();
 
@@ -303,7 +304,7 @@ class SampleController extends Controller
         try {
             $sortType = $request->input('sortType');
 
-            $samples = Sample::where('instrument', $sortType)->get();
+            $samples = Sample::where('instrument', $sortType)->paginate(6);
 
             if ($samples->isEmpty()) {
                 return response()->json(['success' => false, 'message' => 'No samples found for the specified key'], 404);
