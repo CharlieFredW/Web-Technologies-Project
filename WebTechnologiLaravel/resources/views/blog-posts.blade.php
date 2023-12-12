@@ -10,7 +10,6 @@
         <p class="blog-frontpage-text">Blog Posts</p>
     </div>
 
-    <!-- Blogs Section Things -->
     <div id="blogContainer">
         <div id="blogTitles" class="blog-titles">
             <div id="titlesRectangle"></div>
@@ -68,11 +67,14 @@
         @endif
     </div>
 
+
     <script>
+        //Added variables
         var currentBlogId = null;
         var commentInput = null;
 
 
+        //This is the function to toggle the content from the blog
         function toggleContent(title, content, author, date, element) {
 
             //All the content for the dropdown menu for selected blog post
@@ -88,6 +90,7 @@
             //The ID of the selected blog post
             currentBlogId = element.getAttribute('data-blog-id');
 
+            //All the elements
             titleElement.innerText = title;
             textElement.innerText = content;
             authorElement.innerText = 'Author: ' + author;
@@ -128,8 +131,11 @@
             commentInput.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
+        //Function to postComment
         function postComment() {
-            commentInput = document.getElementById('comment'); // Update the global variable
+            commentInput = document.getElementById('comment');
+
+            //Variables getFuntions
             var commentForm = document.getElementById('commentForm');
             var commentId = commentForm.getAttribute('data-comment-id');
 
@@ -141,7 +147,7 @@
                 postNewComment(commentInput.value);
             }
 
-            // Clear the textarea and reset dataCommentId
+            // Clear the textarea and reset data CommentId
             commentForm.removeAttribute('data-comment-id');
             commentInput.value = '';
         }
@@ -149,6 +155,7 @@
 
         //Method for posting a new comment
         function postNewComment(commentContent) {
+            //Request (Async)
             fetch('/comments', {
                 method: 'POST',
                 headers: {
@@ -161,7 +168,7 @@
                     comment: commentContent,
                 }),
             })
-                //Give json respons upon error
+                //Give json response upon error
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -178,10 +185,9 @@
                 });
         }
 
-
-
+        //Function to update (edit) a comment
         function updateComment(commentId) {
-            // Updated comment
+            // Updated/edited comment
             var updatedComment = document.getElementById('comment').value;
 
             // AJAX request to update the comment using fetch
@@ -314,9 +320,6 @@
                 console.error('Invalid comments data:', comments);
             }
         }
-
-
-
     </script>
 
 </div>
