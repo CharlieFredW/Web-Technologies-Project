@@ -209,6 +209,7 @@ function handleInstrumentCheckbox() {
     console.log(selectedRadio);
 }
 
+//setup CSRF token
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -276,8 +277,6 @@ function clearAndReloadContent() {
     generatedHtmlDiv.innerHTML = originalContent;
 }
 
-
-
 // Copy URL to the users clipboard when you press the copy URL button & send Ajax call to update the total downloads
 document.addEventListener('DOMContentLoaded', function () {
     const copyButtons= document.querySelectorAll('.copy-url-button');
@@ -320,7 +319,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function sortSamplesDownloads(sortType, page = 1) {
-
 
     $.ajax({
         type: 'POST',
