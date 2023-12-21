@@ -137,11 +137,11 @@ class SampleController extends Controller
     {
 
         if (!Auth::check()) {
-            // Check if user is logged in, if not go to login page
+            // check if user is logged in, if not go to login page
             return view('login-page');
         }
 
-        // Log the received data for debugging
+        // log the received data for debugging
         Log::info('Received sample_id: ' . $sampleId = $request->input('sample_id'));
         Log::info('Received rating: ' . $rating = $request->input('rating'));
         Log::info('Received user_id: ' . $request->user());
@@ -149,12 +149,9 @@ class SampleController extends Controller
 
         // Validate the given input
         $request->validate([
-            'sample_id' => 'required|integer', // Ensure the sample exists and it's not null
-            'rating' => 'required|integer|between:1,5', // Rating should be between 1 and 5
+            'sample_id' => 'required|integer',
+            'rating' => 'required|integer|between:1,5',
         ]);
-
-        /* Checks if a user has already given a rating to the specific sample
-        and either creates or updates the users rating for that sample */
 
         try {
             $user = Auth::user();

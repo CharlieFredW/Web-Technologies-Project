@@ -57,21 +57,6 @@
 <div class="samples-heading">
     <p class="samples-heading-text">Samples</p>
 </div>
-<div class="filter-button">
-    <button id="expand-button" onclick="toggleExpand()">Filter Results</button>
-    <div class="expandable-area" id="expand-area">
-        <div class="filter-inner-container">
-            <ul class="filter-list">
-                <li class="filter-item-header"><button>Total Downloads</button></li>
-                <li class="filter-item-header"><button>BPM</button></li>
-                <li class="filter-item-header"><button>Key</button></li>
-                <li class="filter-item-header"><button>Genre</button></li>
-                <li class="filter-item-header"><button>Created Date</button></li>
-                <li class="filter-item-header"><button>Instrument</button></li>
-            </ul>
-        </div>
-    </div>
-</div>
 <div class="sample-container">
     <div class="sample-inner-container">
         <ul class="sticky-container">
