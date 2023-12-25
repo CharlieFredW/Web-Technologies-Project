@@ -25,7 +25,7 @@
 </div>
 <div class="divider"></div>
 <div class="this-weeks-creators-text">
-    <p>Top Creators This Week</p>
+    <p>Top Samples This Week</p>
 </div>
 <div class="this-weeks-creators-container">
     <x-this-weeks-creators :thisWeeksTopCreators="$thisWeeksTopCreators"/>
