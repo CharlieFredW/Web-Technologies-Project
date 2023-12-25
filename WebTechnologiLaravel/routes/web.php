@@ -85,6 +85,8 @@ Route::delete('/blogs/{blog}', [BlogController::class, 'delete'])->name('blog.de
 
 Route::post('/rate-sample', [SampleController::class, 'rateSample'])->name('sample.rate');
 
-
+// File upload
+Route::get('/upload-file', [SampleController::class, 'createForm']);
+Route::post('/upload-file', [SampleController::class, 'fileUpload'])->name('fileUpload');
 
 

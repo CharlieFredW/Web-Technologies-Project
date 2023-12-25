@@ -9,6 +9,7 @@ use App\Models\Sample;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
+use App\Models\File;
 
 class SampleController extends Controller
 {
@@ -21,7 +22,7 @@ class SampleController extends Controller
     {
         $request->validate([
             'title' => 'required', // required ensures that the field must be filled out in the form
-            'url' => 'required',
+            //'url' => 'required', // removed in the individual extension, since it will be generated from the uploaded file
             'bpm' => 'nullable|integer',
             'key' => 'nullable|string|max:255',
             'genre' => 'nullable|string|max:255',
@@ -30,7 +31,7 @@ class SampleController extends Controller
 
         $sample = new Sample;
         $sample->title = $request->input('title');
-        $sample->url = $request->input('url');
+        //$sample->url = $request->input('url');
         $sample->description = $request->input('description');
         $sample->bpm = $request->input('bpm');
         $sample->key = $request->input('key');
@@ -38,6 +39,7 @@ class SampleController extends Controller
         $sample->instrument = $request->input('instrument');
         $sample->image_url = $this->getRandomImage(); //add a random image url from the image folder to the database
 
+        $sample->url = $this->fileUpload($request);
         //owner should be the id of the user
         $sample->owner = auth()->user()->id;
 
@@ -46,6 +48,27 @@ class SampleController extends Controller
 
         return redirect('/my-page-creator');
     }
+
+
+    public function createForm(){
+        return view('samples/create');
+    }
+    public function fileUpload(Request $req){
+        $req->validate([
+            'file' => 'required|mimes:m4a,mp4,mp3,wav,wma,pdf|max:20480'
+        ]);
+        $fileModel = new File;
+        if($req->file()) {
+            $fileName = time().'_'.$req->file->getClientOriginalName();
+            $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
+            $fileModel->name = time().'_'.$req->file->getClientOriginalName();
+            $fileModel->file_path = '/storage/' . $filePath;
+            $fileModel->save();
+            return $fileModel->file_path;;
+
+        }
+    }
+
 
     public function showSamplesPage() {
         $showAllSamples = $this->showSamples();
