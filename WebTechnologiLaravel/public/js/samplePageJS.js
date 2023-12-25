@@ -1,18 +1,4 @@
 
-// Expand area when button is pressed
-function toggleExpand() {
-    const expandArea = document.getElementById('expand-area');
-    const expandButton = document.getElementById('expand-button');
-
-    if (expandArea.style.display === 'none' || expandArea.style.display === '') {
-        expandArea.style.display = 'block';
-        expandButton.textContent = 'Hide';
-    } else {
-        expandArea.style.display = 'none';
-        expandButton.textContent = 'Filter Results';
-    }
-}
-
 
 // Copy URL to the users clipboard when you press the copy URL button & send Ajax call to update the total downloads
 document.addEventListener('DOMContentLoaded', function () {
@@ -54,5 +40,51 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+function assignValue(sample_id, value) {
+    document.getElementById('rating_' + sample_id).value = value;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const samples = document.querySelectorAll('.rating');
+
+    samples.forEach(function (rating) {
+        const stars = rating.querySelectorAll('.star');
+
+        stars.forEach(function (star) {
+            star.addEventListener('mouseover', function () {
+                const value = star.getAttribute('data-value');
+                highlightStars(rating, value);
+            });
+
+            star.addEventListener('mouseout', function () {
+                resetStars(rating);
+            });
+        });
+    });
+});
+
+function highlightStars(rating, value) {
+    const stars = rating.querySelectorAll('.star');
+    stars.forEach(function (star, index) {
+        if (index < value) {
+            star.classList.add('active');
+        } else {
+            star.classList.remove('active');
+        }
+    });
+
+    const ratingInput = rating.parentElement.querySelector('input[name="rating"]');
+    ratingInput.value = value;
+}
+
+function resetStars(rating) {
+    const stars = rating.querySelectorAll('.star');
+    stars.forEach(function (star) {
+        star.classList.remove('active');
+    });
+}
+
+
 
 
