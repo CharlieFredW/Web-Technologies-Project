@@ -6,7 +6,7 @@
 <div class="header-background">
     <div class="header">
         <div class="logo">
-            <h2>Header Logo</h2>
+            <h2>Magic Samples</h2>
             <div class="header-links-box">
                 <li><a href="{{ asset('/sample-page') }}" class="header-link">Samples</a></li>
                 <li><a href="google.com" class="header-link">Community</a></li>

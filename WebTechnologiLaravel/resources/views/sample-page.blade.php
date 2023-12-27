@@ -6,53 +6,6 @@
     <title>Title</title>
     <link rel="stylesheet" href="{{asset('css/samplePageStyle.css')}}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        function assignValue(sample_id, value) {
-            document.getElementById('rating_' + sample_id).value = value;
-        }
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var samples = document.querySelectorAll('.rating');
-
-            samples.forEach(function (rating) {
-                var stars = rating.querySelectorAll('.star');
-
-                stars.forEach(function (star) {
-                    star.addEventListener('mouseover', function () {
-                        var value = star.getAttribute('data-value');
-                        highlightStars(rating, value);
-                    });
-
-                    star.addEventListener('mouseout', function () {
-                        resetStars(rating);
-                    });
-                });
-            });
-        });
-
-        function highlightStars(rating, value) {
-            var stars = rating.querySelectorAll('.star');
-            stars.forEach(function (star, index) {
-                if (index < value) {
-                    star.classList.add('active');
-                } else {
-                    star.classList.remove('active');
-                }
-            });
-
-            var ratingInput = rating.parentElement.querySelector('input[name="rating"]');
-            ratingInput.value = value; // Set the hidden input value
-        }
-
-        function resetStars(rating) {
-            var stars = rating.querySelectorAll('.star');
-            stars.forEach(function (star) {
-                star.classList.remove('active');
-            });
-        }
-
-    </script>
 </head>
 <div class="samples-heading">
     <p class="samples-heading-text">Samples</p>

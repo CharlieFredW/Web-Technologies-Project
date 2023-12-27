@@ -189,6 +189,50 @@ function attachEventListeners() {
 
 }
 
+function assignValue(sample_id, value) {
+    document.getElementById('rating_' + sample_id).value = value;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const samples = document.querySelectorAll('.rating');
+
+    samples.forEach(function (rating) {
+        const stars = rating.querySelectorAll('.star');
+
+        stars.forEach(function (star) {
+            star.addEventListener('mouseover', function () {
+                const value = star.getAttribute('data-value');
+                highlightStars(rating, value);
+            });
+
+            star.addEventListener('mouseout', function () {
+                resetStars(rating);
+            });
+        });
+    });
+});
+
+function highlightStars(rating, value) {
+    const stars = rating.querySelectorAll('.star');
+    stars.forEach(function (star, index) {
+        if (index < value) {
+            star.classList.add('active');
+        } else {
+            star.classList.remove('active');
+        }
+    });
+
+    const ratingInput = rating.parentElement.querySelector('input[name="rating"]');
+    ratingInput.value = value; // Set the hidden input value
+}
+
+function resetStars(rating) {
+    const stars = rating.querySelectorAll('.star');
+    stars.forEach(function (star) {
+        star.classList.remove('active');
+    });
+}
+
 function handleGenreCheckbox() {
     const checkedCheckboxes = document.querySelectorAll('.genre-dropdown-button:checked');
 
