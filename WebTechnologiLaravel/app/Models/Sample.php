@@ -28,6 +28,11 @@ class Sample extends Model
         return $this->belongsTo(User::class, 'owner');
     }
 
+    public function file()
+    {
+        return $this->belongsTo(File::class, 'file_id');
+    }
+
     public function ratings()
     {
         return $this->hasMany(\App\Models\Rating::class);

@@ -33,7 +33,7 @@
                 <li class="sample-item"><img class="sample-image" src="{{ $sample->image_url }}" alt="{{ $sample->title }}"></li>
                 <li class="sample-item"><h3>{{ $sample->title }}</h3></li>
                 <li class="sample-item">
-                    <button class="copy-url-button" data-sample-id="{{ $sample->id }}" data-url="{{ $sample->url }}">Copy URL</button>
+                    <button class="copy-url-button" data-sample-id="{{ $sample->id }}" data-url="{{ $sample->file->file_path }}">Download sample</button>
                 </li>
 
                 <li class="sample-item">

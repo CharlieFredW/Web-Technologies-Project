@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('samples', function (Blueprint $table) {
             $table->id();
             $table->string('title')->notNull();
-            $table->string('url')->notNull();
+            //$table->string('url')->notNull();
             $table->unsignedBigInteger('owner')->notNull();
             $table->integer('total_downloads')->default(0);
             $table->text('description')->nullable();
@@ -25,9 +25,12 @@ return new class extends Migration
             $table->string('instrument')->nullable();
             $table->string('image_url')->nullable();
             $table->integer('averageRating')->nullable();
+            $table->unsignedBigInteger('file_id')->notNull();
+
 
             // Users.id is a foreign key for 'owner'
             $table->foreign('owner')->references('id')->on('users');
+            $table->foreign('file_id')->references('id')->on('files');
 
             $table->timestamps(); // created and updated timestamps
         });

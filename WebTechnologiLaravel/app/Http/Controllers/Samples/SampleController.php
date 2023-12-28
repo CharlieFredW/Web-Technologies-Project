@@ -8,6 +8,7 @@ use App\Models\Rating;
 use App\Models\Sample;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 use App\Models\File;
 
@@ -39,7 +40,7 @@ class SampleController extends Controller
         $sample->instrument = $request->input('instrument');
         $sample->image_url = $this->getRandomImage(); //add a random image url from the image folder to the database
 
-        $sample->url = $this->fileUpload($request);
+        $sample->file_id = $this->fileUpload($request);
         //owner should be the id of the user
         $sample->owner = auth()->user()->id;
 
@@ -53,19 +54,24 @@ class SampleController extends Controller
     public function createForm(){
         return view('samples/create');
     }
-    public function fileUpload(Request $req){
-        $req->validate([
-            'file' => 'required|mimes:m4a,mp4,mp3,wav,wma,pdf|max:20480'
+    public function fileUpload(Request $request){
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:m4a,mp3,wav,wma|max:10240'
         ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
         $fileModel = new File;
-        if($req->file()) {
-            $fileName = time().'_'.$req->file->getClientOriginalName();
-            $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
-            $fileModel->name = time().'_'.$req->file->getClientOriginalName();
+
+        if($request->file()) {
+            $fileName = time().'_'.$request->file->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+            $fileModel->name = time().'_'.$request->file->getClientOriginalName();
             $fileModel->file_path = '/storage/' . $filePath;
             $fileModel->save();
-            return $fileModel->file_path;;
-
+            return $fileModel->id;
         }
     }
 

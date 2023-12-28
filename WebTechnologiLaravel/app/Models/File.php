@@ -12,4 +12,10 @@ class File extends Model
         'name',
         'file_path'
     ];
+
+
+    public function sample()
+    {
+        return $this->belongsTo(Sample::class);
+    }
 }
